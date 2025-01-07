@@ -23,6 +23,7 @@ namespace LeoDB.Engine
             this.RegisterSystemCollection("$transactions", () => this.SysTransactions());
             this.RegisterSystemCollection("$snapshots", () => this.SysSnapshots());
             this.RegisterSystemCollection("$open_cursors", () => this.SysOpenCursors());
+            this.RegisterSystemCollection("$intelligence", () => this.SysIntelligence());
 
             this.RegisterSystemCollection(new SysFile()); // use single $file(?) for all file formats
             this.RegisterSystemCollection(new SysDump(_header, _monitor));
