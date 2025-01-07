@@ -116,7 +116,7 @@ namespace LeoDB.Engine
 
             if (string.CompareOrdinal(info, HEADER_INFO) != 0 || ver != FILE_VERSION)
             {
-                throw LiteException.InvalidDatabase();
+                throw LeoException.InvalidDatabase();
             }
 
             // CreateTime is readonly

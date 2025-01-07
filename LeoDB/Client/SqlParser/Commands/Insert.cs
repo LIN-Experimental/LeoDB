@@ -50,7 +50,7 @@ namespace LeoDB
                     case "INT": return BsonAutoId.Int32;
                     case "LONG": return BsonAutoId.Int64;
                     case "OBJECTID": return BsonAutoId.ObjectId;
-                    default: throw LiteException.UnexpectedToken(type, "DATE, GUID, INT, LONG, OBJECTID");
+                    default: throw LeoException.UnexpectedToken(type, "DATE, GUID, INT, LONG, OBJECTID");
                 }
             }
 

@@ -18,7 +18,7 @@ namespace LeoDB.Engine
 
         public override IEnumerable<BsonDocument> Input(BsonValue options)
         {
-            var filename = GetOption(options, "filename")?.AsString ?? throw new LiteException(0, $"Collection ${this.Name} requires string as 'filename' or a document field 'filename'");
+            var filename = GetOption(options, "filename")?.AsString ?? throw new LeoException(0, $"Collection ${this.Name} requires string as 'filename' or a document field 'filename'");
             var encoding = GetOption(options, "encoding", "utf-8").AsString;
             var delimiter = GetOption(options, "delimiter", ",").AsString[0];
 
@@ -79,7 +79,7 @@ namespace LeoDB.Engine
 
         public override int Output(IEnumerable<BsonDocument> source, BsonValue options)
         {
-            var filename = GetOption(options, "filename")?.AsString ?? throw new LiteException(0, "Collection $file_json requires string as 'filename' or a document field 'filename'");
+            var filename = GetOption(options, "filename")?.AsString ?? throw new LeoException(0, "Collection $file_json requires string as 'filename' or a document field 'filename'");
             var overwritten = GetOption(options, "overwritten", false).AsBoolean;
             var encoding = GetOption(options, "encoding", "utf-8").AsString;
             var delimiter = GetOption(options, "delimiter", ",").AsString[0];

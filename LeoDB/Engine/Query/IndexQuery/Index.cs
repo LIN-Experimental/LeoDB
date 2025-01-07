@@ -46,7 +46,7 @@ namespace LeoDB.Engine
             // get index for this query
             var index = col.GetCollectionIndex(this.Name);
 
-            if (index == null) throw LiteException.IndexNotFound(this.Name);
+            if (index == null) throw LeoException.IndexNotFound(this.Name);
 
             // execute query to get all IndexNodes
             return this.Execute(indexer, index)

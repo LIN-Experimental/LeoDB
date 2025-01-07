@@ -48,7 +48,7 @@ namespace LeoDB
 
         internal BsonValue Serialize(Type type, object obj, int depth)
         {
-            if (++depth > MaxDepth) throw LiteException.DocumentMaxDepth(MaxDepth, type);
+            if (++depth > MaxDepth) throw LeoException.DocumentMaxDepth(MaxDepth, type);
 
             if (obj == null) return BsonValue.Null;
 

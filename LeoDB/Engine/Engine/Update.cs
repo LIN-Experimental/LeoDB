@@ -78,7 +78,7 @@ namespace LeoDB.Engine
                         // be sure result document will contain same _id as current doc
                         if (result.TryGetValue("_id", out var newId))
                         {
-                            if (newId != id) throw LiteException.InvalidUpdateField("_id");
+                            if (newId != id) throw LeoException.InvalidUpdateField("_id");
                         }
                         else
                         {
@@ -102,7 +102,7 @@ namespace LeoDB.Engine
             // validate id for null, min/max values
             if (id.IsNull || id.IsMinValue || id.IsMaxValue)
             {
-                throw LiteException.InvalidDataType("_id", id);
+                throw LeoException.InvalidDataType("_id", id);
             }
             
             // find indexNode from pk index

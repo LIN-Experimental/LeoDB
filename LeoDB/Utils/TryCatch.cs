@@ -22,8 +22,8 @@ namespace LeoDB.Utils
         }
 
         public bool InvalidDatafileState => this.Exceptions.Any(ex => 
-            ex is LiteException liteEx && 
-            liteEx.ErrorCode == LiteException.INVALID_DATAFILE_STATE);
+            ex is LeoException liteEx && 
+            liteEx.ErrorCode == LeoException.INVALID_DATAFILE_STATE);
 
         [DebuggerHidden]
         public void Catch(Action action)

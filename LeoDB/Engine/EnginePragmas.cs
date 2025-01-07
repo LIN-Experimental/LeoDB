@@ -89,7 +89,7 @@ namespace LeoDB.Engine
                     Get = () => this.Collation.ToString(),
                     Set = (v) => this.Collation = new Collation(v.AsString),
                     Read = (b) => this.Collation = new Collation(b.ReadInt32(P_COLLATION_LCID), (CompareOptions)b.ReadInt32(P_COLLATION_SORT)),
-                    Validate = (v, h) => { throw new LiteException(0, "Pragma COLLATION is read only. Use Rebuild options."); },
+                    Validate = (v, h) => { throw new LeoException(0, "Pragma COLLATION is read only. Use Rebuild options."); },
                     Write = (b) =>
                     {
                         b.Write(this.Collation.LCID, P_COLLATION_LCID);
@@ -102,7 +102,7 @@ namespace LeoDB.Engine
                     Get = () => (int)this.Timeout.TotalSeconds,
                     Set = (v) => this.Timeout = TimeSpan.FromSeconds(v.AsInt32),
                     Read = (b) => this.Timeout = TimeSpan.FromSeconds(b.ReadInt32(P_TIMEOUT)),
-                    Validate = (v, h) => { if (v <= 0) throw new LiteException(0, "Pragma TIMEOUT must be greater than zero"); },
+                    Validate = (v, h) => { if (v <= 0) throw new LeoException(0, "Pragma TIMEOUT must be greater than zero"); },
                     Write = (b) => b.Write((int)this.Timeout.TotalSeconds, P_TIMEOUT)
                 },
                 [Engine.Pragmas.LIMIT_SIZE] = new Pragma
@@ -117,8 +117,8 @@ namespace LeoDB.Engine
                     },
                     Validate = (v, h) =>
                     {
-                        if (v < 4 * PAGE_SIZE) throw new LiteException(0, "Pragma LIMIT_SIZE must be at least 4 pages (32768 bytes)");
-                        if (h != null && v.AsInt64 < (h.LastPageID + 1) * Constants.PAGE_SIZE) throw new LiteException(0, "Pragma LIMIT_SIZE must be greater or equal to the current file size");
+                        if (v < 4 * PAGE_SIZE) throw new LeoException(0, "Pragma LIMIT_SIZE must be at least 4 pages (32768 bytes)");
+                        if (h != null && v.AsInt64 < (h.LastPageID + 1) * Constants.PAGE_SIZE) throw new LeoException(0, "Pragma LIMIT_SIZE must be greater or equal to the current file size");
                     },
                     Write = (b) => b.Write(this.LimitSize, P_LIMIT_SIZE)
                 },
@@ -137,7 +137,7 @@ namespace LeoDB.Engine
                     Get = () => this.Checkpoint,
                     Set = (v) => this.Checkpoint = v.AsInt32,
                     Read = (b) => this.Checkpoint = b.ReadInt32(P_CHECKPOINT),
-                    Validate = (v, h) => { if (v < 0) throw new LiteException(0, "Pragma CHECKPOINT must be greater or equal to zero"); },
+                    Validate = (v, h) => { if (v < 0) throw new LeoException(0, "Pragma CHECKPOINT must be greater or equal to zero"); },
                     Write = (b) => b.Write(this.Checkpoint, P_CHECKPOINT)
                 }
             };
@@ -175,7 +175,7 @@ namespace LeoDB.Engine
                 return pragma.Get();
             }
 
-            throw new LiteException(0, $"Pragma `{name}` not exist");
+            throw new LeoException(0, $"Pragma `{name}` not exist");
         }
 
         public void Set(string name, BsonValue value, bool validate)
@@ -191,7 +191,7 @@ namespace LeoDB.Engine
             }
             else
             {
-                throw new LiteException(0, $"Pragma `{name}` not exist");
+                throw new LeoException(0, $"Pragma `{name}` not exist");
             }
         }
     }

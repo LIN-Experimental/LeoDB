@@ -80,7 +80,7 @@ namespace LeoDB.Engine
 
                     if (isEncrypted != 1)
                     {
-                        throw LiteException.FileNotEncrypted();
+                        throw LeoException.FileNotEncrypted();
                     }
 
                     _stream.Read(this.Salt, 0, ENCRYPTION_SALT_SIZE);
@@ -141,7 +141,7 @@ namespace LeoDB.Engine
 
                     if (!checkBuffer.All(x => x == 1))
                     {
-                        throw LiteException.InvalidPassword();
+                        throw LeoException.InvalidPassword();
                     }
                 }
 

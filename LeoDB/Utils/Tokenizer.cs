@@ -119,7 +119,7 @@ namespace LeoDB
         {
             if (this.Type != type)
             {
-                throw LiteException.UnexpectedToken(this);
+                throw LeoException.UnexpectedToken(this);
             }
 
             return this;
@@ -132,7 +132,7 @@ namespace LeoDB
         {
             if (this.Type != type1 && this.Type != type2)
             {
-                throw LiteException.UnexpectedToken(this);
+                throw LeoException.UnexpectedToken(this);
             }
 
             return this;
@@ -145,7 +145,7 @@ namespace LeoDB
         {
             if (this.Type != type1 && this.Type != type2 && this.Type != type3)
             {
-                throw LiteException.UnexpectedToken(this);
+                throw LeoException.UnexpectedToken(this);
             }
 
             return this;
@@ -155,7 +155,7 @@ namespace LeoDB
         {
             if (!this.Is(value, ignoreCase))
             {
-                throw LiteException.UnexpectedToken(this, value);
+                throw LeoException.UnexpectedToken(this, value);
             }
 
             return this;
@@ -222,7 +222,7 @@ namespace LeoDB
         /// </summary>
         public bool CheckEOF()
         {
-            if (_eof) throw LiteException.UnexpectedToken(this.Current);
+            if (_eof) throw LeoException.UnexpectedToken(this.Current);
 
             return false;
         }

@@ -23,7 +23,7 @@ namespace LeoDB.Engine
         {
             if (this.Pragma(name) == value) return false;
 
-            if (_locker.IsInTransaction) throw LiteException.AlreadyExistsTransaction();
+            if (_locker.IsInTransaction) throw LeoException.AlreadyExistsTransaction();
 
             // do a inside transaction to edit pragma on commit event	
             return this.AutoTransaction(transaction =>

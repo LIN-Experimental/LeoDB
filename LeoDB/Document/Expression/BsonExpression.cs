@@ -271,7 +271,7 @@ namespace LeoDB
             }
             else
             {
-                throw new LiteException(0, $"Expression `{this.Source}` is not a scalar expression and can return more than one result");
+                throw new LeoException(0, $"Expression `{this.Source}` is not a scalar expression and can return more than one result");
             }
         }
 

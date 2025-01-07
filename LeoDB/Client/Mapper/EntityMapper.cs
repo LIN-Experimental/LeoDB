@@ -64,7 +64,7 @@ namespace LeoDB
 
             if (!_initializationToken.WaitHandle.WaitOne(TimeSpan.FromSeconds(5)))
             {
-                throw new LiteException(LiteException.ENTITY_INITIALIZATION_FAILED, "Initialization timeout");
+                throw new LeoException(LeoException.ENTITY_INITIALIZATION_FAILED, "Initialization timeout");
             }
         }
     }

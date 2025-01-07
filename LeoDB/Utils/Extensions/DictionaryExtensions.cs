@@ -162,7 +162,7 @@ namespace LeoDB
             catch (Exception)
             {
                 //TODO: fix string connection parser
-                throw new LiteException(0, $"Invalid connection string value type for `{key}`");
+                throw new LeoException(0, $"Invalid connection string value type for `{key}`");
             }
         }
 

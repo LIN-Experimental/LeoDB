@@ -43,7 +43,7 @@ namespace LeoDB.Engine
             // if current thread already in exclusive mode, just exit
             if (_transaction.IsWriteLockHeld) return;
 
-            if (_transaction.TryEnterReadLock(_pragmas.Timeout) == false) throw LiteException.LockTimeout("transaction", _pragmas.Timeout);
+            if (_transaction.TryEnterReadLock(_pragmas.Timeout) == false) throw LeoException.LockTimeout("transaction", _pragmas.Timeout);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace LeoDB.Engine
             // get collection object lock from dictionary (or create new if doesnt exists)
             var collection = _collections.GetOrAdd(collectionName, (s) => new object());
 
-            if (Monitor.TryEnter(collection, _pragmas.Timeout) == false) throw LiteException.LockTimeout("write", collectionName, _pragmas.Timeout);
+            if (Monitor.TryEnter(collection, _pragmas.Timeout) == false) throw LeoException.LockTimeout("write", collectionName, _pragmas.Timeout);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace LeoDB.Engine
         /// </summary>
         public void ExitLock(string collectionName)
         {
-            if (_collections.TryGetValue(collectionName, out var collection) == false) throw LiteException.CollectionLockerNotFound(collectionName);
+            if (_collections.TryGetValue(collectionName, out var collection) == false) throw LeoException.CollectionLockerNotFound(collectionName);
 
             Monitor.Exit(collection);
         }
@@ -98,7 +98,7 @@ namespace LeoDB.Engine
             if (_transaction.IsWriteLockHeld) return false;
 
             // wait finish all transactions before enter in reserved mode
-            if (_transaction.TryEnterWriteLock(_pragmas.Timeout) == false) throw LiteException.LockTimeout("exclusive", _pragmas.Timeout);
+            if (_transaction.TryEnterWriteLock(_pragmas.Timeout) == false) throw LeoException.LockTimeout("exclusive", _pragmas.Timeout);
 
             return true;
         }

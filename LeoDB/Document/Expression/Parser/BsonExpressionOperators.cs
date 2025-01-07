@@ -242,7 +242,7 @@ namespace LeoDB
             // SELECT COUNT(*), $.pageID FROM $page_list IS invalid!
             if (value == null)
             {
-                throw new LiteException(0, $"Field '{name}' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.");
+                throw new LeoException(0, $"Field '{name}' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.");
             }
 
             if (string.IsNullOrEmpty(name))
@@ -281,7 +281,7 @@ namespace LeoDB
                 // get fixed position based on parameter value (must return int value)
                 var indexValue = expr.ExecuteScalar(root, collation);
 
-                if (!indexValue.IsNumber) throw new LiteException(0, "Parameter expression must return number when called inside an array");
+                if (!indexValue.IsNumber) throw new LeoException(0, "Parameter expression must return number when called inside an array");
 
                 index = indexValue.AsInt32;
             }

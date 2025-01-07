@@ -468,7 +468,7 @@ namespace LeoDB
                 }
             }
 
-            throw new LiteException(0, $"Invalid culture name");
+            throw new LeoException(0, $"Invalid culture name");
         }
 
         /// <summary>

@@ -68,7 +68,7 @@ namespace LeoDB.Engine
 
                 var keyLength = IndexNode.GetKeyLength(item.Key, false);
 
-                if (keyLength > MAX_INDEX_KEY_LENGTH) throw LiteException.InvalidIndexKey($"Sort key must be less than {MAX_INDEX_KEY_LENGTH} bytes.");
+                if (keyLength > MAX_INDEX_KEY_LENGTH) throw LeoException.InvalidIndexKey($"Sort key must be less than {MAX_INDEX_KEY_LENGTH} bytes.");
 
                 offset += keyLength;
 

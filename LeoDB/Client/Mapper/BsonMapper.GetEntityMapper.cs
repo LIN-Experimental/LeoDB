@@ -39,7 +39,7 @@ public partial class BsonMapper
                 catch (Exception ex)
                 {
                     _entities.TryRemove(type, out _);
-                    throw new LiteException(LiteException.MAPPING_ERROR, $"Error in '{type.Name}' mapping: {ex.Message}", ex);
+                    throw new LeoException(LeoException.MAPPING_ERROR, $"Error in '{type.Name}' mapping: {ex.Message}", ex);
                 }
             }
         }

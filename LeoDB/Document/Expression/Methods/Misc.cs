@@ -26,7 +26,7 @@ namespace LeoDB
                     value = JsonSerializer.Deserialize(json.AsString);
                     isJson = true;
                 }
-                catch (LiteException ex) when (ex.ErrorCode == LiteException.UNEXPECTED_TOKEN)
+                catch (LeoException ex) when (ex.ErrorCode == LeoException.UNEXPECTED_TOKEN)
                 {
                 }
 

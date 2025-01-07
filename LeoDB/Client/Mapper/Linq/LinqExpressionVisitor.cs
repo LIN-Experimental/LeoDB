@@ -546,7 +546,7 @@ namespace LeoDB
             if (expression is BinaryExpression bin)
             {
                 // requires only parameter in left side
-                if (bin.Left.NodeType != ExpressionType.Parameter) throw new LiteException(0, "Any/All requires simple parameter on left side. Eg: `x => x.Phones.Select(p => p.Number).Any(n => n > 5)`");
+                if (bin.Left.NodeType != ExpressionType.Parameter) throw new LeoException(0, "Any/All requires simple parameter on left side. Eg: `x => x.Phones.Select(p => p.Number).Any(n => n > 5)`");
 
                 var op = this.GetOperator(bin.NodeType);
 
@@ -576,7 +576,7 @@ namespace LeoDB
             }
             else
             {
-                throw new LiteException(0, "When using Any/All method test do only simple predicate variable. Eg: `x => x.Phones.Select(p => p.Number).Any(n => n > 5)`");
+                throw new LeoException(0, "When using Any/All method test do only simple predicate variable. Eg: `x => x.Phones.Select(p => p.Number).Any(n => n > 5)`");
             }
 
         }

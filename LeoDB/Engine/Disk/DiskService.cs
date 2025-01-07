@@ -101,8 +101,8 @@ namespace LeoDB.Engine
 
             if (initialSize > 0)
             {
-                if (stream is AesStream) throw LiteException.InitialSizeCryptoNotSupported();
-                if (initialSize % PAGE_SIZE != 0) throw LiteException.InvalidInitialSize();
+                if (stream is AesStream) throw LeoException.InitialSizeCryptoNotSupported();
+                if (initialSize % PAGE_SIZE != 0) throw LeoException.InvalidInitialSize();
                 stream.SetLength(initialSize);
             }
 

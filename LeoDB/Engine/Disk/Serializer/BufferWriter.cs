@@ -153,7 +153,7 @@ namespace LeoDB.Engine
         /// </summary>
         public void WriteCString(string value)
         {
-            if (value.IndexOf('\0') > -1) throw LiteException.InvalidNullCharInString();
+            if (value.IndexOf('\0') > -1) throw LeoException.InvalidNullCharInString();
 
             var bytesCount = StringEncoding.UTF8.GetByteCount(value);
             var available = _current.Count - _currentPosition; // avaiable in current segment

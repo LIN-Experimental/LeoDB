@@ -16,7 +16,7 @@ namespace LeoDB.Engine
         {
             ENSURE(this.PageType == PageType.Data, "Page type must be data page: {0}", PageType);
 
-            if (this.PageType != PageType.Data) throw LiteException.InvalidPageType(PageType.Data, this);
+            if (this.PageType != PageType.Data) throw LeoException.InvalidPageType(PageType.Data, this);
         }
 
         /// <summary>

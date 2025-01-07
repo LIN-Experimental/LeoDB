@@ -27,7 +27,7 @@ namespace LeoDB
 
         #endregion
 
-        #region Ctor
+        #region Constructors
 
         /// <summary>
         /// Starts LeoDB database using a connection string for file system database

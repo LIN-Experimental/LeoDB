@@ -20,7 +20,7 @@ namespace LeoDB.Engine
 
             transacion.ExplicitTransaction = true;
 
-            if (transacion.OpenCursors.Count > 0) throw new LiteException(0, "This thread contains an open cursors/query. Close cursors before Begin()");
+            if (transacion.OpenCursors.Count > 0) throw new LeoException(0, "This thread contains an open cursors/query. Close cursors before Begin()");
 
             LOG(isNew, $"begin trans", "COMMAND");
 
@@ -39,7 +39,7 @@ namespace LeoDB.Engine
             if (transaction != null)
             {
                 // do not accept explicit commit transaction when contains open cursors running
-                if (transaction.OpenCursors.Count > 0) throw new LiteException(0, "Current transaction contains open cursors. Close cursors before run Commit()");
+                if (transaction.OpenCursors.Count > 0) throw new LeoException(0, "Current transaction contains open cursors. Close cursors before run Commit()");
 
                 if (transaction.State == TransactionState.Active)
                 {

@@ -196,12 +196,12 @@ namespace LeoDB
                 {
                     var actualType = _typeNameBinder.GetType(typeField.AsString);
 
-                    if (actualType == null) throw LiteException.InvalidTypedName(typeField.AsString);
+                    if (actualType == null) throw LeoException.InvalidTypedName(typeField.AsString);
 
                     // avoid initialize class that are not assignable 
                     if (!type.IsAssignableFrom(actualType))
                     {
-                        throw LiteException.DataTypeNotAssignable(type.FullName, actualType.FullName);
+                        throw LeoException.DataTypeNotAssignable(type.FullName, actualType.FullName);
                     }
 
                     type = actualType;

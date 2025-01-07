@@ -21,7 +21,7 @@ namespace LeoDB.Engine
 
         public override IEnumerable<BsonDocument> Input(BsonValue options)
         {
-            var query = options?.AsString ?? throw new LiteException(0, $"Collection $query(sql) requires `sql` string parameter");
+            var query = options?.AsString ?? throw new LeoException(0, $"Collection $query(sql) requires `sql` string parameter");
 
             var sql = new SqlParser(_engine, new Tokenizer(query), null);
 

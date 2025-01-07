@@ -42,7 +42,7 @@ namespace LeoDB
             }
             else
             {
-                throw LiteException.UnexpectedToken(token, "INDEX|COLLECTION");
+                throw LeoException.UnexpectedToken(token, "INDEX|COLLECTION");
             }
         }
     }

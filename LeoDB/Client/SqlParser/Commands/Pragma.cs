@@ -46,7 +46,7 @@ namespace LeoDB
                 return new BsonDataReader(result);
             }
 
-            throw LiteException.UnexpectedToken(eof);
+            throw LeoException.UnexpectedToken(eof);
         }
     }
 }

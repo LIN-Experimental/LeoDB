@@ -36,9 +36,9 @@ namespace LeoDB.Shell
         {
             this.WriteLine(ConsoleColor.Red, ex.Message);
 
-            if (ex is LiteException && (ex as LiteException).ErrorCode == LiteException.UNEXPECTED_TOKEN)
+            if (ex is LeoException && (ex as LeoException).ErrorCode == LeoException.UNEXPECTED_TOKEN)
             {
-                var err = ex as LiteException;
+                var err = ex as LeoException;
 
                 this.WriteLine(ConsoleColor.DarkYellow, "> " + "^".PadLeft((int)err.Position + 1, ' '));
             }

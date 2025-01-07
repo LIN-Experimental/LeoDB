@@ -41,7 +41,7 @@ namespace LeoDB.Engine
         {
             ENSURE(this.PageType == PageType.Collection, "page type must be collection page");
 
-            if (this.PageType != PageType.Collection) throw LiteException.InvalidPageType(PageType.Collection, this);
+            if (this.PageType != PageType.Collection) throw LeoException.InvalidPageType(PageType.Collection, this);
 
             // create new buffer area to store BsonDocument indexes
             var area = _buffer.Slice(PAGE_HEADER_SIZE, PAGE_SIZE - PAGE_HEADER_SIZE);
@@ -148,7 +148,7 @@ namespace LeoDB.Engine
                 CollectionIndex.GetLength(name, expr);
 
             // check if has space avaiable
-            if (_indexes.Count == 255 || totalLength >= P_INDEXES_COUNT) throw new LiteException(0, $"This collection has no more space for new indexes");
+            if (_indexes.Count == 255 || totalLength >= P_INDEXES_COUNT) throw new LeoException(0, $"This collection has no more space for new indexes");
 
             var slot = (byte)(_indexes.Count == 0 ? 0 : (_indexes.Max(x => x.Value.Slot) + 1));
 

@@ -66,7 +66,7 @@ namespace LeoDB
 
             if (_disallowedTypeNames.Contains(type.FullName))
             {
-                throw LiteException.IllegalDeserializationType(type.FullName);
+                throw LeoException.IllegalDeserializationType(type.FullName);
             }
 
             return type;

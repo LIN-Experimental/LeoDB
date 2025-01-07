@@ -16,7 +16,7 @@ namespace LeoDB.Engine
                 return sys;
             }
 
-            throw new LiteException(0, $"System collection '{name}' are not registered as system collection");
+            throw new LeoException(0, $"System collection '{name}' are not registered as system collection");
         }
 
         /// <summary>

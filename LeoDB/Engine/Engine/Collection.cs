@@ -24,7 +24,7 @@ namespace LeoDB.Engine
             if (name.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(name));
 
             // drop collection is possible only in exclusive transaction for this
-            if (_locker.IsInTransaction) throw LiteException.AlreadyExistsTransaction();
+            if (_locker.IsInTransaction) throw LeoException.AlreadyExistsTransaction();
 
             return this.AutoTransaction(transaction =>
             {
@@ -54,16 +54,16 @@ namespace LeoDB.Engine
             if (newName.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(newName));
 
             // rename collection is possible only in exclusive transaction for this
-            if (_locker.IsInTransaction) throw LiteException.AlreadyExistsTransaction();
+            if (_locker.IsInTransaction) throw LeoException.AlreadyExistsTransaction();
 
             // check for collection name
-            if (collection.Equals(newName, StringComparison.OrdinalIgnoreCase)) throw LiteException.InvalidCollectionName(newName, "New name must be different from current name");
+            if (collection.Equals(newName, StringComparison.OrdinalIgnoreCase)) throw LeoException.InvalidCollectionName(newName, "New name must be different from current name");
 
             // checks if newName are compatible
             CollectionService.CheckName(newName, _header);
 
             // rename collection is possible only in exclusive transaction for this
-            if (_locker.IsInTransaction) throw LiteException.AlreadyExistsTransaction();
+            if (_locker.IsInTransaction) throw LeoException.AlreadyExistsTransaction();
 
             return this.AutoTransaction(transaction =>
             {
@@ -75,7 +75,7 @@ namespace LeoDB.Engine
                 // checks if do not already exists this collection name
                 if (_header.GetCollectionPageID(newName) != uint.MaxValue)
                 {
-                    throw LiteException.AlreadyExistsCollectionName(newName);
+                    throw LeoException.AlreadyExistsCollectionName(newName);
                 }
 
                 // rename collection and set page as dirty (there is no need to set IsDirty in HeaderPage)

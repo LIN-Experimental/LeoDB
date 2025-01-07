@@ -328,7 +328,7 @@ namespace LeoDB.Engine
                         if (!_readable.TryAdd(key, page))
                         {
                             // this is a terrible situation, to avoid memory corruption I will throw expcetion for now
-                            throw new LiteException(0, "MemoryCache: removed in-use memory page. This situation has no way to fix (yet). Throwing exception to avoid database corruption. No other thread can read/write from database now.");
+                            throw new LeoException(0, "MemoryCache: removed in-use memory page. This situation has no way to fix (yet). Throwing exception to avoid database corruption. No other thread can read/write from database now.");
                         }
                     }
                     else

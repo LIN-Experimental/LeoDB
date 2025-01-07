@@ -314,7 +314,7 @@ namespace LeoDB.Engine
 
             if(!(this.FreeBytes >= bytesLength + (isNewInsert ? SLOT_SIZE : 0)))
             {
-                throw LiteException.InvalidFreeSpacePage(this.PageID, this.FreeBytes, bytesLength + (isNewInsert ? SLOT_SIZE : 0));
+                throw LeoException.InvalidFreeSpacePage(this.PageID, this.FreeBytes, bytesLength + (isNewInsert ? SLOT_SIZE : 0));
             }
 
             // calculate how many continuous bytes are avaiable in this page

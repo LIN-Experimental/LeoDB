@@ -53,7 +53,7 @@ namespace LeoDB.Engine
                 ["message"] = x.Message,
                 ["exception"] = new BsonDocument
                 {
-                    ["code"] = (x.Exception is LiteException lex ? lex.ErrorCode : -1),
+                    ["code"] = (x.Exception is LeoException lex ? lex.ErrorCode : -1),
                     ["hresult"] = x.Exception.HResult,
                     ["type"] = x.Exception.GetType().FullName,
                     ["inner"] = x.Exception.InnerException?.Message,

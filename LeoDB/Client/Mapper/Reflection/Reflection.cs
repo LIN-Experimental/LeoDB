@@ -43,7 +43,7 @@ namespace LeoDB
             }
             catch (Exception ex)
             {
-                throw LiteException.InvalidCtor(type, ex);
+                throw LeoException.InvalidCtor(type, ex);
             }
 
             lock (_cacheCtor)
@@ -87,7 +87,7 @@ namespace LeoDB
                             }
                         }
 
-                        throw LiteException.InvalidCtor(type, null);
+                        throw LeoException.InvalidCtor(type, null);
                     }
                     else // structs
                     {
@@ -98,7 +98,7 @@ namespace LeoDB
                 }
                 catch (Exception ex)
                 {
-                    throw LiteException.InvalidCtor(type, ex);
+                    throw LeoException.InvalidCtor(type, ex);
                 }
             }
         }

@@ -81,7 +81,7 @@ namespace LeoDB.Engine
                 // do not accept source * in WHERE
                 if (predicate.UseSource)
                 {
-                    throw new LiteException(0, $"WHERE filter can not use `*` expression in `{predicate.Source}");
+                    throw new LeoException(0, $"WHERE filter can not use `*` expression in `{predicate.Source}");
                 }
 
                 // add expression in where list breaking AND statments
@@ -99,7 +99,7 @@ namespace LeoDB.Engine
                 }
                 else
                 {
-                    throw LiteException.InvalidExpressionTypePredicate(predicate);
+                    throw LeoException.InvalidExpressionTypePredicate(predicate);
                 }
             }
 

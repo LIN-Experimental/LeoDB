@@ -80,7 +80,7 @@ namespace LeoDB
                 }
                 else
                 {
-                    throw new LiteException(0, $"Expression `{expression.Source}` must return a enumerable expression");
+                    throw new LeoException(0, $"Expression `{expression.Source}` must return a enumerable expression");
                 }
             }
 

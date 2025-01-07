@@ -150,10 +150,10 @@ namespace LeoDB
                     var isLeftEnum = op.Key.StartsWith("ALL") || op.Key.StartsWith("ANY");
 
                     if (isLeftEnum && left.IsScalar) left = ConvertToEnumerable(left);
-                    //if (isLeftEnum && left.IsScalar) throw new LiteException(0, $"Left expression `{left.Source}` must return multiples values");
-                    if (!isLeftEnum && !left.IsScalar) throw new LiteException(0, $"Left expression `{left.Source}` returns more than one result. Try use ANY or ALL before operant.");
-                    if (!isLeftEnum && !right.IsScalar) throw new LiteException(0, $"Left expression `{right.Source}` must return a single value");
-                    if (right.IsScalar == false) throw new LiteException(0, $"Right expression `{right.Source}` must return a single value");
+                    //if (isLeftEnum && left.IsScalar) throw new LeoException(0, $"Left expression `{left.Source}` must return multiples values");
+                    if (!isLeftEnum && !left.IsScalar) throw new LeoException(0, $"Left expression `{left.Source}` returns more than one result. Try use ANY or ALL before operant.");
+                    if (!isLeftEnum && !right.IsScalar) throw new LeoException(0, $"Left expression `{right.Source}` must return a single value");
+                    if (right.IsScalar == false) throw new LeoException(0, $"Right expression `{right.Source}` must return a single value");
 
                     BsonExpression result;
 
@@ -225,7 +225,7 @@ namespace LeoDB
                 TryParseFunction(tokenizer, context, parameters, scope) ??
                 TryParseMethodCall(tokenizer, context, parameters, scope) ??
                 TryParsePath(tokenizer, context, parameters, scope) ??
-                throw LiteException.UnexpectedToken(token);
+                throw LeoException.UnexpectedToken(token);
         }
 
         /// <summary>
@@ -722,7 +722,7 @@ namespace LeoDB
 
                 var pathExpr = BsonExpression.ParseAndCompile(tokenizer, BsonExpressionParserMode.Single, parameters, DocumentScope.Source);
 
-                if (pathExpr == null) throw LiteException.UnexpectedToken(tokenizer.Current);
+                if (pathExpr == null) throw LeoException.UnexpectedToken(tokenizer.Current);
 
                 return new BsonExpression
                 {
@@ -926,7 +926,7 @@ namespace LeoDB
 
             var method = BsonExpression.GetMethod(token.Value, pars.Count);
 
-            if (method == null) throw LiteException.UnexpectedToken($"Method '{token.Value.ToUpperInvariant()}' does not exist or contains invalid parameters", token);
+            if (method == null) throw LeoException.UnexpectedToken($"Method '{token.Value.ToUpperInvariant()}' does not exist or contains invalid parameters", token);
 
             // test if method are decorated with "Variable" (immutable = false)
             if (method.GetCustomAttribute<VolatileAttribute>() != null)
@@ -1055,7 +1055,7 @@ namespace LeoDB
 
                 var mapExpr = BsonExpression.ParseAndCompile(tokenizer, BsonExpressionParserMode.Single, parameters, DocumentScope.Current);
 
-                if (mapExpr == null) throw LiteException.UnexpectedToken(tokenizer.Current);
+                if (mapExpr == null) throw LeoException.UnexpectedToken(tokenizer.Current);
 
                 return new BsonExpression
                 {
@@ -1131,7 +1131,7 @@ namespace LeoDB
                     // inner expression
                     inner = BsonExpression.ParseAndCompile(tokenizer, BsonExpressionParserMode.Full, parameters, DocumentScope.Current);
 
-                    if (inner == null) throw LiteException.UnexpectedToken(tokenizer.Current);
+                    if (inner == null) throw LeoException.UnexpectedToken(tokenizer.Current);
 
                     // if array filter is not immutable, update ref (update only when false)
                     if (inner.IsImmutable == false) isImmutable = false;
@@ -1284,8 +1284,8 @@ namespace LeoDB
             var values = new Expression[] { item0.Expression, item1.Expression };
 
             // both values must be scalar expressions
-            if (item0.IsScalar == false) throw new LiteException(0, $"Expression `{item0.Source}` must be a scalar expression");
-            if (item1.IsScalar == false) throw new LiteException(0, $"Expression `{item0.Source}` must be a scalar expression");
+            if (item0.IsScalar == false) throw new LeoException(0, $"Expression `{item0.Source}` must be a scalar expression");
+            if (item1.IsScalar == false) throw new LeoException(0, $"Expression `{item0.Source}` must be a scalar expression");
 
             var arrValues = Expression.NewArrayInit(typeof(BsonValue), values.ToArray());
 
@@ -1391,7 +1391,7 @@ namespace LeoDB
 
                 token = tokenizer.ReadToken();
 
-                if (token.IsOperand == false) throw LiteException.UnexpectedToken("Expected valid operand", token);
+                if (token.IsOperand == false) throw LeoException.UnexpectedToken("Expected valid operand", token);
 
                 return key + " " + token.Value;
             }

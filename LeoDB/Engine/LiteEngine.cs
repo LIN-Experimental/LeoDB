@@ -103,7 +103,7 @@ namespace LeoDB.Engine
                 var buffer = _disk.ReadFull(FileOrigin.Data).First();
 
                 // if first byte are 1 this datafile are encrypted but has do defined password to open
-                if (buffer[0] == 1) throw new LiteException(0, "This data file is encrypted and needs a password to open");
+                if (buffer[0] == 1) throw new LeoException(0, "This data file is encrypted and needs a password to open");
 
                 // read header database page
                 _header = new HeaderPage(buffer);
@@ -130,7 +130,7 @@ namespace LeoDB.Engine
                 // test for same collation
                 if (_settings.Collation != null && _settings.Collation.ToString() != _header.Pragmas.Collation.ToString())
                 {
-                    throw new LiteException(0, $"Datafile collation '{_header.Pragmas.Collation}' is different from engine settings. Use Rebuild database to change collation.");
+                    throw new LeoException(0, $"Datafile collation '{_header.Pragmas.Collation}' is different from engine settings. Use Rebuild database to change collation.");
                 }
 
                 // initialize locker service

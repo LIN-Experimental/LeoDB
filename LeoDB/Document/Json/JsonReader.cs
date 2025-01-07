@@ -97,11 +97,11 @@ namespace LeoDB
                         case "null": return BsonValue.Null;
                         case "true": return true;
                         case "false": return false;
-                        default: throw LiteException.UnexpectedToken(token);
+                        default: throw LeoException.UnexpectedToken(token);
                     }
             }
 
-            throw LiteException.UnexpectedToken(token);
+            throw LeoException.UnexpectedToken(token);
         }
 
         private BsonValue ReadObject()

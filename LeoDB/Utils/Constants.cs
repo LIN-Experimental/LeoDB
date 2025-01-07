@@ -143,7 +143,7 @@ namespace LeoDB
                     Debugger.Break();
                 }
 
-                throw LiteException.InvalidDatafileState(message);
+                throw LeoException.InvalidDatafileState(message);
             }
         }
 
@@ -159,7 +159,7 @@ namespace LeoDB
 
                 var message = string.Format(CultureInfo.InvariantCulture, format, args);
 
-                throw LiteException.InvalidDatafileState(format);
+                throw LeoException.InvalidDatafileState(format);
             }
         }
 
@@ -176,7 +176,7 @@ namespace LeoDB
                     Debugger.Break();
                 }
 
-                throw LiteException.InvalidDatafileState(message);
+                throw LeoException.InvalidDatafileState(message);
             }
         }
 
@@ -194,7 +194,7 @@ namespace LeoDB
                     Debugger.Break();
                 }
 
-                throw LiteException.InvalidDatafileState(message);
+                throw LeoException.InvalidDatafileState(message);
             }
         }
     }

@@ -146,7 +146,7 @@ namespace LeoDB.Engine
 
                         yield return enumerator.Current;
 
-                        if (transaction.State != TransactionState.Active) throw new LiteException(0, $"There is no more active transaction for this cursor: {_cursor.Query.ToSQL(_cursor.Collection)}");
+                        if (transaction.State != TransactionState.Active) throw new LeoException(0, $"There is no more active transaction for this cursor: {_cursor.Query.ToSQL(_cursor.Collection)}");
 
                         _cursor.Elapsed.Start();
 

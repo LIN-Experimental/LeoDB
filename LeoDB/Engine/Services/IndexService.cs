@@ -65,7 +65,7 @@ namespace LeoDB.Engine
             // do not accept Min/Max value as index key (only head/tail can have this value)
             if (key.IsMaxValue || key.IsMinValue)
             {
-                throw LiteException.InvalidIndexKey($"BsonValue MaxValue/MinValue are not supported as index key");
+                throw LeoException.InvalidIndexKey($"BsonValue MaxValue/MinValue are not supported as index key");
             }
 
             // random level (flip coin mode) - return number between 1-32
@@ -89,7 +89,7 @@ namespace LeoDB.Engine
             var bytesLength = IndexNode.GetNodeLength(insertLevels, key, out var keyLength);
 
             // test for index key maxlength
-            if (keyLength > MAX_INDEX_KEY_LENGTH) throw LiteException.InvalidIndexKey($"Index key must be less than {MAX_INDEX_KEY_LENGTH} bytes.");
+            if (keyLength > MAX_INDEX_KEY_LENGTH) throw LeoException.InvalidIndexKey($"Index key must be less than {MAX_INDEX_KEY_LENGTH} bytes.");
 
             var indexPage = _snapshot.GetFreeIndexPage(bytesLength, ref index.FreeIndexPageList);
 
@@ -115,7 +115,7 @@ namespace LeoDB.Engine
                     // read next node to compare
                     var diff = rightNode.Key.CompareTo(key, _collation);
 
-                    if (diff == 0 && index.Unique) throw LiteException.IndexDuplicateKey(index.Name, key);
+                    if (diff == 0 && index.Unique) throw LeoException.IndexDuplicateKey(index.Name, key);
 
                     if (diff == 1) break; // stop going right
 

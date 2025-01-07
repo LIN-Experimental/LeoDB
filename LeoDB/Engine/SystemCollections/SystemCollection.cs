@@ -40,7 +40,7 @@ namespace LeoDB.Engine
         /// <summary>
         /// Get output data source factory (must implement in inherit class)
         /// </summary>
-        public virtual int Output(IEnumerable<BsonDocument> source, BsonValue options) => throw new LiteException(0, $"{_name} do not support as output collection");
+        public virtual int Output(IEnumerable<BsonDocument> source, BsonValue options) => throw new LeoException(0, $"{_name} do not support as output collection");
 
         /// <summary>
         /// Static helper to read options arg as plain value or as document fields
@@ -65,7 +65,7 @@ namespace LeoDB.Engine
                     }
                     else
                     {
-                        throw new LiteException(0, $"Parameter `{key}` expect {defaultValue.Type} value type");
+                        throw new LeoException(0, $"Parameter `{key}` expect {defaultValue.Type} value type");
                     }
                 }
                 else

@@ -50,7 +50,7 @@ namespace LeoDB
                 }
                 else
                 {
-                    throw LiteException.UnexpectedToken("Value must be a valid document", _tokenizer.Current);
+                    throw LeoException.UnexpectedToken("Value must be a valid document", _tokenizer.Current);
                 }
 
                 var next = _tokenizer.LookAhead();

@@ -31,7 +31,7 @@ namespace LeoDB.Engine
 
         public void Validate()
         {
-            if (this.Disposed) throw _exception ?? LiteException.EngineDisposed();
+            if (this.Disposed) throw _exception ?? LeoException.EngineDisposed();
         }
 
         public bool Handle(Exception ex)
@@ -39,7 +39,7 @@ namespace LeoDB.Engine
             LOG(ex.Message, "ERROR");
 
             if (ex is IOException ||
-                (ex is LiteException lex && lex.ErrorCode == LiteException.INVALID_DATAFILE_STATE))
+                (ex is LeoException lex && lex.ErrorCode == LeoException.INVALID_DATAFILE_STATE))
             {
                 _exception = ex;
 

@@ -27,9 +27,9 @@ namespace LeoDB.Engine
         /// </summary>
         public static void CheckName(string name, HeaderPage header)
         {
-            if (Encoding.UTF8.GetByteCount(name) > header.GetAvailableCollectionSpace()) throw LiteException.InvalidCollectionName(name, "There is no space in header this collection name");
-            if (!name.IsWord()) throw LiteException.InvalidCollectionName(name, "Use only [a-Z$_]");
-            if (name.StartsWith("$")) throw LiteException.InvalidCollectionName(name, "Collection can't starts with `$` (reserved for system collections)");
+            if (Encoding.UTF8.GetByteCount(name) > header.GetAvailableCollectionSpace()) throw LeoException.InvalidCollectionName(name, "There is no space in header this collection name");
+            if (!name.IsWord()) throw LeoException.InvalidCollectionName(name, "Use only [a-Z$_]");
+            if (name.StartsWith("$")) throw LeoException.InvalidCollectionName(name, "Collection can't starts with `$` (reserved for system collections)");
         }
 
         /// <summary>

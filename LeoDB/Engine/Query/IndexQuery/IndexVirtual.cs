@@ -61,7 +61,7 @@ namespace LeoDB.Engine
 
         public BsonDocument Load(PageAddress rawId)
         {
-            if (_cache == null) throw new LiteException(0, $"OrderBy/GroupBy operation are supported only in virtual collection with less than {VIRTUAL_INDEX_MAX_CACHE} documents");
+            if (_cache == null) throw new LeoException(0, $"OrderBy/GroupBy operation are supported only in virtual collection with less than {VIRTUAL_INDEX_MAX_CACHE} documents");
 
             return _cache[rawId.PageID];
         }

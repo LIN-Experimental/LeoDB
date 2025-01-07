@@ -31,7 +31,7 @@ namespace LeoDB
                 var reader = new JsonReader(_tokenizer);
                 var json = reader.Deserialize();
 
-                if (json.IsDocument == false) throw LiteException.UnexpectedToken(next);
+                if (json.IsDocument == false) throw LeoException.UnexpectedToken(next);
 
                 if (json["password"].IsString)
                 {

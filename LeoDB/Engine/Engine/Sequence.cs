@@ -24,7 +24,7 @@ namespace LeoDB.Engine
                 // if lastId is not number, throw exception
                 if (!lastId.IsNumber)
                 {
-                    throw new LiteException(0, $"It's not possible use AutoId={autoId} because '{snapshot.CollectionName}' collection contains not only numbers in _id index ({lastId}).");
+                    throw new LeoException(0, $"It's not possible use AutoId={autoId} because '{snapshot.CollectionName}' collection contains not only numbers in _id index ({lastId}).");
                 }
 
                 // return nextId

@@ -256,7 +256,7 @@ namespace LeoDB
                 var idField = entity.Id;
 
                 // #768 if using DbRef with interface with no ID mapped
-                if (idField == null) throw new LiteException(0, "There is no _id field mapped in your type: " + member.DataType.FullName);
+                if (idField == null) throw new LeoException(0, "There is no _id field mapped in your type: " + member.DataType.FullName);
 
                 var id = idField.Getter(obj);
 

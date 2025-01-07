@@ -52,7 +52,7 @@ namespace LeoDB
 
                 case "PRAGMA": return this.ParsePragma();
 
-                default:  throw LiteException.UnexpectedToken(ahead);
+                default:  throw LeoException.UnexpectedToken(ahead);
             }
         }
     }

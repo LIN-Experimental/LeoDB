@@ -53,20 +53,20 @@ namespace LeoDB.Engine
 
             if (_settings.Password == null && _header["salt"].AsBinary.IsFullZero() == false)
             {
-                throw LiteException.InvalidPassword();
+                throw LeoException.InvalidPassword();
             }
             else if (_settings.Password != null)
             {
                 if (_header["salt"].AsBinary.IsFullZero())
                 {
-                    throw LiteException.FileNotEncrypted();
+                    throw LeoException.FileNotEncrypted();
                 }
 
                 var hash = AesEncryption.HashSHA1(_settings.Password);
 
                 if (hash.SequenceEqual(_header["password"].AsBinary) == false)
                 {
-                    throw LiteException.InvalidPassword();
+                    throw LeoException.InvalidPassword();
                 }
             }
 
@@ -166,7 +166,7 @@ namespace LeoDB.Engine
                         {
                             var parts = doc["_id"].AsString.Split('\\');
 
-                            if (!int.TryParse(parts[1], out var n)) throw LiteException.InvalidFormat("_id");
+                            if (!int.TryParse(parts[1], out var n)) throw LeoException.InvalidFormat("_id");
 
                             doc["_id"] = new BsonDocument
                             {
@@ -223,7 +223,7 @@ namespace LeoDB.Engine
 
                 if (string.CompareOrdinal(info, HeaderPage.HEADER_INFO) != 0 || ver != 7)
                 {
-                    throw LiteException.InvalidDatabase();
+                    throw LeoException.InvalidDatabase();
                 }
 
                 // skip ChangeID + FreeEmptyPageID + LastPageID

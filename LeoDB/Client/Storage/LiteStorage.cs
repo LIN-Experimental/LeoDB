@@ -189,7 +189,7 @@ namespace LeoDB
         {
             var file = this.FindById(id);
 
-            if (file == null) throw LiteException.FileNotFound(id.ToString());
+            if (file == null) throw LeoException.FileNotFound(id.ToString());
 
             return file.OpenRead();
         }
@@ -199,7 +199,7 @@ namespace LeoDB
         /// </summary>
         public LiteFileInfo<TFileId> Download(TFileId id, Stream stream)
         {
-            var file = this.FindById(id) ?? throw LiteException.FileNotFound(id.ToString());
+            var file = this.FindById(id) ?? throw LeoException.FileNotFound(id.ToString());
 
             file.CopyTo(stream);
 
@@ -211,7 +211,7 @@ namespace LeoDB
         /// </summary>
         public LiteFileInfo<TFileId> Download(TFileId id, string filename, bool overwritten)
         {
-            var file = this.FindById(id) ?? throw LiteException.FileNotFound(id.ToString());
+            var file = this.FindById(id) ?? throw LeoException.FileNotFound(id.ToString());
 
             file.SaveAs(filename, overwritten);
 

@@ -124,7 +124,7 @@ namespace LeoDB.Engine
         /// </summary>
         public void Safepoint()
         {
-            if (_state != TransactionState.Active) throw new LiteException(0, "This transaction are invalid state");
+            if (_state != TransactionState.Active) throw new LeoException(0, "This transaction are invalid state");
 
             if (_monitor.CheckSafepoint(this))
             {

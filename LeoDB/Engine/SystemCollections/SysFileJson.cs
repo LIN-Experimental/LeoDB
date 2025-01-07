@@ -15,7 +15,7 @@ namespace LeoDB.Engine
 
         public override IEnumerable<BsonDocument> Input(BsonValue options)
         {
-            var filename = GetOption(options, "filename")?.AsString ?? throw new LiteException(0, $"Collection ${this.Name} requires string as 'filename' or a document field 'filename'");
+            var filename = GetOption(options, "filename")?.AsString ?? throw new LeoException(0, $"Collection ${this.Name} requires string as 'filename' or a document field 'filename'");
             var encoding = GetOption(options, "encoding", "utf-8").AsString;
 
             using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
@@ -38,7 +38,7 @@ namespace LeoDB.Engine
 
         public override int Output(IEnumerable<BsonDocument> source, BsonValue options)
         {
-            var filename = GetOption(options, "filename")?.AsString ?? throw new LiteException(0, "Collection $file_json requires string as filename or a document field 'filename'");
+            var filename = GetOption(options, "filename")?.AsString ?? throw new LeoException(0, "Collection $file_json requires string as filename or a document field 'filename'");
             var pretty = GetOption(options, "pretty", false).AsBoolean;
             var indent = GetOption(options, "indent", 4).AsInt32;
             var encoding = GetOption(options, "encoding", "utf-8").AsString;

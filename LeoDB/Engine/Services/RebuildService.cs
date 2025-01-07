@@ -34,7 +34,7 @@ namespace LeoDB.Engine
             var buffer = this.ReadFirstBytes();
 
             // test for valid reader to use
-            _fileVersion = FileReaderV8.IsVersion(buffer) ? 8 : throw LiteException.InvalidDatabase();
+            _fileVersion = FileReaderV8.IsVersion(buffer) ? 8 : throw LeoException.InvalidDatabase();
         }
 
         public long Rebuild(RebuildOptions options)

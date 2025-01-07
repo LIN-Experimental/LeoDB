@@ -18,10 +18,10 @@ namespace LeoDB.Engine
             if (expression == null) throw new ArgumentNullException(nameof(expression));
             if (expression.IsIndexable == false) throw new ArgumentException("Index expressions must contains at least one document field. Used methods must be immutable. Parameters are not supported.", nameof(expression));
 
-            if (name.Length > INDEX_NAME_MAX_LENGTH) throw LiteException.InvalidIndexName(name, collection, "MaxLength = " + INDEX_NAME_MAX_LENGTH);
-            if (!name.IsWord()) throw LiteException.InvalidIndexName(name, collection, "Use only [a-Z$_]");
-            if (name.StartsWith("$")) throw LiteException.InvalidIndexName(name, collection, "Index name can't start with `$`");
-            if (expression.IsScalar == false && unique) throw new LiteException(0, "Multikey index expression do not support unique option");
+            if (name.Length > INDEX_NAME_MAX_LENGTH) throw LeoException.InvalidIndexName(name, collection, "MaxLength = " + INDEX_NAME_MAX_LENGTH);
+            if (!name.IsWord()) throw LeoException.InvalidIndexName(name, collection, "Use only [a-Z$_]");
+            if (name.StartsWith("$")) throw LeoException.InvalidIndexName(name, collection, "Index name can't start with `$`");
+            if (expression.IsScalar == false && unique) throw new LeoException(0, "Multikey index expression do not support unique option");
 
             if (expression.Source == "$._id") return false; // always exists
 
@@ -39,7 +39,7 @@ namespace LeoDB.Engine
                 if (current != null)
                 {
                     // but if expression are different, throw error
-                    if (current.Expression != expression.Source) throw LiteException.IndexAlreadyExist(name);
+                    if (current.Expression != expression.Source) throw LeoException.IndexAlreadyExist(name);
 
                     return false;
                 }
@@ -102,7 +102,7 @@ namespace LeoDB.Engine
             if (collection.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(collection));
             if (name.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(name));
 
-            if (name == "_id") throw LiteException.IndexDropId();
+            if (name == "_id") throw LeoException.IndexDropId();
 
             return this.AutoTransaction(transaction =>
             {

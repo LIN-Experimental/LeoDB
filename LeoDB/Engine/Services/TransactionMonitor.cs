@@ -57,7 +57,7 @@ namespace LeoDB.Engine
                 // must lock _transaction before work with _transactions (GetInitialSize use _transactions)
                 lock (_transactions)
                 {
-                    if (_transactions.Count >= MAX_OPEN_TRANSACTIONS) throw new LiteException(0, "Maximum number of transactions reached");
+                    if (_transactions.Count >= MAX_OPEN_TRANSACTIONS) throw new LeoException(0, "Maximum number of transactions reached");
 
                     var initialSize = this.GetInitialSize();
 
