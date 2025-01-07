@@ -17,7 +17,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\LiteDB\LiteDB.csproj" />
+    <ProjectReference Include="..\LeoDB\LeoDB.csproj" />
   </ItemGroup>
   
 </Project>
