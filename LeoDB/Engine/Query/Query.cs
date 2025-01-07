@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     /// <summary>
     /// Represent full query options

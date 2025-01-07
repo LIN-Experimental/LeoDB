@@ -1,10 +1,10 @@
-﻿using LiteDB.Engine;
+﻿using LeoDB.Engine;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     /// <summary>
     /// Class to call method for convert BsonDocument to/from byte[] - based on http://bsonspec.org/spec.html

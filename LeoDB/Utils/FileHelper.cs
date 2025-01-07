@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     /// <summary>
     /// A simple file helper tool with static methods

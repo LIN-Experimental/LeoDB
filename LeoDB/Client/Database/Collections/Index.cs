@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     public partial class LiteCollection<T>
     {

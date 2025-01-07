@@ -1,14 +1,14 @@
-﻿using LiteDB.Engine;
+﻿using LeoDB.Engine;
 using System;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     /// <summary>
-    /// The main exception for LiteDB
+    /// The main exception for LeoDB
     /// </summary>
     public class LiteException : Exception
     {
@@ -110,7 +110,7 @@ namespace LiteDB
 
         internal static LiteException InvalidDatabase()
         {
-            return new LiteException(INVALID_DATABASE, "File is not a valid LiteDB database format or contains a invalid password.");
+            return new LiteException(INVALID_DATABASE, "File is not a valid LeoDB database format or contains a invalid password.");
         }
 
         internal static LiteException FileSizeExceeded(long limit)

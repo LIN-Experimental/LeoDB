@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.IO;
 using BenchmarkDotNet.Attributes;
-using LiteDB.Benchmarks.Models;
-using LiteDB.Benchmarks.Models.Generators;
+using LeoDB.Benchmarks.Models;
+using LeoDB.Benchmarks.Models.Generators;
 
-namespace LiteDB.Benchmarks.Benchmarks.Insertion
+namespace LeoDB.Benchmarks.Benchmarks.Insertion
 {
 	[BenchmarkCategory(Constants.Categories.INSERTION)]
 	public class InsertionBasicBenchmark : BenchmarkBase

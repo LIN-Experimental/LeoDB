@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace LiteDB.Shell.Commands
+namespace LeoDB.Shell.Commands
 {
     [Help(
         Name = "show collections",

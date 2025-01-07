@@ -1,4 +1,4 @@
-namespace LiteDB.Benchmarks.Models
+namespace LeoDB.Benchmarks.Models
 {
     public class FileMetaWithExclusion : FileMetaBase
     {

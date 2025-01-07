@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "LiteDB.Shell": {
+    "LeoDB.Shell": {
       "commandName": "Project",
       "commandLineArgs": "app.db"
     }

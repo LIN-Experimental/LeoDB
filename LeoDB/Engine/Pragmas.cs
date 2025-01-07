@@ -1,4 +1,4 @@
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     public static class Pragmas
     {

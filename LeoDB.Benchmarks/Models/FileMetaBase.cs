@@ -1,6 +1,6 @@
 using System;
 
-namespace LiteDB.Benchmarks.Models
+namespace LeoDB.Benchmarks.Models
 {
     public class FileMetaBase
     {

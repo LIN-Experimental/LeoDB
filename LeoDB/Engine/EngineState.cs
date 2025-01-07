@@ -7,9 +7,9 @@ using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     internal class EngineState
     {

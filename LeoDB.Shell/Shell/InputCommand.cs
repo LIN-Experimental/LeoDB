@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace LiteDB.Shell
+namespace LeoDB.Shell
 {
     public class InputCommand
     {

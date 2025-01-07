@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Security;
 using System.Threading;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     /// <summary>
     /// Represent a 12-bytes BSON type used in document Id

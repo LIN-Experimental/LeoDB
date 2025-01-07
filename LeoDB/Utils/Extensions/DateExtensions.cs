@@ -1,7 +1,7 @@
 ﻿using System;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     internal static class DateExtensions
     {

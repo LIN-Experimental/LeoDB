@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     /// <summary>
     /// Represents a page position after save in disk. Used in WAL files where PageID do not match with PagePosition

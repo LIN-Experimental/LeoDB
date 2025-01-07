@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LiteDB.Engine;
-using static LiteDB.Constants;
+using LeoDB.Engine;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     internal partial class SqlParser
     {

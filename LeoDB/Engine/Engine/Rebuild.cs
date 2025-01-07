@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     public partial class LiteEngine
     {

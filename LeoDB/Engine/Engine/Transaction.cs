@@ -2,9 +2,9 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     public partial class LiteEngine
     {

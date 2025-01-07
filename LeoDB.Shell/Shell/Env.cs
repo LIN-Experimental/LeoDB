@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using LiteDB;
+using LeoDB;
 
-namespace LiteDB.Shell
+namespace LeoDB.Shell
 {
     internal class Env
     {

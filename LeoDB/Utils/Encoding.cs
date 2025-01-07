@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace LiteDB
+namespace LeoDB
 {
     internal class StringEncoding
     {

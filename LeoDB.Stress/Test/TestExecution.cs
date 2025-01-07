@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Xml;
 
-namespace LiteDB.Stress
+namespace LeoDB.Stress
 {
     public class TestExecution
     {
@@ -155,7 +155,7 @@ namespace LiteDB.Stress
 
             _maxRam = Math.Max(_maxRam, ram);
 
-            output.AppendLine($"LiteDB Multithreaded: {_threads.Count}, running for {this.Timer.Elapsed}");
+            output.AppendLine($"LeoDB Multithreaded: {_threads.Count}, running for {this.Timer.Elapsed}");
             output.AppendLine($"Garbage Collector: gen0: {GC.CollectionCount(0)}, gen1: {GC.CollectionCount(1)}, gen2: {GC.CollectionCount(2)}");
             output.AppendLine($"Memory usage: {ram.ToString("n0")} Mb (max: {_maxRam.ToString("n0")} Mb)");
             output.AppendLine();

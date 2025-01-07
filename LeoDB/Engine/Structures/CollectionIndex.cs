@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     internal class CollectionIndex
     {

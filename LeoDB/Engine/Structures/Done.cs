@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     /// <summary>
     /// Simple parameter class to be passed into IEnumerable classes loop ("ref" do not works)

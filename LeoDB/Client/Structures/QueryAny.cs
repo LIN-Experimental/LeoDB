@@ -1,10 +1,10 @@
-﻿using LiteDB.Engine;
+﻿using LeoDB.Engine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     public class QueryAny
     {

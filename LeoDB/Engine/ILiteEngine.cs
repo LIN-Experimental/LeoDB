@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     public interface ILiteEngine : IDisposable
     {

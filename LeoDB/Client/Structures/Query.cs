@@ -1,12 +1,12 @@
-﻿using LiteDB.Engine;
+﻿using LeoDB.Engine;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     /// <summary>
     /// Class is a result from optimized QueryBuild. Indicate how engine must run query - there is no more decisions to engine made, must only execute as query was defined

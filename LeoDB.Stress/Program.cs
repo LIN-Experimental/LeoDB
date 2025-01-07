@@ -1,5 +1,5 @@
-﻿using LiteDB;
-using LiteDB.Engine;
+﻿using LeoDB;
+using LeoDB.Engine;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LiteDB.Stress
+namespace LeoDB.Stress
 {
     public class Program
     {

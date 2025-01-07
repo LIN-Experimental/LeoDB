@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LiteDB.Shell.Commands
+namespace LeoDB.Shell.Commands
 {
     [Help(
         Name = "pretty",

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
-using LiteDB.Benchmarks.Models;
-using LiteDB.Benchmarks.Models.Generators;
+using LeoDB.Benchmarks.Models;
+using LeoDB.Benchmarks.Models.Generators;
 
-namespace LiteDB.Benchmarks.Benchmarks.Queries
+namespace LeoDB.Benchmarks.Benchmarks.Queries
 {
 	[BenchmarkCategory(Constants.Categories.QUERIES)]
 	public class QueryWithDateTimeOffsetBenchmark : BenchmarkBase

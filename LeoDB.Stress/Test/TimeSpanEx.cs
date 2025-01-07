@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace LiteDB.Stress
+namespace LeoDB.Stress
 {
     public class TimeSpanEx
     {

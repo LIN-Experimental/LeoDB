@@ -1,10 +1,10 @@
-﻿using LiteDB.Engine;
+﻿using LeoDB.Engine;
 using System;
 using System.Linq;
 using System.Text;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     internal static class BufferSliceExtensions
     {

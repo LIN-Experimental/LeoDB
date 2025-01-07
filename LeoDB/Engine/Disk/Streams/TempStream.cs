@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     /// <summary>
     /// Implement a temporary stream that uses MemoryStream until get LIMIT bytes, then copy all to tempoary disk file and delete on dispose
@@ -64,7 +64,7 @@ namespace LiteDB.Engine
             if (position > _maxMemoryUsage && this.InMemory)
             {
                 // create new filename if not passed on ctor (must be unique
-                _filename = _filename ?? Path.Combine(Path.GetTempPath(), "litedb_" + Guid.NewGuid() + ".db");
+                _filename = _filename ?? Path.Combine(Path.GetTempPath(), "LeoDB_" + Guid.NewGuid() + ".db");
 
                 var file = new FileStream(_filename, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None, PAGE_SIZE, FileOptions.RandomAccess);
 

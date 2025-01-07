@@ -8,14 +8,14 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     internal enum BsonExpressionParserMode { Full, Single, SelectDocument, UpdateDocument }
 
     /// <summary>
-    /// Compile and execute simple expressions using BsonDocuments. Used in indexes and updates operations. See https://github.com/mbdavid/LiteDB/wiki/Expressions
+    /// Compile and execute simple expressions using BsonDocuments. Used in indexes and updates operations. See https://github.com/mbdavid/LeoDB/wiki/Expressions
     /// </summary>
     internal class BsonExpressionParser
     {

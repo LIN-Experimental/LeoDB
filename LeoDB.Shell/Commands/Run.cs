@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace LiteDB.Shell.Commands
+namespace LeoDB.Shell.Commands
 {
     [Help(
         Name = "run",

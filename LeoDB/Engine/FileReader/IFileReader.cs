@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     /// <summary>
-    /// Interface to read current or old datafile structure - Used to shirnk/upgrade datafile from old LiteDB versions
+    /// Interface to read current or old datafile structure - Used to shirnk/upgrade datafile from old LeoDB versions
     /// </summary>
     interface IFileReader : IDisposable
     {

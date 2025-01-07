@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 
-namespace LiteDB.Stress
+namespace LeoDB.Stress
 {
     public interface ITestItem
     {

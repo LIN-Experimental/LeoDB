@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace LiteDB.Shell.Commands
+namespace LeoDB.Shell.Commands
 {
     [Help(
         Name = "ed",
@@ -18,7 +18,7 @@ namespace LiteDB.Shell.Commands
 
         public void Execute(StringScanner s, Env env)
         {
-            var temp = Path.GetTempPath() + "LiteDB.Shell.txt";
+            var temp = Path.GetTempPath() + "LeoDB.Shell.txt";
 
             // remove "ed" command from history
             env.Input.History.RemoveAt(env.Input.History.Count - 1);

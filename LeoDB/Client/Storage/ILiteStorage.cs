@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq.Expressions;
 
-namespace LiteDB
+namespace LeoDB
 {
     public interface ILiteStorage<TFileId>
     {

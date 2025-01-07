@@ -2,9 +2,9 @@
 using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     internal static class ExpressionExtensions
     {

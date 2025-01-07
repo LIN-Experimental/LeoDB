@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     internal static class BucketHelper
     {

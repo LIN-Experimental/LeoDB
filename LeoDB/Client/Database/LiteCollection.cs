@@ -1,9 +1,9 @@
-﻿using LiteDB.Engine;
+﻿using LeoDB.Engine;
 using System;
 using System.Collections.Generic;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     public sealed partial class LiteCollection<T> : ILiteCollection<T>
     {

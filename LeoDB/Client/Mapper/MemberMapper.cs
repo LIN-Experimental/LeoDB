@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     /// <summary>
     /// Internal representation for a .NET member mapped to BsonDocument

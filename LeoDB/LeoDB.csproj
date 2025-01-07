@@ -7,26 +7,26 @@
     <VersionPrefix>5.0.21</VersionPrefix>
     <PackageVersion>5.0.21</PackageVersion>
     <Authors>Maurício David</Authors>
-    <Product>LiteDB</Product>
-    <Description>LiteDB - A lightweight embedded .NET NoSQL document store in a single datafile</Description>
+    <Product>LeoDB</Product>
+    <Description>LeoDB - A lightweight embedded .NET NoSQL document store in a single datafile</Description>
     <Copyright>MIT</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <Title>LiteDB</Title>
-    <PackageId>LiteDB</PackageId>
+    <Title>LeoDB</Title>
+    <PackageId>LeoDB</PackageId>
     <PackageTags>database nosql embedded</PackageTags>
     <PackageIcon>icon_64x64.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://www.litedb.org</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/mbdavid/LiteDB</RepositoryUrl>
+    <PackageProjectUrl>https://www.LeoDB.org</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mbdavid/LeoDB</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <RootNamespace>LiteDB</RootNamespace>
-    <AssemblyName>LiteDB</AssemblyName>
+    <RootNamespace>LeoDB</RootNamespace>
+    <AssemblyName>LeoDB</AssemblyName>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard1.3' ">1.6.1</NetStandardImplicitPackageVersion>
     <NoWarn>1701;1702;1705;1591;0618</NoWarn>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\LiteDB.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\LeoDB.xml</DocumentationFile>
     <SignAssembly Condition="'$(OS)'=='Windows_NT'">true</SignAssembly>
-    <AssemblyOriginatorKeyFile Condition="'$(Configuration)' == 'Release'">LiteDB.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile Condition="'$(Configuration)' == 'Release'">LeoDB.snk</AssemblyOriginatorKeyFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>

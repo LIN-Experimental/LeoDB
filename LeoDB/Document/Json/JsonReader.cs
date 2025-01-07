@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     /// <summary>
     /// A class that read a json string using a tokenizer (without regex)

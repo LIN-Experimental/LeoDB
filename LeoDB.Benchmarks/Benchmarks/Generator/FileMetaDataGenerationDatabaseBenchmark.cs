@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
-using LiteDB.Benchmarks.Models;
-using LiteDB.Benchmarks.Models.Generators;
+using LeoDB.Benchmarks.Models;
+using LeoDB.Benchmarks.Models.Generators;
 
-namespace LiteDB.Benchmarks.Benchmarks.Generator
+namespace LeoDB.Benchmarks.Benchmarks.Generator
 {
 	/// <summary>
 	/// This benchmark is used purely for the sake of providing information

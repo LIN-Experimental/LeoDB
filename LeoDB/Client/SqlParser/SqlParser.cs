@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using LiteDB.Engine;
-using static LiteDB.Constants;
+using LeoDB.Engine;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     /// <summary>
     /// Internal class to parse and execute sql-like commands

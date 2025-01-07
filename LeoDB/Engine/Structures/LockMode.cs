@@ -1,4 +1,4 @@
-﻿namespace LiteDB.Engine
+﻿namespace LeoDB.Engine
 {
     /// <summary>
     /// Represents a snapshot lock mode

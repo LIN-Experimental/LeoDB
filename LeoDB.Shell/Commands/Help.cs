@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace LiteDB.Shell.Commands
+namespace LeoDB.Shell.Commands
 {
     internal class HelpAttribute : Attribute
     {
@@ -33,7 +33,7 @@ namespace LiteDB.Shell.Commands
                 .Select(x => x as HelpAttribute)
                 .ToArray();
 
-            d.WriteLine(ConsoleColor.White, "# LiteDB Shell Command Reference");
+            d.WriteLine(ConsoleColor.White, "# LeoDB Shell Command Reference");
 
             foreach (var help in helps)
             {

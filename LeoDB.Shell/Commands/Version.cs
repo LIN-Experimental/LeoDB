@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace LiteDB.Shell.Commands
+namespace LeoDB.Shell.Commands
 {
     [Help(
         Name = "version",
         Syntax = "ver",
-        Description = "Show LiteDB version"
+        Description = "Show LeoDB version"
     )]
     internal class Version : IShellCommand
     {

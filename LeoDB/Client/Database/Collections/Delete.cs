@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq.Expressions;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     public partial class LiteCollection<T>
     {

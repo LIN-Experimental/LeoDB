@@ -5,9 +5,9 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     /// <summary>
     /// Header page represent first page on datafile. Engine contains a single instance of HeaderPage and all changes
@@ -16,9 +16,9 @@ namespace LiteDB.Engine
     internal class HeaderPage : BasePage
     {
         /// <summary>
-        /// Header info the validate that datafile is a LiteDB file (27 bytes)
+        /// Header info the validate that datafile is a LeoDB file (27 bytes)
         /// </summary>
-        public const string HEADER_INFO = "** This is a LiteDB file **";
+        public const string HEADER_INFO = "** This is a LeoDB file **";
 
         /// <summary>
         /// Datafile specification version

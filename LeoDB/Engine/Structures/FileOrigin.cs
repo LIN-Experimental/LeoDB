@@ -1,4 +1,4 @@
-﻿namespace LiteDB.Engine
+﻿namespace LeoDB.Engine
 {
     public enum FileOrigin : byte
     {

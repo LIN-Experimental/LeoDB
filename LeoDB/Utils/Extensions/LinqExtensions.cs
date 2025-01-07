@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     internal static class LinqExtensions
     {

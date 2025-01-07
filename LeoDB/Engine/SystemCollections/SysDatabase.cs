@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     public partial class LiteEngine
     {
@@ -29,7 +29,7 @@ namespace LiteDB.Engine
 
                 ["currentReadVersion"] = _walIndex.CurrentReadVersion,
                 ["lastTransactionID"] = _walIndex.LastTransactionID,
-                ["engine"] = $"litedb-ce-v{version.Major}.{version.Minor}.{version.Build}",
+                ["engine"] = $"LeoDB-ce-v{version.Major}.{version.Minor}.{version.Build}",
 
                 ["pragmas"] = new BsonDocument(_header.Pragmas.Pragmas.ToDictionary(x => x.Name, x => x.Get())),
 

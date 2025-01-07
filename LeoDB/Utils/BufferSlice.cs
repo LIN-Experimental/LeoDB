@@ -8,9 +8,9 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     /// <summary>
     /// Internal class that implement same idea from ArraySegment[byte] but use a class (not a struct). Works for byte[] only

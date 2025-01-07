@@ -2,10 +2,10 @@
 
   <PropertyGroup>
 	<TargetFramework>net6</TargetFramework>
-	<AssemblyName>LiteDB.Shell</AssemblyName>
-    <PackageId>LiteDB.Shell</PackageId>
+	<AssemblyName>LeoDB.Shell</AssemblyName>
+    <PackageId>LeoDB.Shell</PackageId>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LiteDB.Shell</RootNamespace>
+    <RootNamespace>LeoDB.Shell</RootNamespace>
     <AssemblyVersion>5.0.6.0</AssemblyVersion>
     <FileVersion>5.0.6</FileVersion>
     <VersionPrefix>5.0.6</VersionPrefix>

@@ -1,7 +1,7 @@
 ﻿using System;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB
+namespace LeoDB
 {
     /// <summary>
     /// Indicate that field are not persisted inside this document but it's a reference for another document (DbRef)

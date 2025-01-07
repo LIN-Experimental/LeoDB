@@ -3,9 +3,9 @@ using System.Buffers;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using static LiteDB.Constants;
+using static LeoDB.Constants;
 
-namespace LiteDB.Engine
+namespace LeoDB.Engine
 {
     /// <summary>
     /// Encrypted AES Stream
@@ -115,7 +115,7 @@ namespace LiteDB.Engine
 
                 if (!isNew)
                 {
-                    // check whether bytes 32 to 64 is empty. This indicates LiteDb was unable to write encrypted 1s during last attempt.
+                    // check whether bytes 32 to 64 is empty. This indicates LeoDB was unable to write encrypted 1s during last attempt.
                     _stream.Read(checkBuffer, 0, checkBufferSize);
                     isNew = checkBuffer.All(x => x == 0);
 

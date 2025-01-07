@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LiteDB.Shell
+namespace LeoDB.Shell
 {
     internal static class StringExtensions
     {

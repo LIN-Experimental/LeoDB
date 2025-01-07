@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace LiteDB.Shell
+namespace LeoDB.Shell
 {
     /// <summary>
     /// Very simple class that parse command line arguments 
