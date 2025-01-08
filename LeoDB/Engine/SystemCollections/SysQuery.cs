@@ -12,9 +12,9 @@ namespace LeoDB.Engine
     /// </summary>
     internal class SysQuery : SystemCollection
     {
-        private readonly ILiteEngine _engine;
+        private readonly ILeoEngine _engine;
 
-        public SysQuery(ILiteEngine engine) : base("$query")
+        public SysQuery(ILeoEngine engine) : base("$query")
         {
             _engine = engine; 
         }

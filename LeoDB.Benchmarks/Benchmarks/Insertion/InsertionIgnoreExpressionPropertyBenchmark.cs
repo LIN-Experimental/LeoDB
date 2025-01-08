@@ -21,7 +21,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Insertion
 		{
 			File.Delete(DatabasePath);
 
-			DatabaseInstance = new LiteDatabase(ConnectionString());
+			DatabaseInstance = new LeoDatabase(ConnectionString());
 			_fileMetaCollection = DatabaseInstance.GetCollection<FileMetaBase>();
 			_fileMetaCollection.EnsureIndex(fileMeta => fileMeta.ShouldBeShown);
 
@@ -33,7 +33,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Insertion
 		{
 			File.Delete(DatabasePath);
 
-			DatabaseInstance = new LiteDatabase(ConnectionString());
+			DatabaseInstance = new LeoDatabase(ConnectionString());
 			_fileMetaExclusionCollection = DatabaseInstance.GetCollection<FileMetaWithExclusion>();
 			_fileMetaExclusionCollection.EnsureIndex(fileMeta => fileMeta.ShouldBeShown);
 

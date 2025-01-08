@@ -190,7 +190,7 @@ namespace LeoDB.Engine
 
         /// <summary>
         /// Load all confirmed transactions from log file (used only when open datafile)
-        /// Don't need lock because it's called on ctor of LiteEngine
+        /// Don't need lock because it's called on ctor of LeoEngine
         /// </summary>
         public void RestoreIndex(ref HeaderPage header)
         {

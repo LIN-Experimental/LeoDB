@@ -19,6 +19,7 @@ namespace LeoDB.Engine
         private readonly DiskReader _reader;
         private readonly DiskService _disk;
         private readonly WalIndexService _walIndex;
+        private readonly ILeoEngine _engine;
 
         // instances from transaction
         private readonly uint _transactionID;
@@ -52,7 +53,8 @@ namespace LeoDB.Engine
             WalIndexService walIndex, 
             DiskReader reader, 
             DiskService disk,
-            bool addIfNotExists)
+            bool addIfNotExists,
+            ILeoEngine leoEngine)
         {
             _mode = mode;
             _collectionName = collectionName;
@@ -63,6 +65,7 @@ namespace LeoDB.Engine
             _walIndex = walIndex;
             _reader = reader;
             _disk = disk;
+            _engine = leoEngine;
 
             // enter in lock mode according initial mode
             if (mode == LockMode.Write)
@@ -73,7 +76,7 @@ namespace LeoDB.Engine
             // get lastest read version from wal-index
             _readVersion = _walIndex.CurrentReadVersion;
 
-            var srv = new CollectionService(_header, _disk, this, _transPages);
+            var srv = new CollectionService(_header, _disk, this, _transPages, _engine);
 
             // read collection (create if new - load virtual too)
             srv.Get(_collectionName, addIfNotExists, ref _collectionPage);

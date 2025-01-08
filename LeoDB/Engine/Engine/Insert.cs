@@ -4,7 +4,7 @@ using static LeoDB.Constants;
 
 namespace LeoDB.Engine;
 
-public partial class LiteEngine
+public partial class LeoEngine
 {
     /// <summary>
     /// Insert all documents in collection. If document has no _id, use AutoId generation.

@@ -14,7 +14,7 @@ namespace LeoDB
     /// </summary>
     public class LiteQueryable<T> : ILiteQueryable<T>
     {
-        protected readonly ILiteEngine _engine;
+        protected readonly ILeoEngine _engine;
         protected readonly BsonMapper _mapper;
         protected readonly string _collection;
         protected readonly Query _query;
@@ -22,7 +22,7 @@ namespace LeoDB
         // indicate that T type are simple and result are inside first document fields (query always return a BsonDocument)
         private readonly bool _isSimpleType = Reflection.IsSimpleType(typeof(T));
 
-        internal LiteQueryable(ILiteEngine engine, BsonMapper mapper, string collection, Query query)
+        internal LiteQueryable(ILeoEngine engine, BsonMapper mapper, string collection, Query query)
         {
             _engine = engine;
             _mapper = mapper;

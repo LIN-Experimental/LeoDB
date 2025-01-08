@@ -9,7 +9,7 @@ namespace LeoDB
         /// <summary>
         /// Get database instance
         /// </summary>
-        ILiteDatabase Database { get; }
+        ILeoDatabase Database { get; }
 
         /// <summary>
         /// Insert a new document into collection. Document Id must be a new value in collection - Returns document Id

@@ -19,7 +19,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Queries
 		{
 			File.Delete(DatabasePath);
 
-			DatabaseInstance = new LiteDatabase(ConnectionString());
+			DatabaseInstance = new LeoDatabase(ConnectionString());
 			_fileMetaCollection = DatabaseInstance.GetCollection<FileMetaBase>();
 			_fileMetaCollection.EnsureIndex(fileMeta => fileMeta.ShouldBeShown);
 			_fileMetaCollection.EnsureIndex(fileMeta => fileMeta.IsFavorite);
@@ -32,7 +32,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Queries
 		[GlobalSetup(Target = nameof(Query_CompoundIndexVariant))]
 		public void GlobalSetupCompoundIndexVariant()
 		{
-			DatabaseInstance = new LiteDatabase(ConnectionString());
+			DatabaseInstance = new LeoDatabase(ConnectionString());
 			_fileMetaCollection = DatabaseInstance.GetCollection<FileMetaBase>();
 			_fileMetaCollection.EnsureIndex(COMPOUND_INDEX_NAME, $"$.{nameof(FileMetaBase.IsFavorite)};$.{nameof(FileMetaBase.ShouldBeShown)}");
 

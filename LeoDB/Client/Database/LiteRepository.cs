@@ -14,12 +14,12 @@ namespace LeoDB
     {
         #region Properties
 
-        private readonly ILiteDatabase _db = null;
+        private readonly ILeoDatabase _db = null;
 
         /// <summary>
         /// Get database instance
         /// </summary>
-        public ILiteDatabase Database => _db;
+        public ILeoDatabase Database => _db;
 
         #endregion
 
@@ -28,7 +28,7 @@ namespace LeoDB
         /// <summary>
         /// Starts LeoDB database an existing Database instance
         /// </summary>
-        public LiteRepository(ILiteDatabase database)
+        public LiteRepository(ILeoDatabase database)
         {
             _db = database;
         }
@@ -38,7 +38,7 @@ namespace LeoDB
         /// </summary>
         public LiteRepository(string connectionString, BsonMapper mapper = null)
         {
-            _db = new LiteDatabase(connectionString, mapper);
+            _db = new LeoDatabase(connectionString, mapper);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace LeoDB
         /// </summary>
         public LiteRepository(ConnectionString connectionString, BsonMapper mapper = null)
         {
-            _db = new LiteDatabase(connectionString, mapper);
+            _db = new LeoDatabase(connectionString, mapper);
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace LeoDB
         /// </summary>
         public LiteRepository(Stream stream, BsonMapper mapper = null, Stream logStream = null)
         {
-            _db = new LiteDatabase(stream, mapper, logStream);
+            _db = new LeoDatabase(stream, mapper, logStream);
         }
 
         #endregion

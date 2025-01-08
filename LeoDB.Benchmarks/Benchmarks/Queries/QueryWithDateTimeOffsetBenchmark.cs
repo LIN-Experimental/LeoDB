@@ -21,7 +21,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Queries
 		{
 			File.Delete(DatabasePath);
 
-			DatabaseInstance = new LiteDatabase(ConnectionString());
+			DatabaseInstance = new LeoDatabase(ConnectionString());
 			_fileMetaCollection = DatabaseInstance.GetCollection<FileMetaBase>();
 			_fileMetaCollection.EnsureIndex(fileMeta => fileMeta.ValidFrom);
 			_fileMetaCollection.EnsureIndex(fileMeta => fileMeta.ValidTo);

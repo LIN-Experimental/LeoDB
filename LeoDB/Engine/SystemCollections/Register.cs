@@ -4,32 +4,30 @@ using System.Linq;
 using System.Text;
 using static LeoDB.Constants;
 
-namespace LeoDB.Engine
+namespace LeoDB.Engine;
+
+public partial class LeoEngine
 {
-    public partial class LiteEngine
+    /// <summary>
+    /// Register all internal system collections avaiable by default
+    /// </summary>
+    private void InitializeSystemCollections()
     {
-        /// <summary>
-        /// Register all internal system collections avaiable by default
-        /// </summary>
-        private void InitializeSystemCollections()
-        {
-            this.RegisterSystemCollection("$database", () => this.SysDatabase());
+        this.RegisterSystemCollection("$database", () => this.SysDatabase());
 
-            this.RegisterSystemCollection("$cols", () => this.SysCols());
-            this.RegisterSystemCollection("$indexes", () => this.SysIndexes());
+        this.RegisterSystemCollection("$cols", () => this.SysCols());
+        this.RegisterSystemCollection("$indexes", () => this.SysIndexes());
 
-            this.RegisterSystemCollection("$sequences", () => this.SysSequences());
+        this.RegisterSystemCollection("$sequences", () => this.SysSequences());
 
-            this.RegisterSystemCollection("$transactions", () => this.SysTransactions());
-            this.RegisterSystemCollection("$snapshots", () => this.SysSnapshots());
-            this.RegisterSystemCollection("$open_cursors", () => this.SysOpenCursors());
-            this.RegisterSystemCollection("$intelligence", () => this.SysIntelligence());
+        this.RegisterSystemCollection("$transactions", () => this.SysTransactions());
+        this.RegisterSystemCollection("$snapshots", () => this.SysSnapshots());
+        this.RegisterSystemCollection("$open_cursors", () => this.SysOpenCursors());
 
-            this.RegisterSystemCollection(new SysFile()); // use single $file(?) for all file formats
-            this.RegisterSystemCollection(new SysDump(_header, _monitor));
-            this.RegisterSystemCollection(new SysPageList(_header, _monitor));
+        this.RegisterSystemCollection(new SysFile()); // use single $file(?) for all file formats
+        this.RegisterSystemCollection(new SysDump(_header, _monitor));
+        this.RegisterSystemCollection(new SysPageList(_header, _monitor));
 
-            this.RegisterSystemCollection(new SysQuery(this));
-        }
+        this.RegisterSystemCollection(new SysQuery(this));
     }
 }

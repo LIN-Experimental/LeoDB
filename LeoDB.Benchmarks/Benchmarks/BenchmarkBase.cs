@@ -26,6 +26,6 @@ namespace LeoDB.Benchmarks.Benchmarks
             Password = Password
         };
 
-        protected ILiteDatabase DatabaseInstance { get; set; }
+        protected ILeoDatabase DatabaseInstance { get; set; }
     }
 }

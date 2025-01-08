@@ -1,45 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
-using static LeoDB.Constants;
 
-namespace LeoDB.Engine
+namespace LeoDB.Engine;
+
+public partial class LeoEngine
 {
-    public partial class LiteEngine
+
+    internal bool ExistSystemCollection(string name)
     {
-        /// <summary>
-        /// Get registered system collection
-        /// </summary>
-        internal SystemCollection GetSystemCollection(string name)
-        {
-            if (_systemCollections.TryGetValue(name, out var sys))
-            {
-                return sys;
-            }
+        // Si es una tabla del sistema calculada.
+        return _systemCollections.TryGetValue(name, out _);
+    }
 
-            throw new LeoException(0, $"System collection '{name}' are not registered as system collection");
+
+    /// <summary>
+    /// Get registered system collection
+    /// </summary>
+    internal SystemBaseCollection GetSystemCollection(string name)
+    {
+        // Si es una tabla del sistema calculada.
+        if (_systemCollections.TryGetValue(name, out var sys))
+        {
+            return sys;
         }
 
-        /// <summary>
-        /// Register a new system collection that can be used in query for input/output data
-        /// Collection name must starts with $
-        /// </summary>
-        internal void RegisterSystemCollection(SystemCollection systemCollection)
-        {
-            if (systemCollection == null) throw new ArgumentNullException(nameof(systemCollection));
+        throw new LeoException(0, $"System collection '{name}' are not registered as system collection");
+    }
 
-            _systemCollections[systemCollection.Name] = systemCollection;
-        }
+    /// <summary>
+    /// Register a new system collection that can be used in query for input/output data
+    /// Collection name must starts with $
+    /// </summary>
+    internal void RegisterSystemCollection(SystemCollection systemCollection)
+    {
+        if (systemCollection == null)
+            throw new ArgumentNullException(nameof(systemCollection));
 
-        /// <summary>
-        /// Register a new system collection that can be used in query for input data
-        /// Collection name must starts with $
-        /// </summary>
-        internal void RegisterSystemCollection(string collectionName, Func<IEnumerable<BsonDocument>> factory)
-        {
-            if (collectionName.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(collectionName));
-            if (factory == null) throw new ArgumentNullException(nameof(factory));
+        _systemCollections[systemCollection.Name] = systemCollection;
+    }
 
-            _systemCollections[collectionName] = new SystemCollection(collectionName, factory);
-        }
+    /// <summary>
+    /// Register a new system collection that can be used in query for input data
+    /// Collection name must starts with $
+    /// </summary>
+    internal void RegisterSystemCollection(string collectionName, Func<IEnumerable<BsonDocument>> factory)
+    {
+        if (collectionName.IsNullOrWhiteSpace())
+            throw new ArgumentNullException(nameof(collectionName));
+        if (factory == null)
+            throw new ArgumentNullException(nameof(factory));
+
+        _systemCollections[collectionName] = new SystemCollection(collectionName, factory);
     }
 }

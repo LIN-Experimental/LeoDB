@@ -21,7 +21,7 @@ namespace LeoDB.Stress
             this.Sql = el.InnerText;
         }
 
-        public BsonValue Execute(LiteDatabase db)
+        public BsonValue Execute(LeoDatabase db)
         {
             using (var reader = db.Execute(this.Sql))
             {

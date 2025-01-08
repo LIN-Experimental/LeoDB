@@ -18,7 +18,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Deletion
 		{
 			File.Delete(DatabasePath);
 
-			DatabaseInstance = new LiteDatabase(ConnectionString());
+			DatabaseInstance = new LeoDatabase(ConnectionString());
 			_fileMetaCollection = DatabaseInstance.GetCollection<FileMetaBase>();
 			_fileMetaCollection.EnsureIndex(file => file.IsFavorite);
 			_fileMetaCollection.EnsureIndex(file => file.ShouldBeShown);

@@ -31,7 +31,7 @@ namespace LeoDB.Shell.Commands
                 env.Database = null;
             }
 
-            env.Database = new LiteDatabase(connectionString);
+            env.Database = new LeoDatabase(connectionString);
         }
     }
 }

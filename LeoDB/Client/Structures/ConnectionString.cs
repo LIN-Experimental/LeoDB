@@ -64,10 +64,10 @@ namespace LeoDB
         /// <summary>
         /// Initialize connection string parsing string in "key1=value1;key2=value2;...." format or only "filename" as default (when no ; char found)
         /// </summary>
-        public ConnectionString(string connectionString)
-            : this()
+        public ConnectionString(string connectionString) : this()
         {
-            if (string.IsNullOrEmpty(connectionString)) throw new ArgumentNullException(nameof(connectionString));
+            if (string.IsNullOrEmpty(connectionString)) 
+                throw new ArgumentNullException(nameof(connectionString));
 
             // create a dictionary from string name=value collection
             if (connectionString.Contains("="))
@@ -105,9 +105,9 @@ namespace LeoDB
         public string this[string key] => _values.GetOrDefault(key);
 
         /// <summary>
-        /// Create ILiteEngine instance according string connection parameters. For now, only Local/Shared are supported
+        /// Create ILeoEngine instance according string connection parameters. For now, only Local/Shared are supported
         /// </summary>
-        internal ILiteEngine CreateEngine(Action<EngineSettings> engineSettingsAction = null)
+        internal ILeoEngine CreateEngine(Action<EngineSettings> engineSettingsAction = null)
         {
             var settings = new EngineSettings
             {
@@ -125,7 +125,7 @@ namespace LeoDB
             // create engine implementation as Connection Type
             if (this.Connection == ConnectionType.Direct)
             {
-                return new LiteEngine(settings);
+                return new LeoEngine(settings);
             }
             else if (this.Connection == ConnectionType.Shared)
             {

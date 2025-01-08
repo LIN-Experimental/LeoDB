@@ -7,7 +7,7 @@ using static LeoDB.Constants;
 
 namespace LeoDB.Engine
 {
-    public partial class LiteEngine
+    public partial class LeoEngine
     {
         private IEnumerable<BsonDocument> SysOpenCursors()
         {

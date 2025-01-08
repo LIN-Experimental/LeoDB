@@ -52,7 +52,7 @@ namespace LeoDB.Engine
                 reader.Open();
 
                 // open new engine to recive all data readed from FileReader
-                using (var engine = new LiteEngine(new EngineSettings
+                using (var engine = new LeoEngine(new EngineSettings
                 {
                     Filename = tempFilename,
                     Collation = options.Collation,

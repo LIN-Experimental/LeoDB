@@ -12,8 +12,8 @@ namespace LeoDB.Benchmarks.Benchmarks.Insertion
 	{
 		private List<FileMetaBase> _data;
 
-		private ILiteDatabase _databaseInstanceNormal;
-		private ILiteDatabase _databaseInstanceInMemory;
+		private ILeoDatabase _databaseInstanceNormal;
+		private ILeoDatabase _databaseInstanceInMemory;
 		private ILiteCollection<FileMetaBase> _fileMetaNormalCollection;
 		private ILiteCollection<FileMetaBase> _fileMetaInMemoryCollection;
 
@@ -24,7 +24,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Insertion
 
 			_data = FileMetaGenerator<FileMetaBase>.GenerateList(DatasetSize); // executed once per each N value
 
-			_databaseInstanceNormal = new LiteDatabase(ConnectionString());
+			_databaseInstanceNormal = new LeoDatabase(ConnectionString());
 			_fileMetaNormalCollection = _databaseInstanceNormal.GetCollection<FileMetaBase>();
 		}
 
@@ -33,7 +33,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Insertion
 		{
 			_data = FileMetaGenerator<FileMetaBase>.GenerateList(DatasetSize); // executed once per each N value
 
-			_databaseInstanceInMemory = new LiteDatabase(new MemoryStream());
+			_databaseInstanceInMemory = new LeoDatabase(new MemoryStream());
 			_fileMetaInMemoryCollection = _databaseInstanceInMemory.GetCollection<FileMetaBase>();
 		}
 

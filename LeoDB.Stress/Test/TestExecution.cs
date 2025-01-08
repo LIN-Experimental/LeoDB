@@ -16,7 +16,7 @@ namespace LeoDB.Stress
         public Stopwatch Timer { get; } = new Stopwatch();
 
         private readonly TestFile _file;
-        private LiteDatabase _db;
+        private LeoDatabase _db;
         private bool _running = true;
         private long _maxRam = 0;
         private readonly ConcurrentDictionary<int, ThreadInfo> _threads = new ConcurrentDictionary<int, ThreadInfo>();
@@ -35,7 +35,7 @@ namespace LeoDB.Stress
                 this.DeleteFiles();
             }
 
-            _db = new LiteDatabase(_file.Filename);
+            _db = new LeoDatabase(_file.Filename);
             _db.Pragma("TIMEOUT", (int)_file.Timeout.TotalSeconds);
 
             foreach(var setup in _file.Setup)

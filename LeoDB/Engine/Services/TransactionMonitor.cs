@@ -21,6 +21,7 @@ namespace LeoDB.Engine
         private readonly LockService _locker;
         private readonly DiskService _disk;
         private readonly WalIndexService _walIndex;
+        private readonly ILeoEngine _engine;
 
         private int _freePages;
         private readonly int _initialSize;
@@ -30,12 +31,13 @@ namespace LeoDB.Engine
         public int FreePages => _freePages;
         public int InitialSize => _initialSize;
 
-        public TransactionMonitor(HeaderPage header, LockService locker, DiskService disk, WalIndexService walIndex)
+        public TransactionMonitor(HeaderPage header, LockService locker, DiskService disk, WalIndexService walIndex, ILeoEngine engine)
         {
             _header = header;
             _locker = locker;
             _disk = disk;
             _walIndex = walIndex;
+            _engine = engine;
 
             // initialize free pages with all avaiable pages in memory
             _freePages = MAX_TRANSACTION_SIZE;
@@ -64,7 +66,7 @@ namespace LeoDB.Engine
                     // check if current thread contains any transaction
                     alreadyLock = _transactions.Values.Any(x => x.ThreadID == Environment.CurrentManagedThreadId);
 
-                    transaction = new TransactionService(_header, _locker, _disk, _walIndex, initialSize, this, queryOnly);
+                    transaction = new TransactionService(_header, _locker, _disk, _walIndex, initialSize, this, queryOnly, _engine);
 
                     // add transaction to execution transaction dict
                     _transactions[transaction.TransactionID] = transaction;

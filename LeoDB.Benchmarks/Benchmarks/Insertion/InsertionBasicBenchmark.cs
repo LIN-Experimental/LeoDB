@@ -17,7 +17,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Insertion
 		{
 			File.Delete(DatabasePath);
 
-			DatabaseInstance = new LiteDatabase(ConnectionString());
+			DatabaseInstance = new LeoDatabase(ConnectionString());
 			_fileMetaCollection = DatabaseInstance.GetCollection<FileMetaBase>();
 
 			_data = FileMetaGenerator<FileMetaBase>.GenerateList(DatasetSize); // executed once per each N value

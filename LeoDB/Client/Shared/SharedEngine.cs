@@ -10,12 +10,14 @@ using System.Security.Principal;
 
 namespace LeoDB
 {
-    public class SharedEngine : ILiteEngine
+    public class SharedEngine : ILeoEngine
     {
         private readonly EngineSettings _settings;
         private readonly Mutex _mutex;
-        private LiteEngine _engine;
+        private LeoEngine _engine;
         private bool _transactionRunning = false;
+
+        public ILeoDatabase leoDatabase { get; set; }
 
         public SharedEngine(EngineSettings settings)
         {
@@ -43,6 +45,12 @@ namespace LeoDB
             }
         }
 
+        public void OpenPersonalizeDatabase(BsonMapper mapper)
+        {
+
+        }
+
+
         /// <summary>
         /// Open database in safe mode
         /// </summary>
@@ -61,7 +69,7 @@ namespace LeoDB
             {
                 try
                 {
-                    _engine = new LiteEngine(_settings);
+                    _engine = new LeoEngine(_settings);
                     return true;
                 }
                 catch
@@ -200,9 +208,9 @@ namespace LeoDB
             return QueryDatabase(() => _engine.UpdateMany(collection, extend, predicate));
         }
 
-        public int Upsert(string collection, IEnumerable<BsonDocument> docs, BsonAutoId autoId)
+        public int InsertOrUpdate(string collection, IEnumerable<BsonDocument> docs, BsonAutoId autoId)
         {
-            return QueryDatabase(() => _engine.Upsert(collection, docs, autoId));
+            return QueryDatabase(() => _engine.InsertOrUpdate(collection, docs, autoId));
         }
 
         public int Delete(string collection, IEnumerable<BsonValue> ids)

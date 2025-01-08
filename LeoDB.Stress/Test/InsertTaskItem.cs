@@ -39,7 +39,7 @@ namespace LeoDB.Stress
             }
         }
 
-        public BsonValue Execute(LiteDatabase db)
+        public BsonValue Execute(LeoDatabase db)
         {
             _collection ??= db.GetCollection(this.Collection, this.AutoId);
 

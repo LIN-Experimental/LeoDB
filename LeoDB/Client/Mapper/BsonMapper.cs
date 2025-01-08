@@ -43,7 +43,7 @@ namespace LeoDB
         private readonly ITypeNameBinder _typeNameBinder;
 
         /// <summary>
-        /// Global instance used when no BsonMapper are passed in LiteDatabase ctor
+        /// Global instance used when no BsonMapper are passed in LeoDatabase ctor
         /// </summary>
         public static BsonMapper Global = new BsonMapper();
 

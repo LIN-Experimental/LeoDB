@@ -16,7 +16,7 @@ namespace LeoDB.Shell.Commands
 
         public void Execute(StringScanner s, Env env)
         {
-            var assembly = typeof(ILiteDatabase).Assembly.GetName();
+            var assembly = typeof(ILeoDatabase).Assembly.GetName();
 
             env.Display.WriteLine(assembly.FullName);
         }

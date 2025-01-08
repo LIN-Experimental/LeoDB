@@ -13,7 +13,7 @@ namespace LeoDB.Engine
     /// </summary>
     internal class QueryExecutor
     {
-        private readonly LiteEngine _engine;
+        private readonly LeoEngine _engine;
         private readonly EngineState _state;
         private readonly TransactionMonitor _monitor;
         private readonly SortDisk _sortDisk;
@@ -25,7 +25,7 @@ namespace LeoDB.Engine
         private readonly IEnumerable<BsonDocument> _source;
 
         public QueryExecutor(
-            LiteEngine engine,
+            LeoEngine engine,
             EngineState state,
             TransactionMonitor monitor,
             SortDisk sortDisk,

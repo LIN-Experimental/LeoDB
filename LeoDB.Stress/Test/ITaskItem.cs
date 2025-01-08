@@ -10,6 +10,6 @@ namespace LeoDB.Stress
         string Name { get; }
         int TaskCount { get; }
         TimeSpan Sleep { get; }
-        BsonValue Execute(LiteDatabase db);
+        BsonValue Execute(LeoDatabase db);
     }
 }

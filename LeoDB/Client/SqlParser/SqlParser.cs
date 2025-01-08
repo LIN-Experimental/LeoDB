@@ -12,12 +12,12 @@ namespace LeoDB
     /// </summary>
     internal partial class SqlParser
     {
-        private readonly ILiteEngine _engine;
+        private readonly ILeoEngine _engine;
         private readonly Tokenizer _tokenizer;
         private readonly BsonDocument _parameters;
         private readonly Lazy<Collation> _collation;
 
-        public SqlParser(ILiteEngine engine, Tokenizer tokenizer, BsonDocument parameters)
+        public SqlParser(ILeoEngine engine, Tokenizer tokenizer, BsonDocument parameters)
         {
             _engine = engine;
             _tokenizer = tokenizer;

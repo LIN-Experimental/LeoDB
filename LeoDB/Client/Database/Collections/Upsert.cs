@@ -24,7 +24,7 @@ namespace LeoDB
         {
             if (entities == null) throw new ArgumentNullException(nameof(entities));
 
-            return _engine.Upsert(_collection, this.GetBsonDocs(entities), _autoId);
+            return _engine.InsertOrUpdate(_collection, this.GetBsonDocs(entities), _autoId);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace LeoDB
             // set document _id using id parameter
             doc["_id"] = id;
 
-            return _engine.Upsert(_collection, new[] { doc }, _autoId) > 0;
+            return _engine.InsertOrUpdate(_collection, new[] { doc }, _autoId) > 0;
         }
     }
 }

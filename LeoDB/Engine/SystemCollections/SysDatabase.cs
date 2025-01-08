@@ -7,11 +7,11 @@ using static LeoDB.Constants;
 
 namespace LeoDB.Engine
 {
-    public partial class LiteEngine
+    public partial class LeoEngine
     {
         private IEnumerable<BsonDocument> SysDatabase()
         {
-            var version = typeof(LiteEngine).GetTypeInfo().Assembly.GetName().Version;
+            var version = typeof(LeoEngine).GetTypeInfo().Assembly.GetName().Version;
 
             yield return new BsonDocument
             {
