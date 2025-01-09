@@ -53,7 +53,7 @@ namespace LeoDB.Engine
         public List<CursorInfo> OpenCursors { get; } = new List<CursorInfo>();
 
         /// <summary>
-        /// Get/Set if this transaction was opened by BeginTrans() method (not by AutoTransaction/Cursor)
+        /// Get/Set if this transaction was opened by BeginTransaction() method (not by AutoTransaction/Cursor)
         /// </summary>
         public bool ExplicitTransaction { get; set; } = false;
 

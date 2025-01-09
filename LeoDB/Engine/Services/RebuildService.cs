@@ -57,6 +57,7 @@ namespace LeoDB.Engine
                     Filename = tempFilename,
                     Collation = options.Collation,
                     Password = options.Password,
+                    Database = _settings.Database
                 }))
                 {
                     // copy all database to new Log file with NO checkpoint during all rebuild

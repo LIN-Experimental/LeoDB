@@ -107,7 +107,7 @@ namespace LeoDB
         /// <summary>
         /// Create ILeoEngine instance according string connection parameters. For now, only Local/Shared are supported
         /// </summary>
-        internal ILeoEngine CreateEngine(Action<EngineSettings> engineSettingsAction = null)
+        internal ILeoEngine CreateEngine(Action<EngineSettings> engineSettingsAction = null, ILeoDatabase leoDatabase = null)
         {
             var settings = new EngineSettings
             {
@@ -118,6 +118,7 @@ namespace LeoDB
                 Collation = this.Collation,
                 Upgrade = this.Upgrade,
                 AutoRebuild = this.AutoRebuild,
+                Database = leoDatabase
             };
 
             engineSettingsAction?.Invoke(settings);

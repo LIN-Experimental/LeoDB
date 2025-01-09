@@ -115,7 +115,8 @@ namespace LeoDB.Engine
                     // read next node to compare
                     var diff = rightNode.Key.CompareTo(key, _collation);
 
-                    if (diff == 0 && index.Unique) throw LeoException.IndexDuplicateKey(index.Name, key);
+                    if (diff == 0 && index.Unique) 
+                        throw LeoException.IndexDuplicateKey(index.Name, key);
 
                     if (diff == 1) break; // stop going right
 

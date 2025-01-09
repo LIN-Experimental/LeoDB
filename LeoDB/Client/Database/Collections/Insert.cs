@@ -53,16 +53,6 @@ public partial class LiteCollection<T>
         return _engine.Insert(_collection, this.GetBsonDocs(entities), _autoId);
     }
 
-    /// <summary>
-    /// Implements bulk insert documents in a collection. Usefull when need lots of documents.
-    /// </summary>
-    [Obsolete("Use normal Insert()")]
-    public int InsertBulk(IEnumerable<T> entities, int batchSize = 5000)
-    {
-        if (entities == null) throw new ArgumentNullException(nameof(entities));
-
-        return _engine.Insert(_collection, this.GetBsonDocs(entities), _autoId);
-    }
 
     /// <summary>
     /// Convert each T document in a BsonDocument, setting autoId for each one

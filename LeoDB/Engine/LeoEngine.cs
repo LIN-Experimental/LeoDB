@@ -29,7 +29,9 @@ public partial class LeoEngine : ILeoEngine
 
     private EngineState _state;
 
-    // immutable settings
+    /// <summary>
+    /// immutable settings
+    /// </summary>
     private readonly EngineSettings _settings;
 
     /// <summary>
@@ -42,7 +44,6 @@ public partial class LeoEngine : ILeoEngine
     /// </summary>
     private ConcurrentDictionary<string, long> _sequences;
 
-
     /// <summary>
     /// Initialize LeoEngine using initial engine settings
     /// </summary>
@@ -52,20 +53,17 @@ public partial class LeoEngine : ILeoEngine
         this.Open();
     }
 
-
     #region Open & Close
-
 
     public void OpenPersonalizeDatabase(BsonMapper mapper)
     {
-
+        // Tabla de IA.
+        SysIntelligence();
     }
 
     internal bool Open()
     {
         LOG($"start initializing{(_settings.ReadOnly ? " (readonly)" : "")}", "ENGINE");
-
-
 
         _systemCollections = new Dictionary<string, SystemBaseCollection>(StringComparer.OrdinalIgnoreCase);
         _sequences = new ConcurrentDictionary<string, long>(StringComparer.OrdinalIgnoreCase);
@@ -138,9 +136,6 @@ public partial class LeoEngine : ILeoEngine
 
             _systemCollections.Add("$intelligence", new SystemSavedCollection("$intelligence"));
 
-
-
-
             LOG("initialization completed", "ENGINE");
 
             return true;
@@ -153,6 +148,7 @@ public partial class LeoEngine : ILeoEngine
             throw;
         }
     }
+
 
     /// <summary>
     /// Normal close process:

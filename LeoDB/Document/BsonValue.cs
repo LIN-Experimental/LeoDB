@@ -1,10 +1,6 @@
-﻿using LeoDB.Engine;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
-using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB;
 
@@ -113,7 +109,7 @@ public class BsonValue : IComparable<BsonValue>, IEquatable<BsonValue>
         this.RawValue = value.Truncate();
     }
 
-    protected BsonValue(BsonType type, object rawValue)
+    public BsonValue(BsonType type, object rawValue)
     {
         this.Type = type;
         this.RawValue = rawValue;
@@ -140,20 +136,15 @@ public class BsonValue : IComparable<BsonValue>, IEquatable<BsonValue>
             this.Type = BsonType.DateTime;
             this.RawValue = ((DateTime)value).Truncate();
         }
-        else if (value is BsonValue)
+        else if (value is BsonValue v)
         {
-            var v = (BsonValue)value;
             this.Type = v.Type;
             this.RawValue = v.RawValue;
         }
         else
         {
-            // test for array or dictionary (document)
-            var enumerable = value as System.Collections.IEnumerable;
-            var dictionary = value as System.Collections.IDictionary;
-
             // test first for dictionary (because IDictionary implements IEnumerable)
-            if (dictionary != null)
+            if (value is System.Collections.IDictionary dictionary)
             {
                 var dict = new Dictionary<string, BsonValue>();
 
@@ -165,7 +156,7 @@ public class BsonValue : IComparable<BsonValue>, IEquatable<BsonValue>
                 this.Type = BsonType.Document;
                 this.RawValue = dict;
             }
-            else if (enumerable != null)
+            else if (value is System.Collections.IEnumerable enumerable)
             {
                 var list = new List<BsonValue>();
 
@@ -375,7 +366,7 @@ public class BsonValue : IComparable<BsonValue>, IEquatable<BsonValue>
     }
 
     // Binary
-    public static implicit operator Byte[] (BsonValue value)
+    public static implicit operator Byte[](BsonValue value)
     {
         return (Byte[])value.RawValue;
     }
@@ -637,31 +628,23 @@ public class BsonValue : IComparable<BsonValue>, IEquatable<BsonValue>
     /// </summary>
     internal virtual int GetBytesCount(bool recalc)
     {
-        switch (this.Type)
+        return this.Type switch
         {
-            case BsonType.Null:
-            case BsonType.MinValue:
-            case BsonType.MaxValue: return 0;
-
-            case BsonType.Int32: return 4;
-            case BsonType.Int64: return 8;
-            case BsonType.Double: return 8;
-            case BsonType.Decimal: return 16;
-
-            case BsonType.String: return StringEncoding.UTF8.GetByteCount(this.AsString);
-
-            case BsonType.Binary: return this.AsBinary.Length;
-            case BsonType.ObjectId: return 12;
-            case BsonType.Guid: return 16;
-
-            case BsonType.Boolean: return 1;
-            case BsonType.DateTime: return 8;
-
-            case BsonType.Document: return this.AsDocument.GetBytesCount(recalc);
-            case BsonType.Array: return this.AsArray.GetBytesCount(recalc);
-        }
-
-        throw new ArgumentException();
+            BsonType.Null or BsonType.MinValue or BsonType.MaxValue => 0,
+            BsonType.Int32 => 4,
+            BsonType.Int64 => 8,
+            BsonType.Double => 8,
+            BsonType.Decimal => 16,
+            BsonType.String => StringEncoding.UTF8.GetByteCount(this.AsString),
+            BsonType.Binary => this.AsBinary.Length,
+            BsonType.ObjectId => 12,
+            BsonType.Guid => 16,
+            BsonType.Boolean => 1,
+            BsonType.DateTime => 8,
+            BsonType.Document => this.AsDocument.GetBytesCount(recalc),
+            BsonType.Array => this.AsArray.GetBytesCount(recalc),
+            _ => throw new ArgumentException(),
+        };
     }
 
     /// <summary>
@@ -670,7 +653,7 @@ public class BsonValue : IComparable<BsonValue>, IEquatable<BsonValue>
     protected int GetBytesCountElement(string key, BsonValue value)
     {
         // check if data type is variant
-        var variant = value.Type == BsonType.String || value.Type == BsonType.Binary || value.Type == BsonType.Guid;
+        var variant = value.Type is BsonType.String or BsonType.Binary or BsonType.Guid;
 
         return
             1 + // element type

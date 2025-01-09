@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LIN.Access.OpenIA.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine;
@@ -11,10 +13,10 @@ public partial class LeoEngine
     /// </summary>
     public int Insert(string collection, IEnumerable<BsonDocument> docs, BsonAutoId autoId)
     {
-        if (collection.IsNullOrWhiteSpace()) 
+        if (collection.IsNullOrWhiteSpace())
             throw new ArgumentNullException(nameof(collection));
 
-        if (docs == null) 
+        if (docs == null)
             throw new ArgumentNullException(nameof(docs));
 
         return this.AutoTransaction(transaction =>
@@ -26,9 +28,25 @@ public partial class LeoEngine
 
             LOG($"insert `{collection}`", "COMMAND");
 
+            // Validar si es desde el Engine.
+            var information = _settings.Database.GetCollection<SysIntelligence>("$intelligence").FindOne(t => t.collection == collection);
+
             foreach (var doc in docs)
             {
                 _state.Validate();
+
+                // Ejecutar IA.
+                if (!string.IsNullOrWhiteSpace(information?.message ?? null))
+                {
+                    LIN.Access.OpenIA.IAModelBuilder model = new();
+                    model.Schema = GenerateSchema(doc);
+                    model.Load(Message.FromSystem($"Eres una IA integrada en una base de datos: {information.message}"));
+                    model.Load(Message.FromUser($"El documento JSON es: {doc}"));
+
+                    var ss = model.Reply();
+                    ss.Wait();
+                    ReplaceValuesWithJson(doc, ss.Result.Content);
+                }
 
                 transaction.Safepoint();
 
@@ -87,5 +105,104 @@ public partial class LeoEngine
                 last = node;
             }
         }
+    }
+
+
+
+
+
+
+
+
+    public static string GenerateSchema(BsonDocument bsonDocument)
+    {
+        var properties = new Dictionary<string, object>();
+
+        foreach (var element in bsonDocument)
+        {
+            string propertyType = GetJsonType(element.Value);
+
+            if (!string.IsNullOrEmpty(propertyType))
+            {
+                properties[element.Key] = new
+                {
+                    type = propertyType,
+                    description = $"Auto-generated schema for {element.Key}"
+                };
+            }
+        }
+
+        var schema = new
+        {
+            type = "json_schema",
+            json_schema = new
+            {
+                name = "LIN_IA",
+                strict = true,
+                schema = new
+                {
+                    type = "object",
+                    properties = properties,
+                    required = bsonDocument.Select(t => t.Key),
+                    additionalProperties = false
+                }
+            }
+        };
+
+        return System.Text.Json.JsonSerializer.Serialize(schema, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+    }
+
+    private static string GetJsonType(BsonValue value)
+    {
+        return value.Type switch
+        {
+            BsonType.String => "string",
+            BsonType.Int32 or BsonType.Int64 => "integer",
+            BsonType.Double => "number",
+            BsonType.Boolean => "boolean",
+            BsonType.Array => "array",
+            BsonType.Document => "object",
+            _ => "string"
+        };
+    }
+
+
+    public static BsonDocument ReplaceValuesWithJson(BsonDocument bsonDocument, string json)
+    {
+        var jsonData = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(json);
+
+        foreach (var key in jsonData.Keys)
+        {
+            if (bsonDocument.ContainsKey(key))
+            {
+
+                if (jsonData[key] is System.Text.Json.JsonElement je)
+                {
+                    bsonDocument[key] = ConvertToBsonValue(je);
+                }
+                else
+                {
+                    bsonDocument[key] = new BsonValue(bsonDocument[key].Type, jsonData[key]);
+                }
+
+
+            }
+        }
+
+        return bsonDocument;
+    }
+
+    private static BsonValue ConvertToBsonValue(System.Text.Json.JsonElement element)
+    {
+        return element.ValueKind switch
+        {
+            System.Text.Json.JsonValueKind.String => new BsonValue(element.GetString()),
+            System.Text.Json.JsonValueKind.Number => element.TryGetInt32(out var intValue) ? new BsonValue(intValue) : new BsonValue(element.GetDouble()),
+            System.Text.Json.JsonValueKind.True => new BsonValue(true),
+            System.Text.Json.JsonValueKind.False => new BsonValue(false),
+            System.Text.Json.JsonValueKind.Array => new BsonArray(element.EnumerateArray().Select(ConvertToBsonValue)),
+            System.Text.Json.JsonValueKind.Object => new BsonDocument(element.EnumerateObject().ToDictionary(p => p.Name, p => ConvertToBsonValue(p.Value))),
+            _ => new BsonValue()
+        };
     }
 }

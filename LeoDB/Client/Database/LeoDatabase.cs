@@ -29,8 +29,7 @@ public partial class LeoDatabase : ILeoDatabase
     /// <summary>
     /// Starts LeoDB database using a connection string for file system database
     /// </summary>
-    public LeoDatabase(string connectionString, BsonMapper mapper = null)
-        : this(new ConnectionString(connectionString), mapper)
+    public LeoDatabase(string connectionString, BsonMapper mapper = null) : this(new ConnectionString(connectionString), mapper)
     {
     }
 
@@ -39,12 +38,14 @@ public partial class LeoDatabase : ILeoDatabase
     /// </summary>
     public LeoDatabase(ConnectionString connectionString, BsonMapper mapper = null)
     {
-        if (connectionString == null) 
+        if (connectionString == null)
             throw new ArgumentNullException(nameof(connectionString));
 
-        _engine = connectionString.CreateEngine();
+        _engine = connectionString.CreateEngine(leoDatabase: this);
         _mapper = mapper ?? BsonMapper.Global;
         _disposeOnClose = true;
+
+        OnEngine();
     }
 
     /// <summary>
@@ -61,9 +62,18 @@ public partial class LeoDatabase : ILeoDatabase
             LogStream = logStream
         };
 
-        _engine = new LeoEngine(settings);
+        settings.Database = this;
         _mapper = mapper ?? BsonMapper.Global;
+        _engine = new LeoEngine(settings);
+
         _disposeOnClose = true;
+        OnEngine();
+    }
+
+
+    void OnEngine()
+    {
+        _engine.OpenPersonalizeDatabase(Mapper);
     }
 
     /// <summary>
@@ -74,6 +84,7 @@ public partial class LeoDatabase : ILeoDatabase
         _engine = engine ?? throw new ArgumentNullException(nameof(engine));
         _mapper = mapper ?? BsonMapper.Global;
         _disposeOnClose = disposeOnClose;
+        OnEngine();
     }
 
     #endregion
@@ -126,7 +137,7 @@ public partial class LeoDatabase : ILeoDatabase
     /// Initialize a new transaction. Transaction are created "per-thread". There is only one single transaction per thread.
     /// Return true if transaction was created or false if current thread already in a transaction.
     /// </summary>
-    public bool BeginTrans() => _engine.BeginTrans();
+    public bool BeginTransaction() => _engine.BeginTrans();
 
     /// <summary>
     /// Commit current transaction

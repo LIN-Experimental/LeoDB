@@ -45,7 +45,7 @@ public interface ILeoDatabase : IDisposable
     /// Initialize a new transaction. Transaction are created "per-thread". There is only one single transaction per thread.
     /// Return true if transaction was created or false if current thread already in a transaction.
     /// </summary>
-    bool BeginTrans();
+    bool BeginTransaction();
 
     /// <summary>
     /// Commit current transaction

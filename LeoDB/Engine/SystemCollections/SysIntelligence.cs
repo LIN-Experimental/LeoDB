@@ -1,37 +1,37 @@
-﻿using System.Collections.Generic;
-
-namespace LeoDB.Engine;
+﻿namespace LeoDB.Engine;
 
 public partial class LeoEngine
 {
-    private IEnumerable<BsonDocument> SysIntelligence(BsonMapper mapper)
+    private void SysIntelligence()
     {
-        // get any transaction from current thread ID
-        var transaction = _monitor.GetThreadTransaction();
+        const string collectionName = "$intelligence";
 
-        var ss = new LiteCollection<SysIntelligence>("$intelligence", BsonAutoId.Guid, this, mapper);
-
-        var ssa = ss.FindAll().GetEnumerator();
-
-
-
+        // Colección es unica.
+        _settings.Database.GetCollection<SysIntelligence>(collectionName).EnsureIndex(x => x.collection, true);
 
         foreach (var collection in _header.GetCollections())
         {
-            yield return new BsonDocument
+            // Validar si existe en la tabla.
+            var exist = _settings.Database.GetCollection<SysIntelligence>(collectionName)
+                                          .Exists(x => x.collection == collection.Key);
+
+            // Si no existe, se crea el registro.
+            if (!exist && !collection.Key.StartsWith("$"))
             {
-                ["collection"] = collection.Key,
-                ["name"] = collection.Key,
-                ["message"] = ss.FindOne(t => t.collection == collection.Key)?.message
-            };
+                _settings.Database.GetCollection<SysIntelligence>(collectionName).Insert(new SysIntelligence
+                {
+                    collection = collection.Key,
+                    message = string.Empty
+                });
+            }
         }
     }
 
 }
 
-file class SysIntelligence
+internal class SysIntelligence
 {
+    public int Id { get; set; }
     public string collection { get; set; }
-    public string name { get; set; }
     public string message { get; set; }
 }

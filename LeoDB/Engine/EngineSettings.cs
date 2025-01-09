@@ -8,6 +8,12 @@ namespace LeoDB.Engine;
 /// </summary>
 public class EngineSettings
 {
+
+    /// <summary>
+    /// Base de datos.
+    /// </summary>
+    public ILeoDatabase Database { get; set; }
+
     /// <summary>
     /// Get/Set custom stream to be used as datafile (can be MemoryStream or TempStream). Do not use FileStream - to use physical file, use "filename" attribute (and keep DataStream/WalStream null)
     /// </summary>

@@ -37,30 +37,4 @@ public partial class LeoEngine
         // run rebuild process
         this.Recovery(_settings.Collation);
     }
-
-    /// <summary>
-    /// Upgrade old version of LeoDB into new LeoDB file structure. Returns true if database was completed converted
-    /// If database already in current version just return false
-    /// </summary>
-    [Obsolete("Upgrade your LeoDB v4 datafiles using Upgrade=true in EngineSettings. You can use upgrade=true in connection string.")]
-    public static bool Upgrade(string filename, string password = null, Collation collation = null)
-    {
-        if (filename.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(filename));
-        if (!File.Exists(filename)) return false;
-
-        var settings = new EngineSettings
-        {
-            Filename = filename,
-            Password = password,
-            Collation = collation,
-            Upgrade = true
-        };
-
-        using (var db = new LeoEngine(settings))
-        {
-            // database are now converted to v5
-        }
-
-        return true;
-    }
 }
