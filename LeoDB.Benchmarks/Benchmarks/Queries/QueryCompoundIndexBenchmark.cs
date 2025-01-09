@@ -12,7 +12,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Queries
 	{
 		private const string COMPOUND_INDEX_NAME = "CompoundIndex1";
 
-		private ILiteCollection<FileMetaBase> _fileMetaCollection;
+		private ILeoCollection<FileMetaBase> _fileMetaCollection;
 
 		[GlobalSetup(Target = nameof(Query_SimpleIndex_Baseline))]
 		public void GlobalSetupSimpleIndexBaseline()

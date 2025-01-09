@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace LeoDB;
 
-public sealed partial class LiteCollection<T> : ILiteCollection<T>
+public sealed partial class LeoCollection<T> : ILeoCollection<T>
 {
     private readonly string _collection;
     private readonly ILeoEngine _engine;
@@ -29,7 +29,7 @@ public sealed partial class LiteCollection<T> : ILiteCollection<T>
     /// </summary>
     public EntityMapper EntityMapper => _entity;
 
-    internal LiteCollection(string name, BsonAutoId autoId, ILeoEngine engine, BsonMapper mapper)
+    internal LeoCollection(string name, BsonAutoId autoId, ILeoEngine engine, BsonMapper mapper)
     {
         _collection = name ?? mapper.ResolveCollectionName(typeof(T));
         _engine = engine;

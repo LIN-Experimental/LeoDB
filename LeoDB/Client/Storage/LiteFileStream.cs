@@ -12,8 +12,8 @@ namespace LeoDB
         /// </summary>
         public const int MAX_CHUNK_SIZE = 255 * 1024; // 255kb like GridFS
 
-        private readonly ILiteCollection<LiteFileInfo<TFileId>> _files;
-        private readonly ILiteCollection<BsonDocument> _chunks;
+        private readonly ILeoCollection<LiteFileInfo<TFileId>> _files;
+        private readonly ILeoCollection<BsonDocument> _chunks;
         private readonly LiteFileInfo<TFileId> _file;
         private readonly BsonValue _fileId;
         private readonly FileAccess _mode;
@@ -24,7 +24,7 @@ namespace LeoDB
         private int _positionInChunk = 0;
         private MemoryStream _buffer;
 
-        internal LiteFileStream(ILiteCollection<LiteFileInfo<TFileId>> files, ILiteCollection<BsonDocument> chunks, LiteFileInfo<TFileId> file, BsonValue fileId, FileAccess mode)
+        internal LiteFileStream(ILeoCollection<LiteFileInfo<TFileId>> files, ILeoCollection<BsonDocument> chunks, LiteFileInfo<TFileId> file, BsonValue fileId, FileAccess mode)
         {
             _files = files;
             _chunks = chunks;

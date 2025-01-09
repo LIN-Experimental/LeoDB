@@ -13,8 +13,8 @@ namespace LeoDB.Benchmarks.Benchmarks.Insertion
 		private List<FileMetaBase> _baseData;
 		private List<FileMetaWithExclusion> _baseDataWithBsonIgnore;
 
-		private ILiteCollection<FileMetaBase> _fileMetaCollection;
-		private ILiteCollection<FileMetaWithExclusion> _fileMetaExclusionCollection;
+		private ILeoCollection<FileMetaBase> _fileMetaCollection;
+		private ILeoCollection<FileMetaWithExclusion> _fileMetaExclusionCollection;
 
 		[GlobalSetup(Target = nameof(Insertion))]
 		public void GlobalBsonIgnoreSetup()

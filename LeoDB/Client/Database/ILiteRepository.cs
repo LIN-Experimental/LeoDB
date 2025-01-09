@@ -57,9 +57,9 @@ namespace LeoDB
         int DeleteMany<T>(Expression<Func<T, bool>> predicate, string collectionName = null);
 
         /// <summary>
-        /// Returns new instance of LiteQueryable that provides all method to query any entity inside collection. Use fluent API to apply filter/includes an than run any execute command, like ToList() or First()
+        /// Returns new instance of LeoQueryable that provides all method to query any entity inside collection. Use fluent API to apply filter/includes an than run any execute command, like ToList() or First()
         /// </summary>
-        ILiteQueryable<T> Query<T>(string collectionName = null);
+        ILeoQueryable<T> Query<T>(string collectionName = null);
 
         /// <summary>
         /// Create a new permanent index in all documents inside this collections if index not exists already. Returns true if index was created or false if already exits

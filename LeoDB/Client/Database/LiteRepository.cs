@@ -150,9 +150,9 @@ namespace LeoDB
         #region Query
 
         /// <summary>
-        /// Returns new instance of LiteQueryable that provides all method to query any entity inside collection. Use fluent API to apply filter/includes an than run any execute command, like ToList() or First()
+        /// Returns new instance of LeoQueryable that provides all method to query any entity inside collection. Use fluent API to apply filter/includes an than run any execute command, like ToList() or First()
         /// </summary>
-        public ILiteQueryable<T> Query<T>(string collectionName = null)
+        public ILeoQueryable<T> Query<T>(string collectionName = null)
         {
             return _db.GetCollection<T>(collectionName).Query();
         }

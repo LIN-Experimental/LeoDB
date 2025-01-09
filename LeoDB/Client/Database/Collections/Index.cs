@@ -7,7 +7,7 @@ using static LeoDB.Constants;
 
 namespace LeoDB
 {
-    public partial class LiteCollection<T>
+    public partial class LeoCollection<T>
     {
         /// <summary>
         /// Create a new permanent index in all documents inside this collections if index not exists already. Returns true if index was created or false if already exits

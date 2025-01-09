@@ -10,7 +10,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Queries
 	[BenchmarkCategory(Constants.Categories.QUERIES)]
 	public class QuerySimpleIndexBenchmarks : BenchmarkBase
 	{
-		private ILiteCollection<FileMetaBase> _fileMetaCollection;
+		private ILeoCollection<FileMetaBase> _fileMetaCollection;
 
 		[GlobalSetup(Targets = new[] {nameof(FindWithExpression), nameof(FindWithQuery)})]
 		public void GlobalSetup()

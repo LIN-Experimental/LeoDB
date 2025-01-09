@@ -33,10 +33,10 @@ namespace LeoDB
 
         // database instances references
         private BsonValue _fileId;
-        private ILiteCollection<LiteFileInfo<TFileId>> _files;
-        private ILiteCollection<BsonDocument> _chunks;
+        private ILeoCollection<LiteFileInfo<TFileId>> _files;
+        private ILeoCollection<BsonDocument> _chunks;
 
-        internal void SetReference(BsonValue fileId, ILiteCollection<LiteFileInfo<TFileId>> files, ILiteCollection<BsonDocument> chunks)
+        internal void SetReference(BsonValue fileId, ILeoCollection<LiteFileInfo<TFileId>> files, ILeoCollection<BsonDocument> chunks)
         {
             _fileId = fileId;
             _files = files;

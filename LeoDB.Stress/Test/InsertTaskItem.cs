@@ -10,7 +10,7 @@ namespace LeoDB.Stress
     {
         private readonly Random _rnd = new Random();
 
-        private ILiteCollection<BsonDocument> _collection;
+        private ILeoCollection<BsonDocument> _collection;
 
         public string Name { get; }
         public int TaskCount { get; }

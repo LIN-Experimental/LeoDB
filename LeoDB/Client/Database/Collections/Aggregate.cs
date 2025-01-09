@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace LeoDB;
 
-public partial class LiteCollection<T>
+public partial class LeoCollection<T>
 {
     #region Count
 
@@ -45,7 +45,7 @@ public partial class LiteCollection<T>
     /// <summary>
     /// Get document count in collection using predicate filter expression
     /// </summary>
-    public int Count(Query query) => new LiteQueryable<T>(_engine, _mapper, _collection, query).Count();
+    public int Count(Query query) => new LeoQueryable<T>(_engine, _mapper, _collection, query).Count();
 
     #endregion
 
@@ -87,7 +87,7 @@ public partial class LiteCollection<T>
     /// <summary>
     /// Get document count in collection using predicate filter expression
     /// </summary>
-    public long LongCount(Query query) => new LiteQueryable<T>(_engine, _mapper, _collection, query).Count();
+    public long LongCount(Query query) => new LeoQueryable<T>(_engine, _mapper, _collection, query).Count();
 
     #endregion
 
@@ -121,7 +121,7 @@ public partial class LiteCollection<T>
     /// <summary>
     /// Get true if collection contains at least 1 document that satisfies the predicate expression
     /// </summary>
-    public bool Exists(Query query) => new LiteQueryable<T>(_engine, _mapper, _collection, query).Exists();
+    public bool Exists(Query query) => new LeoQueryable<T>(_engine, _mapper, _collection, query).Exists();
 
     #endregion
 

@@ -14,8 +14,8 @@ namespace LeoDB.Benchmarks.Benchmarks.Insertion
 
 		private ILeoDatabase _databaseInstanceNormal;
 		private ILeoDatabase _databaseInstanceInMemory;
-		private ILiteCollection<FileMetaBase> _fileMetaNormalCollection;
-		private ILiteCollection<FileMetaBase> _fileMetaInMemoryCollection;
+		private ILeoCollection<FileMetaBase> _fileMetaNormalCollection;
+		private ILeoCollection<FileMetaBase> _fileMetaInMemoryCollection;
 
 		[GlobalSetup(Target = nameof(InsertionNormal))]
 		public void GlobalSetupNormal()

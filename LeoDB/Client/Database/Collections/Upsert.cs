@@ -5,7 +5,7 @@ using static LeoDB.Constants;
 
 namespace LeoDB
 {
-    public partial class LiteCollection<T>
+    public partial class LeoCollection<T>
     {
         /// <summary>
         /// Insert or Update a document in this collection.

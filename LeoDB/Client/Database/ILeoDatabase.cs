@@ -22,24 +22,24 @@ public interface ILeoDatabase : IDisposable
     /// </summary>
     /// <param name="name">Collection name (case insensitive)</param>
     /// <param name="autoId">Define autoId data type (when object contains no id field)</param>
-    ILiteCollection<T> GetCollection<T>(string name, BsonAutoId autoId = BsonAutoId.ObjectId);
+    ILeoCollection<T> GetCollection<T>(string name, BsonAutoId autoId = BsonAutoId.ObjectId);
 
     /// <summary>
     /// Get a collection using a name based on typeof(T).Name (BsonMapper.ResolveCollectionName function)
     /// </summary>
-    ILiteCollection<T> GetCollection<T>();
+    ILeoCollection<T> GetCollection<T>();
 
     /// <summary>
     /// Get a collection using a name based on typeof(T).Name (BsonMapper.ResolveCollectionName function)
     /// </summary>
-    ILiteCollection<T> GetCollection<T>(BsonAutoId autoId);
+    ILeoCollection<T> GetCollection<T>(BsonAutoId autoId);
 
     /// <summary>
     /// Get a collection using a generic BsonDocument. If collection does not exits, create a new one.
     /// </summary>
     /// <param name="name">Collection name (case insensitive)</param>
     /// <param name="autoId">Define autoId data type (when document contains no _id field)</param>
-    ILiteCollection<BsonDocument> GetCollection(string name, BsonAutoId autoId = BsonAutoId.ObjectId);
+    ILeoCollection<BsonDocument> GetCollection(string name, BsonAutoId autoId = BsonAutoId.ObjectId);
 
     /// <summary>
     /// Initialize a new transaction. Transaction are created "per-thread". There is only one single transaction per thread.

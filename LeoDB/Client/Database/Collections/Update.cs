@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace LeoDB;
 
-public partial class LiteCollection<T>
+public partial class LeoCollection<T>
 {
     /// <summary>
     /// Update a document in this collection. Returns false if not found document in collection

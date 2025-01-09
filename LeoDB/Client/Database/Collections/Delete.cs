@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace LeoDB;
 
-public partial class LiteCollection<T>
+public partial class LeoCollection<T>
 {
     /// <summary>
     /// Delete a single document on collection based on _id index. Returns true if document was deleted

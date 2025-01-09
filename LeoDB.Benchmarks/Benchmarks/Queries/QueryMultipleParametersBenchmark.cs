@@ -10,7 +10,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Queries
 	[BenchmarkCategory(Constants.Categories.QUERIES)]
 	public class QueryMultipleParametersBenchmark : BenchmarkBase
 	{
-		private ILiteCollection<FileMetaBase> _fileMetaCollection;
+		private ILeoCollection<FileMetaBase> _fileMetaCollection;
 
 		[GlobalSetup]
 		public void GlobalSetup()

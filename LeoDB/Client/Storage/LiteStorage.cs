@@ -13,8 +13,8 @@ namespace LeoDB
     public class LiteStorage<TFileId> : ILiteStorage<TFileId>
     {
         private readonly ILeoDatabase _db;
-        private readonly ILiteCollection<LiteFileInfo<TFileId>> _files;
-        private readonly ILiteCollection<BsonDocument> _chunks;
+        private readonly ILeoCollection<LiteFileInfo<TFileId>> _files;
+        private readonly ILeoCollection<BsonDocument> _chunks;
 
         public LiteStorage(ILeoDatabase db, string filesCollection, string chunksCollection)
         {

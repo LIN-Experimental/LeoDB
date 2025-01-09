@@ -14,7 +14,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Queries
 		private DateTime _dateTimeConstraint;
 		private BsonValue _dateTimeConstraintBsonValue;
 
-		private ILiteCollection<FileMetaBase> _fileMetaCollection;
+		private ILeoCollection<FileMetaBase> _fileMetaCollection;
 
 		[GlobalSetup]
 		public void GlobalSetup()

@@ -96,15 +96,15 @@ public partial class LeoDatabase : ILeoDatabase
     /// </summary>
     /// <param name="name">Collection name (case insensitive)</param>
     /// <param name="autoId">Define autoId data type (when object contains no id field)</param>
-    public ILiteCollection<T> GetCollection<T>(string name, BsonAutoId autoId = BsonAutoId.ObjectId)
+    public ILeoCollection<T> GetCollection<T>(string name, BsonAutoId autoId = BsonAutoId.ObjectId)
     {
-        return new LiteCollection<T>(name, autoId, _engine, _mapper);
+        return new LeoCollection<T>(name, autoId, _engine, _mapper);
     }
 
     /// <summary>
     /// Get a collection using a name based on typeof(T).Name (BsonMapper.ResolveCollectionName function)
     /// </summary>
-    public ILiteCollection<T> GetCollection<T>()
+    public ILeoCollection<T> GetCollection<T>()
     {
         return this.GetCollection<T>(null);
     }
@@ -112,7 +112,7 @@ public partial class LeoDatabase : ILeoDatabase
     /// <summary>
     /// Get a collection using a name based on typeof(T).Name (BsonMapper.ResolveCollectionName function)
     /// </summary>
-    public ILiteCollection<T> GetCollection<T>(BsonAutoId autoId)
+    public ILeoCollection<T> GetCollection<T>(BsonAutoId autoId)
     {
         return this.GetCollection<T>(null, autoId);
     }
@@ -122,11 +122,11 @@ public partial class LeoDatabase : ILeoDatabase
     /// </summary>
     /// <param name="name">Collection name (case insensitive)</param>
     /// <param name="autoId">Define autoId data type (when document contains no _id field)</param>
-    public ILiteCollection<BsonDocument> GetCollection(string name, BsonAutoId autoId = BsonAutoId.ObjectId)
+    public ILeoCollection<BsonDocument> GetCollection(string name, BsonAutoId autoId = BsonAutoId.ObjectId)
     {
         if (name.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(name));
 
-        return new LiteCollection<BsonDocument>(name, autoId, _engine, _mapper);
+        return new LeoCollection<BsonDocument>(name, autoId, _engine, _mapper);
     }
 
     #endregion

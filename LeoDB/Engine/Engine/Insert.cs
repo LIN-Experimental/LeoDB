@@ -29,7 +29,10 @@ public partial class LeoEngine
             LOG($"insert `{collection}`", "COMMAND");
 
             // Validar si es desde el Engine.
-            var information = _settings.Database.GetCollection<SysIntelligence>("$intelligence").FindOne(t => t.collection == collection);
+            SysIntelligence information = null;
+
+            if (!collection.StartsWith("$"))
+                information = _settings.Database.GetCollection<SysIntelligence>("$intelligence").FindOne(t => t.collection == collection);
 
             foreach (var doc in docs)
             {
@@ -62,6 +65,9 @@ public partial class LeoEngine
     /// <summary>
     /// Internal implementation of insert a document
     /// </summary>
+    /// <summary>
+    /// Internal implementation of insert a document
+    /// </summary>
     private void InsertDocument(Snapshot snapshot, BsonDocument doc, BsonAutoId autoId, IndexService indexer, DataService data)
     {
         // if no _id, use AutoId
@@ -88,13 +94,15 @@ public partial class LeoEngine
         var dataBlock = data.Insert(doc);
 
         IndexNode last = null;
+        var indexes = snapshot.CollectionPage.GetCollectionIndexes();
+        var collation = _header.Pragmas.Collation;
 
         // for each index, insert new IndexNode
-        foreach (var index in snapshot.CollectionPage.GetCollectionIndexes())
+        foreach (var index in indexes)
         {
             // for each index, get all keys (supports multi-key) - gets distinct values only
             // if index are unique, get single key only
-            var keys = index.BsonExpr.GetIndexKeys(doc, _header.Pragmas.Collation);
+            var keys = index.BsonExpr.GetIndexKeys(doc, collation);
 
             // do a loop with all keys (multi-key supported)
             foreach (var key in keys)

@@ -10,8 +10,8 @@ namespace LeoDB.Benchmarks.Benchmarks.Queries
 	[BenchmarkCategory(Constants.Categories.QUERIES)]
 	public class QueryIgnoreExpressionPropertiesBenchmark : BenchmarkBase
 	{
-		private ILiteCollection<FileMetaBase> _fileMetaCollection;
-		private ILiteCollection<FileMetaWithExclusion> _fileMetaExclusionCollection;
+		private ILeoCollection<FileMetaBase> _fileMetaCollection;
+		private ILeoCollection<FileMetaWithExclusion> _fileMetaExclusionCollection;
 
 		[GlobalSetup(Target = nameof(DeserializeBaseline))]
 		public void GlobalSetup()

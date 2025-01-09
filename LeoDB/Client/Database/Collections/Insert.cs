@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LeoDB;
 
-public partial class LiteCollection<T>
+public partial class LeoCollection<T>
 {
     /// <summary>
     /// Insert a new entity to this collection. Document Id must be a new value in collection - Returns document Id

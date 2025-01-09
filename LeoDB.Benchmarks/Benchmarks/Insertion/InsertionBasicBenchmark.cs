@@ -10,7 +10,7 @@ namespace LeoDB.Benchmarks.Benchmarks.Insertion
 	public class InsertionBasicBenchmark : BenchmarkBase
 	{
 		private List<FileMetaBase> _data;
-		private ILiteCollection<FileMetaBase> _fileMetaCollection;
+		private ILeoCollection<FileMetaBase> _fileMetaCollection;
 
 		[GlobalSetup]
 		public void GlobalSetup()

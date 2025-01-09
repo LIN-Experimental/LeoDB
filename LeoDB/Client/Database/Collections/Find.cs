@@ -5,14 +5,14 @@ using System.Linq.Expressions;
 
 namespace LeoDB;
 
-public partial class LiteCollection<T>
+public partial class LeoCollection<T>
 {
     /// <summary>
-    /// Return a new LiteQueryable to build more complex queries
+    /// Return a new LeoQueryable to build more complex queries
     /// </summary>
-    public ILiteQueryable<T> Query()
+    public ILeoQueryable<T> Query()
     {
-        return new LiteQueryable<T>(_engine, _mapper, _collection, new Query()).Include(_includes);
+        return new LeoQueryable<T>(_engine, _mapper, _collection, new Query()).Include(_includes);
     }
 
     #region Find
@@ -42,7 +42,7 @@ public partial class LiteCollection<T>
         if (skip != 0) query.Offset = skip;
         if (limit != int.MaxValue) query.Limit = limit;
 
-        return new LiteQueryable<T>(_engine, _mapper, _collection, query)
+        return new LeoQueryable<T>(_engine, _mapper, _collection, query)
             .ToEnumerable();
     }
 
