@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     /// <summary>
     /// Represent a simple structure to store added/removed pages in a transaction. One instance per transaction

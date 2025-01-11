@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     /// <summary>
     /// Convert filename to mimetype (http://stackoverflow.com/questions/1029740/get-mime-type-from-filename-extension)

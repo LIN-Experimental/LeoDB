@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB;
+﻿namespace LeoDB;
 
 /// <summary>
 /// Indica que la propiedad se utilizará como BsonDocument Id.

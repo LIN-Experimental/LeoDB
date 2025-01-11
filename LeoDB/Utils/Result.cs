@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     /// <summary>
     /// Implement a generic result structure with value and exception. This value can be partial value (like BsonDocument/Array)

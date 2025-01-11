@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     /// <summary>
     /// Execute an "index scan" passing a Func as where

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     public class QueryAny
     {

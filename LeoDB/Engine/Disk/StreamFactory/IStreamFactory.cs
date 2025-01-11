@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     /// <summary>
     /// Interface factory to provider new Stream instances for datafile/walfile resources. It's useful to multiple threads can read same datafile

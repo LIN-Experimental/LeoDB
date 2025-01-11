@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     /// <summary>
     /// Class that implement higher level of index search operations (equals, greater, less, ...)

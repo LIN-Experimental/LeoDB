@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     /// <summary>
     /// Internal class to deserialize a byte[] into a BsonDocument using BSON data format

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     /// <summary>
     /// Represent a single internal engine variable that user can read/change

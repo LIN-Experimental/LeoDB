@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     /// <summary>
     /// Implement internal thread-safe Stream using lock control - A single instance of ConcurrentStream are not multi thread,

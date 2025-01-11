@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     internal static class StreamExtensions
     {

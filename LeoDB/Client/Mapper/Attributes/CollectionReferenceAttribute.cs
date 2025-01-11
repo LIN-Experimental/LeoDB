@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB;
+﻿namespace LeoDB;
 
 /// <summary>
 /// Indica que el campo no se persiste dentro de este documento, sino que es una referencia para otro documento (DbRef)

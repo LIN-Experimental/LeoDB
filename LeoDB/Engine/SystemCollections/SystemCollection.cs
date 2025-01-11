@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace LeoDB.Engine;
+﻿namespace LeoDB.Engine;
 
 /// <summary>
 /// Implement a simple system collection with input data only (to use Output must inherit this class)

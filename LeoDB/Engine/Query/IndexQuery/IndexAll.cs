@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     /// <summary>
     /// Return all index nodes

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB.Engine;
+﻿namespace LeoDB.Engine;
 
 public partial class LeoEngine
 {

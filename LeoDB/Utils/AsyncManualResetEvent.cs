@@ -1,7 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     /// <summary>
     /// Async implementation of ManualResetEvent

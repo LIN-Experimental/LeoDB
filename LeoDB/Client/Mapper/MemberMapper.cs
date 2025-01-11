@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     /// <summary>
     /// Internal representation for a .NET member mapped to BsonDocument

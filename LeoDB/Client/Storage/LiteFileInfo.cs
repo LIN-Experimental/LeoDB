@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     /// <summary>
     /// Represents a file inside storage collection

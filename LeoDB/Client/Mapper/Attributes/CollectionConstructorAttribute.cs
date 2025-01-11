@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB;
+﻿namespace LeoDB;
 
 /// <summary>
 /// Indica qué método constructor se utilizará en esta entidad.

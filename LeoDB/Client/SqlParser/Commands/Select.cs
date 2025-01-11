@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     internal partial class SqlParser
     {

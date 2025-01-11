@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB;
+﻿namespace LeoDB;
 
 /// <summary>
 /// Indicar que la propiedad no se persistirá en la serialización.

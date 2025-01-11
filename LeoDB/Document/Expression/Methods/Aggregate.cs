@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     internal partial class BsonExpressionMethods
     {

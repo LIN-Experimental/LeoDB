@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     /// <summary>
     /// Implement some Enumerable methods to IBsonDataReader

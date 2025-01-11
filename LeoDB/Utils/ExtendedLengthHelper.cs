@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     /// <summary>
     /// Class to help extend IndexNode key up to 1023 bytes length (for string/byte[]) using 2 first bits in BsonType

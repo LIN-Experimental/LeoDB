@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     /// <summary>
     /// This class implement $query experimental system function to run sub-queries. It's experimental only - possible not be present in final release

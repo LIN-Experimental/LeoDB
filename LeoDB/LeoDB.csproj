@@ -17,7 +17,7 @@
     <PackageIcon>icon_64x64.png</PackageIcon>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://www.LeoDB.org</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/mbdavid/LeoDB</RepositoryUrl>
+    <RepositoryUrl>https://github.com/LIN-Experimental/LeoDB</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <RootNamespace>LeoDB</RootNamespace>
     <AssemblyName>LeoDB</AssemblyName>
@@ -26,9 +26,9 @@
     <NoWarn>1701;1702;1705;1591;0618</NoWarn>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\LeoDB.xml</DocumentationFile>
     <SignAssembly Condition="'$(OS)'=='Windows_NT'">true</SignAssembly>
-    
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   
   <!--

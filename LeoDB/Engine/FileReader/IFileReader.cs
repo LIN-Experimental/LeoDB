@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     /// <summary>
     /// Interface to read current or old datafile structure - Used to shirnk/upgrade datafile from old LeoDB versions

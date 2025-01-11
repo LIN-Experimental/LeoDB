@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB;
+﻿namespace LeoDB;
 
 /// <summary>
 /// Asigna un nombre a esta propiedad en la colección.

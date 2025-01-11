@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     internal partial class SqlParser
     {

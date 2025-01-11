@@ -1,5 +1,4 @@
-﻿using System;
-using static LeoDB.Constants;
+﻿using static LeoDB.Constants;
 
 namespace LeoDB
 {
