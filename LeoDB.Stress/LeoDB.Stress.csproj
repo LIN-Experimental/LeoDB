@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8</TargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LeoDB\LeoDB.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\LeoDB\LeoDB.csproj" />
+	</ItemGroup>
 
 </Project>
