@@ -1,5 +1,4 @@
 ﻿using System;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -16,7 +15,7 @@ namespace LeoDB
             }
 
             return new DateTime(dt.Year, dt.Month, dt.Day,
-                dt.Hour, dt.Minute, dt.Second, dt.Millisecond, 
+                dt.Hour, dt.Minute, dt.Second, dt.Millisecond,
                 dt.Kind);
         }
 

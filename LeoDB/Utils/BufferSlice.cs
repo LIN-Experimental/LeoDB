@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using static LeoDB.Constants;
 
 namespace LeoDB
@@ -84,7 +76,7 @@ namespace LeoDB
             var output = new StringBuilder();
             var position = 0L;
 
-            while(position < this.Count)
+            while (position < this.Count)
             {
                 //output.Append(position.ToString("X3") + "  ");
 

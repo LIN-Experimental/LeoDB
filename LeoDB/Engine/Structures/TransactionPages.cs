@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
-using static LeoDB.Constants;
 
 namespace LeoDB.Engine
 {
@@ -60,7 +57,7 @@ namespace LeoDB.Engine
         /// </summary>
         public bool HeaderChanged =>
             this.NewPages.Count > 0 ||
-            this.DeletedPages > 0 || 
+            this.DeletedPages > 0 ||
             this.Commit != null;
     }
 }

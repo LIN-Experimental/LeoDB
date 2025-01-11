@@ -1,8 +1,5 @@
-﻿using System;
-using System.Linq.Expressions;
-using System.Text;
+﻿using System.Linq.Expressions;
 using System.Text.RegularExpressions;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -26,13 +23,13 @@ namespace LeoDB
             // enum properties seem to get compiled with Convert(prop, Int32) wrapper calls on Mono 5.0+
             // this causes path extraction code below to fail, since a clean "x.y.z" string is expected
             // thus we strip out any Converts found, using a loop in case there are nested Convert expressions
-            while (expr.NodeType == ExpressionType.Convert || expr.NodeType == ExpressionType.ConvertChecked)
+            while (expr.NodeType is ExpressionType.Convert or ExpressionType.ConvertChecked)
             {
                 expr = ((UnaryExpression)expr).Operand;
             }
 
             // if is a method call, get first
-            while(expr.NodeType == ExpressionType.Lambda)
+            while (expr.NodeType == ExpressionType.Lambda)
             {
                 if (((LambdaExpression)expr).Body is UnaryExpression unary)
                 {
@@ -43,7 +40,7 @@ namespace LeoDB
                     break;
                 }
             }
-            
+
             var str = expr.ToString(); // gives you: "o => o.Whatever"
             var firstDelim = str.IndexOf('.'); // make sure there is a beginning property indicator; the "." in "o.Whatever" -- this may not be necessary?
 

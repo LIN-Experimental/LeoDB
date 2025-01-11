@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Collections.Generic;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -115,7 +112,7 @@ namespace LeoDB.Engine
                     // read next node to compare
                     var diff = rightNode.Key.CompareTo(key, _collation);
 
-                    if (diff == 0 && index.Unique) 
+                    if (diff == 0 && index.Unique)
                         throw LeoException.IndexDuplicateKey(index.Name, key);
 
                     if (diff == 1) break; // stop going right
@@ -303,7 +300,7 @@ namespace LeoDB.Engine
             var slot = index.Slot;
             var pkIndex = _snapshot.CollectionPage.PK;
 
-            foreach(var pkNode in this.FindAll(pkIndex, Query.Ascending))
+            foreach (var pkNode in this.FindAll(pkIndex, Query.Ascending))
             {
                 var next = pkNode.NextNode;
                 var last = pkNode;

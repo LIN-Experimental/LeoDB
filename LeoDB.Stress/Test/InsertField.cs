@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace LeoDB.Stress
@@ -198,7 +196,7 @@ namespace LeoDB.Stress
 
             var range = el.GetAttribute("range");
 
-            if (this.Type == InsertFieldType.Int || this.Type == InsertFieldType.Binary)
+            if (this.Type is InsertFieldType.Int or InsertFieldType.Binary)
             {
                 this.StartIntRange = int.Parse(range.Split('~').First());
                 this.EndIntRange = int.Parse(range.Split('~').Last());
@@ -217,17 +215,17 @@ namespace LeoDB.Stress
 
         public BsonValue GetValue()
         {
-            switch(this.Type)
+            return this.Type switch
             {
-                case InsertFieldType.Name: return _firstNames[_rnd.Next(0, _firstNames.Length - 1)] + " " + _lastNames[_rnd.Next(0, _lastNames.Length - 1)];
-                case InsertFieldType.Int: return _rnd.Next(this.StartIntRange, this.EndIntRange);
-                case InsertFieldType.Guid: return Guid.NewGuid();
-                case InsertFieldType.Bool: return _rnd.NextDouble() > .5;
-                case InsertFieldType.Now: return DateTime.Now;
-                case InsertFieldType.Binary: return new byte[_rnd.Next(this.StartIntRange, this.EndIntRange)];
-                case InsertFieldType.Date: return this.StartDateRange.AddDays(_rnd.Next(this.DaysDateRange));
-                default: return this.Value;
-            }
+                InsertFieldType.Name => (BsonValue)(_firstNames[_rnd.Next(0, _firstNames.Length - 1)] + " " + _lastNames[_rnd.Next(0, _lastNames.Length - 1)]),
+                InsertFieldType.Int => (BsonValue)_rnd.Next(this.StartIntRange, this.EndIntRange),
+                InsertFieldType.Guid => (BsonValue)Guid.NewGuid(),
+                InsertFieldType.Bool => (BsonValue)(_rnd.NextDouble() > .5),
+                InsertFieldType.Now => (BsonValue)DateTime.Now,
+                InsertFieldType.Binary => (BsonValue)(new byte[_rnd.Next(this.StartIntRange, this.EndIntRange)]),
+                InsertFieldType.Date => (BsonValue)this.StartDateRange.AddDays(_rnd.Next(this.DaysDateRange)),
+                _ => this.Value,
+            };
         }
     }
 }

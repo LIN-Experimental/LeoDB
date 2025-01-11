@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace LeoDB.Shell
+﻿namespace LeoDB.Shell
 {
     internal interface IShellCommand
     {

@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -91,12 +85,12 @@ namespace LeoDB
 
                 datePart = datePart == "M" ? "month" : datePart.ToLower();
 
-                if (datePart == "y" || datePart == "year") return date.AddYears(numb);
+                if (datePart is "y" or "year") return date.AddYears(numb);
                 else if (datePart == "month") return date.AddMonths(numb);
-                else if (datePart == "d" || datePart == "day") return date.AddDays(numb);
-                else if (datePart == "h" || datePart == "hour") return date.AddHours(numb);
-                else if (datePart == "m" || datePart == "minute") return date.AddMinutes(numb);
-                else if (datePart == "s" || datePart == "second") return date.AddSeconds(numb);
+                else if (datePart is "d" or "day") return date.AddDays(numb);
+                else if (datePart is "h" or "hour") return date.AddHours(numb);
+                else if (datePart is "m" or "minute") return date.AddMinutes(numb);
+                else if (datePart is "s" or "second") return date.AddSeconds(numb);
             }
 
             return BsonValue.Null;
@@ -108,19 +102,19 @@ namespace LeoDB
         public static BsonValue DATEDIFF(BsonValue dateInterval, BsonValue starts, BsonValue ends)
         {
             if (dateInterval.IsString && starts.IsDateTime && ends.IsDateTime)
-            { 
+            {
                 var datePart = dateInterval.AsString;
                 var start = starts.AsDateTime;
                 var end = ends.AsDateTime;
 
                 datePart = datePart == "M" ? "month" : datePart.ToLower();
 
-                if (datePart == "y" || datePart == "year") return start.YearDifference(end);
+                if (datePart is "y" or "year") return start.YearDifference(end);
                 else if (datePart == "month") return start.MonthDifference(end);
-                else if (datePart == "d" || datePart == "day") return Convert.ToInt32(Math.Truncate(end.Subtract(start).TotalDays));
-                else if (datePart == "h" || datePart == "hour") return Convert.ToInt32(Math.Truncate(end.Subtract(start).TotalHours));
-                else if (datePart == "m" || datePart == "minute") return Convert.ToInt32(Math.Truncate(end.Subtract(start).TotalMinutes));
-                else if (datePart == "s" || datePart == "second") return Convert.ToInt32(Math.Truncate(end.Subtract(start).TotalSeconds));
+                else if (datePart is "d" or "day") return Convert.ToInt32(Math.Truncate(end.Subtract(start).TotalDays));
+                else if (datePart is "h" or "hour") return Convert.ToInt32(Math.Truncate(end.Subtract(start).TotalHours));
+                else if (datePart is "m" or "minute") return Convert.ToInt32(Math.Truncate(end.Subtract(start).TotalMinutes));
+                else if (datePart is "s" or "second") return Convert.ToInt32(Math.Truncate(end.Subtract(start).TotalSeconds));
             }
 
             return BsonValue.Null;

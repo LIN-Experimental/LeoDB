@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Linq.Expressions;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {

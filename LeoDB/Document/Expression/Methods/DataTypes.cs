@@ -1,11 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -16,7 +11,7 @@ namespace LeoDB
         /// <summary>
         /// Return a new instance of MINVALUE
         /// </summary>
-        public static BsonValue MINVALUE() =>  BsonValue.MinValue;
+        public static BsonValue MINVALUE() => BsonValue.MinValue;
 
         /// <summary>
         /// Create a new OBJECTID value
@@ -28,7 +23,7 @@ namespace LeoDB
         /// Create a new GUID value
         /// </summary>
         [Volatile]
-        public static BsonValue GUID() =>  Guid.NewGuid();
+        public static BsonValue GUID() => Guid.NewGuid();
 
         /// <summary>
         /// Return a new DATETIME (Now)
@@ -46,7 +41,7 @@ namespace LeoDB
         /// Return a new DATETIME (Today)
         /// </summary>
         [Volatile]
-        public static BsonValue TODAY() =>  DateTime.Today;
+        public static BsonValue TODAY() => DateTime.Today;
 
         /// <summary>
         /// Return a new instance of MAXVALUE
@@ -69,7 +64,7 @@ namespace LeoDB
             {
                 return value.AsInt32;
             }
-            else if(value.IsString)
+            else if (value.IsString)
             {
                 if (Int32.TryParse(value.AsString, out var val))
                 {
@@ -89,7 +84,7 @@ namespace LeoDB
             {
                 return value.AsInt64;
             }
-            else if(value.IsString)
+            else if (value.IsString)
             {
                 if (Int64.TryParse(value.AsString, out var val))
                 {
@@ -109,7 +104,7 @@ namespace LeoDB
             {
                 return value.AsDouble;
             }
-            else if(value.IsString)
+            else if (value.IsString)
             {
                 if (Double.TryParse(value.AsString, NumberStyles.Any, collation.Culture.NumberFormat, out var val))
                 {
@@ -129,7 +124,7 @@ namespace LeoDB
             {
                 return value.AsDouble;
             }
-            else if(value.IsString && culture.IsString)
+            else if (value.IsString && culture.IsString)
             {
                 var c = new CultureInfo(culture.AsString); // en-US
 
@@ -151,7 +146,7 @@ namespace LeoDB
             {
                 return value.AsDecimal;
             }
-            else if(value.IsString)
+            else if (value.IsString)
             {
                 if (Decimal.TryParse(value.AsString, NumberStyles.Any, collation.Culture.NumberFormat, out var val))
                 {
@@ -171,7 +166,7 @@ namespace LeoDB
             {
                 return value.AsDecimal;
             }
-            else if(value.IsString && culture.IsString)
+            else if (value.IsString && culture.IsString)
             {
                 var c = new CultureInfo(culture.AsString); // en-US
 
@@ -243,7 +238,7 @@ namespace LeoDB
             {
                 return value.AsObjectId;
             }
-            else if(value.IsString)
+            else if (value.IsString)
             {
                 ObjectId val = null;
                 var isObjectId = false;
@@ -272,7 +267,7 @@ namespace LeoDB
             {
                 return value.AsGuid;
             }
-            else if(value.IsString)
+            else if (value.IsString)
             {
                 var val = Guid.Empty;
                 var isGuid = false;
@@ -330,7 +325,7 @@ namespace LeoDB
             {
                 return value.AsDateTime;
             }
-            else if(value.IsString)
+            else if (value.IsString)
             {
                 if (DateTime.TryParse(value.AsString, collation.Culture.DateTimeFormat, DateTimeStyles.None, out var val))
                 {
@@ -350,7 +345,7 @@ namespace LeoDB
             {
                 return value.AsDateTime;
             }
-            else if(value.IsString && culture.IsString)
+            else if (value.IsString && culture.IsString)
             {
                 var c = new CultureInfo(culture.AsString); // en-US
 
@@ -372,7 +367,7 @@ namespace LeoDB
             {
                 return value.AsDateTime;
             }
-            else if(value.IsString)
+            else if (value.IsString)
             {
                 if (DateTime.TryParse(value.AsString, collation.Culture.DateTimeFormat, DateTimeStyles.AssumeUniversal, out var val))
                 {
@@ -392,7 +387,7 @@ namespace LeoDB
             {
                 return value.AsDateTime;
             }
-            else if(value.IsString && culture.IsString)
+            else if (value.IsString && culture.IsString)
             {
                 var c = new CultureInfo(culture.AsString); // en-US
 
@@ -464,7 +459,7 @@ namespace LeoDB
         /// Return true if value is DECIMAL
         /// </summary>
         public static BsonValue IS_DECIMAL(BsonValue value) => value.IsDecimal;
-        
+
         /// <summary>
         /// Return true if value is NUMBER (int, double, decimal)
         /// </summary>
@@ -493,7 +488,7 @@ namespace LeoDB
         /// <summary>
         /// Return true if value is OBJECTID
         /// </summary>
-        public static BsonValue IS_OBJECTID(BsonValue value) =>  value.IsObjectId;
+        public static BsonValue IS_OBJECTID(BsonValue value) => value.IsObjectId;
 
         /// <summary>
         /// Return true if value is GUID

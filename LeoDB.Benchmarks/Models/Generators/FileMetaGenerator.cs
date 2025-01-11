@@ -10,7 +10,7 @@ namespace LeoDB.Benchmarks.Models.Generators
         private static T Generate()
         {
             var docGuid = Guid.NewGuid();
-            
+
             var generatedFileMeta = new T
             {
                 FileId = docGuid,

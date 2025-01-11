@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using LeoDB;
-
-namespace LeoDB.Shell
+﻿namespace LeoDB.Shell
 {
     internal class Env
     {

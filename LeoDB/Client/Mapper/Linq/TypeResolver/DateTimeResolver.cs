@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using static LeoDB.Constants;
+﻿using System.Reflection;
 
 namespace LeoDB
 {
@@ -39,26 +32,24 @@ namespace LeoDB
 
         public string ResolveMember(MemberInfo member)
         {
-            switch (member.Name)
+            return member.Name switch
             {
                 // static properties
-                case "Now": return "NOW()";
-                case "UtcNow": return "NOW_UTC()";
-                case "Today": return "TODAY()";
-
+                "Now" => "NOW()",
+                "UtcNow" => "NOW_UTC()",
+                "Today" => "TODAY()",
                 // instance properties
-                case "Year": return "YEAR(#)";
-                case "Month": return "MONTH(#)";
-                case "Day": return "DAY(#)";
-                case "Hour": return "HOUR(#)";
-                case "Minute": return "MINUTE(#)";
-                case "Second": return "SECOND(#)";
-                case "Date": return "DATETIME(YEAR(#), MONTH(#), DAY(#))";
-                case "ToLocalTime": return "TO_LOCAL(#)";
-                case "ToUniversalTime": return "TO_UTC(#)";
-            }
-
-            return null;
+                "Year" => "YEAR(#)",
+                "Month" => "MONTH(#)",
+                "Day" => "DAY(#)",
+                "Hour" => "HOUR(#)",
+                "Minute" => "MINUTE(#)",
+                "Second" => "SECOND(#)",
+                "Date" => "DATETIME(YEAR(#), MONTH(#), DAY(#))",
+                "ToLocalTime" => "TO_LOCAL(#)",
+                "ToUniversalTime" => "TO_UTC(#)",
+                _ => null,
+            };
         }
 
         public string ResolveCtor(ConstructorInfo ctor)

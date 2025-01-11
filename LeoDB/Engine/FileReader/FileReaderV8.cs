@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -347,7 +343,7 @@ namespace LeoDB.Engine
             }
 
             // for each collection loaded by datapages, check if exists in _collections
-            foreach(var collection in _collectionsDataPages)
+            foreach (var collection in _collectionsDataPages)
             {
                 if (!_collections.ContainsValue(collection.Key))
                 {

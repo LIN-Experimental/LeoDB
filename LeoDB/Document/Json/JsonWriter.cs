@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
     public class JsonWriter
     {
-        private readonly static IFormatProvider _numberFormat = CultureInfo.InvariantCulture.NumberFormat;
+        private static readonly IFormatProvider _numberFormat = CultureInfo.InvariantCulture.NumberFormat;
 
         private readonly TextWriter _writer;
         private int _indent;

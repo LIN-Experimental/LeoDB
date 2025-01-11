@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using static LeoDB.Constants;
 
@@ -152,7 +150,7 @@ namespace LeoDB.Engine
         {
             lock (_transactions)
             {
-                return 
+                return
                     _slot.Value ??
                     _transactions.Values.FirstOrDefault(x => x.ThreadID == Environment.CurrentManagedThreadId);
             }
@@ -193,7 +191,7 @@ namespace LeoDB.Engine
         /// </summary>
         private bool TryExtend(TransactionService trans)
         {
-            lock(_transactions)
+            lock (_transactions)
             {
                 if (_freePages >= _initialSize)
                 {
@@ -213,7 +211,7 @@ namespace LeoDB.Engine
         /// </summary>
         public bool CheckSafepoint(TransactionService trans)
         {
-            return 
+            return
                 trans.Pages.TransactionSize >= trans.MaxTransactionSize &&
                 this.TryExtend(trans) == false;
         }

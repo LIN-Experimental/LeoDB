@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using static LeoDB.Constants;
+﻿using System.Collections.Generic;
 
 namespace LeoDB.Engine
 {
@@ -47,7 +44,7 @@ namespace LeoDB.Engine
                 }
 
                 node = first;
-                
+
                 // and than, go backward
                 while (!node.Prev[0].IsEmpty && ((node = indexer.GetNode(node.Prev[0])).Key.CompareTo(_value, indexer.Collation) == 0))
                 {

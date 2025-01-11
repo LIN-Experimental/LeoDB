@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using static LeoDB.Constants;
+﻿using System.Reflection;
 
 namespace LeoDB
 {
@@ -14,7 +7,7 @@ namespace LeoDB
         public override string ResolveMethod(MethodInfo method)
         {
             // special Contains method
-            switch(method.Name)
+            switch (method.Name)
             {
                 case "Contains": return "# ANY = @0";
             };

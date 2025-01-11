@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -246,13 +244,13 @@ namespace LeoDB
         {
             // get entity
             var entity = mapper.GetEntityMapper(member.DataType);
-            
+
             member.Serialize = (obj, m) =>
             {
                 // supports null values when "SerializeNullValues = true"
                 if (obj == null) return BsonValue.Null;
                 entity.WaitForInitialization();
-                
+
                 var idField = entity.Id;
 
                 // #768 if using DbRef with interface with no ID mapped
@@ -321,7 +319,7 @@ namespace LeoDB
                 // supports null values when "SerializeNullValues = true"
                 if (list == null) return BsonValue.Null;
                 entity.WaitForInitialization();
-                
+
                 var result = new BsonArray();
                 var idField = entity.Id;
 

@@ -1,23 +1,21 @@
 ﻿using System;
-using static LeoDB.Constants;
 
-namespace LeoDB
+namespace LeoDB;
+
+/// <summary>
+/// Indica que la propiedad se utilizará como BsonDocument Id.
+/// </summary>
+public class BsonIdAttribute : Attribute
 {
-    /// <summary>
-    /// Indicate that property will be used as BsonDocument Id
-    /// </summary>
-    public class BsonIdAttribute : Attribute
+    public bool AutoId { get; private set; }
+
+    public BsonIdAttribute()
     {
-        public bool AutoId { get; private set; }
+        this.AutoId = true;
+    }
 
-        public BsonIdAttribute()
-        {
-            this.AutoId = true;
-        }
-
-        public BsonIdAttribute(bool autoId)
-        {
-            this.AutoId = autoId;
-        }
+    public BsonIdAttribute(bool autoId)
+    {
+        this.AutoId = autoId;
     }
 }

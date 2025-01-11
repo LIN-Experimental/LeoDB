@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -49,13 +42,12 @@ namespace LeoDB
 
         public string ResolveMember(MemberInfo member)
         {
-            switch (member.Name)
+            return member.Name switch
             {
-                case "Length": return "LENGTH(#)";
-                case "Empty": return "''";
-            }
-
-            return null;
+                "Length" => "LENGTH(#)",
+                "Empty" => "''",
+                _ => null,
+            };
         }
 
         public string ResolveCtor(ConstructorInfo ctor) => null;

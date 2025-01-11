@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using static LeoDB.Constants;
 
 namespace LeoDB.Engine
 {
@@ -39,7 +38,7 @@ namespace LeoDB.Engine
 
         public override long Seek(long offset, SeekOrigin origin)
         {
-            lock(_stream)
+            lock (_stream)
             {
                 var position =
                     origin == SeekOrigin.Begin ? offset :

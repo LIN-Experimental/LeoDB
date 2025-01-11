@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using static LeoDB.Constants;
+﻿using System.Collections.Generic;
 
 namespace LeoDB.Engine
 {
@@ -17,7 +13,7 @@ namespace LeoDB.Engine
             {
                 var snapshot = transaction.CreateSnapshot(LockMode.Read, collection.Key, false);
 
-                foreach(var index in snapshot.CollectionPage.GetCollectionIndexes())
+                foreach (var index in snapshot.CollectionPage.GetCollectionIndexes())
                 {
                     yield return new BsonDocument
                     {

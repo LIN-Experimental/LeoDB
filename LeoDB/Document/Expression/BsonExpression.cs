@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -82,15 +77,15 @@ namespace LeoDB
         /// Predicate expressions must have Left/Right expressions
         /// </summary>
         internal bool IsPredicate =>
-            this.Type == BsonExpressionType.Equal ||
-            this.Type == BsonExpressionType.Like ||
-            this.Type == BsonExpressionType.Between ||
-            this.Type == BsonExpressionType.GreaterThan ||
-            this.Type == BsonExpressionType.GreaterThanOrEqual ||
-            this.Type == BsonExpressionType.LessThan ||
-            this.Type == BsonExpressionType.LessThanOrEqual ||
-            this.Type == BsonExpressionType.NotEqual ||
-            this.Type == BsonExpressionType.In;
+            this.Type is BsonExpressionType.Equal or
+            BsonExpressionType.Like or
+            BsonExpressionType.Between or
+            BsonExpressionType.GreaterThan or
+            BsonExpressionType.GreaterThanOrEqual or
+            BsonExpressionType.LessThan or
+            BsonExpressionType.LessThanOrEqual or
+            BsonExpressionType.NotEqual or
+            BsonExpressionType.In;
 
         /// <summary>
         /// This expression can be indexed? To index some expression must contains fields (at least 1) and
@@ -297,7 +292,7 @@ namespace LeoDB
         {
             var parameters = new BsonDocument();
 
-            for(var i = 0; i < args.Length; i++)
+            for (var i = 0; i < args.Length; i++)
             {
                 parameters[i.ToString()] = args[i];
             }

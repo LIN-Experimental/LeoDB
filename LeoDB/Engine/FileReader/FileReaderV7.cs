@@ -4,8 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -102,10 +100,10 @@ namespace LeoDB.Engine
             var pageID = (uint)_header["collections"].AsDocument[collection].AsInt32;
             var page = this.ReadPage(pageID);
 
-            foreach(var index in page["indexes"].AsArray)
+            foreach (var index in page["indexes"].AsArray)
             {
                 string name = Regex.Replace(index["name"].AsString, @"[^a-z0-9]", "", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-                if(name.Length > INDEX_NAME_MAX_LENGTH)
+                if (name.Length > INDEX_NAME_MAX_LENGTH)
                 {
                     name = name.Substring(0, INDEX_NAME_MAX_LENGTH);
                 }
@@ -131,11 +129,11 @@ namespace LeoDB.Engine
 
             var indexPages = this.VisitIndexPages(headPageID);
 
-            foreach(var indexPageID in indexPages)
+            foreach (var indexPageID in indexPages)
             {
                 var indexPage = this.ReadPage(indexPageID);
 
-                foreach(var node in indexPage["nodes"].AsArray)
+                foreach (var node in indexPage["nodes"].AsArray)
                 {
                     var dataBlock = node["dataBlock"];
 
@@ -255,7 +253,7 @@ namespace LeoDB.Engine
                 page["indexes"] = new BsonArray();
                 reader.ReadBytes(12);
 
-                for(var i = 0; i < 16; i++)
+                for (var i = 0; i < 16; i++)
                 {
                     var index = new BsonDocument();
 
@@ -294,7 +292,7 @@ namespace LeoDB.Engine
             {
                 page["nodes"] = new BsonArray();
 
-                for(var i = 0; i < page["itemCount"].AsInt32; i++)
+                for (var i = 0; i < page["itemCount"].AsInt32; i++)
                 {
                     var node = new BsonDocument
                     {
@@ -384,7 +382,7 @@ namespace LeoDB.Engine
             // read all extended pages and build byte array
             using (var buffer = new MemoryStream())
             {
-                while(extendPageID != uint.MaxValue)
+                while (extendPageID != uint.MaxValue)
                 {
                     var page = this.ReadPage(extendPageID);
 
@@ -423,7 +421,7 @@ namespace LeoDB.Engine
 
                 visited.Add(indexPageID);
 
-                foreach(var node in indexPage["nodes"].AsArray)
+                foreach (var node in indexPage["nodes"].AsArray)
                 {
                     var prev = (uint)node["prev"]["pageID"].AsInt32;
                     var next = (uint)node["next"]["pageID"].AsInt32;

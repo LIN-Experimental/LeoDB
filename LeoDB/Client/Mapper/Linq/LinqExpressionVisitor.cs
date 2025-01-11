@@ -233,11 +233,10 @@ namespace LeoDB
         /// </summary>
         protected override Expression VisitConstant(ConstantExpression node)
         {
-            MemberExpression prevNode;
             var value = node.Value;
 
             // https://stackoverflow.com/a/29708655/3286260
-            while (_nodes.Count > 0 && (prevNode = _nodes.Peek() as MemberExpression) != null)
+            while (_nodes.Count > 0 && _nodes.Peek() is MemberExpression prevNode)
             {
                 if (prevNode.Member is FieldInfo fieldInfo)
                 {
@@ -424,7 +423,7 @@ namespace LeoDB
         /// </summary>
         protected override Expression VisitBinary(BinaryExpression node)
         {
-            var andOr = node.NodeType == ExpressionType.AndAlso || node.NodeType == ExpressionType.OrElse;
+            var andOr = node.NodeType is ExpressionType.AndAlso or ExpressionType.OrElse;
 
             // special visitors
             if (node.NodeType == ExpressionType.Coalesce) return this.VisitCoalesce(node);
@@ -586,25 +585,24 @@ namespace LeoDB
         /// </summary>
         private string GetOperator(ExpressionType nodeType)
         {
-            switch (nodeType)
+            return nodeType switch
             {
-                case ExpressionType.Add: return " + ";
-                case ExpressionType.Multiply: return " * ";
-                case ExpressionType.Subtract: return " - ";
-                case ExpressionType.Divide: return " / ";
-                case ExpressionType.Equal: return " = ";
-                case ExpressionType.NotEqual: return " != ";
-                case ExpressionType.GreaterThan: return " > ";
-                case ExpressionType.GreaterThanOrEqual: return " >= ";
-                case ExpressionType.LessThan: return " < ";
-                case ExpressionType.LessThanOrEqual: return " <= ";
-                case ExpressionType.And: return " AND ";
-                case ExpressionType.AndAlso: return " AND ";
-                case ExpressionType.Or: return " OR ";
-                case ExpressionType.OrElse: return " OR ";
-            }
-
-            throw new NotSupportedException($"Operator not supported {nodeType}");
+                ExpressionType.Add => " + ",
+                ExpressionType.Multiply => " * ",
+                ExpressionType.Subtract => " - ",
+                ExpressionType.Divide => " / ",
+                ExpressionType.Equal => " = ",
+                ExpressionType.NotEqual => " != ",
+                ExpressionType.GreaterThan => " > ",
+                ExpressionType.GreaterThanOrEqual => " >= ",
+                ExpressionType.LessThan => " < ",
+                ExpressionType.LessThanOrEqual => " <= ",
+                ExpressionType.And => " AND ",
+                ExpressionType.AndAlso => " AND ",
+                ExpressionType.Or => " OR ",
+                ExpressionType.OrElse => " OR ",
+                _ => throw new NotSupportedException($"Operator not supported {nodeType}"),
+            };
         }
 
         /// <summary>

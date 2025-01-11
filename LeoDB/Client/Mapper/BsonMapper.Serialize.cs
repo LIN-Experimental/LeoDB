@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -85,7 +83,7 @@ namespace LeoDB
             else if (obj is Boolean) return new BsonValue((Boolean)obj);
             else if (obj is DateTime) return new BsonValue((DateTime)obj);
             // basic .net type to convert to bson
-            else if (obj is Int16 || obj is UInt16 || obj is Byte || obj is SByte)
+            else if (obj is Int16 or UInt16 or Byte or SByte)
             {
                 return new BsonValue(Convert.ToInt32(obj));
             }
@@ -93,9 +91,8 @@ namespace LeoDB
             {
                 return new BsonValue(Convert.ToInt64(obj));
             }
-            else if (obj is UInt64)
+            else if (obj is UInt64 ulng)
             {
-                var ulng = ((UInt64)obj);
                 var lng = unchecked((Int64)ulng);
 
                 return new BsonValue(lng);

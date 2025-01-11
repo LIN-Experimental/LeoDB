@@ -104,7 +104,7 @@ namespace LeoDB.Engine
             }
 
             // check all where predicate for AND operators
-            foreach(var predicate in _query.Where)
+            foreach (var predicate in _query.Where)
             {
                 add(predicate);
             }
@@ -357,7 +357,7 @@ namespace LeoDB.Engine
         /// </summary>
         private void DefineIncludes()
         {
-            foreach(var include in _query.Includes)
+            foreach (var include in _query.Includes)
             {
                 // includes always has one single field
                 var field = include.Fields.Single();

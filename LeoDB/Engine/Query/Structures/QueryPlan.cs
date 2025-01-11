@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB.Engine
 {
@@ -119,7 +116,7 @@ namespace LeoDB.Engine
 
             // define document loader
             // if index are VirtualIndex - it's also lookup document
-            if (!(this.Index is IDocumentLookup lookup))
+            if (this.Index is not IDocumentLookup lookup)
             {
                 if (this.IsIndexKeyOnly)
                 {

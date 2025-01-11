@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -25,7 +20,7 @@ namespace LeoDB
         {
             var min = BsonValue.MaxValue;
 
-            foreach(var value in values)
+            foreach (var value in values)
             {
                 if (value.CompareTo(min) <= 0)
                 {
@@ -115,7 +110,7 @@ namespace LeoDB
         /// </summary>
         public static BsonValue ANY(IEnumerable<BsonValue> values)
         {
-            return values.Any(); 
+            return values.Any();
         }
     }
 }

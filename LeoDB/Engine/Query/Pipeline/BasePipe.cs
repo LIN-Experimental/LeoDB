@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using static LeoDB.Constants;
 
@@ -69,7 +68,7 @@ namespace LeoDB.Engine
                     else
                     {
                         // if value is array, do same per item
-                        foreach(var item in value.AsArray
+                        foreach (var item in value.AsArray
                             .Where(x => x.IsDocument)
                             .Select(x => x.AsDocument))
                         {
@@ -139,12 +138,12 @@ namespace LeoDB.Engine
         /// </summary>
         protected IEnumerable<BsonDocument> Filter(IEnumerable<BsonDocument> source, BsonExpression expr)
         {
-            foreach(var doc in source)
+            foreach (var doc in source)
             {
                 // checks if any result of expression is true
                 var result = expr.ExecuteScalar(doc, _pragmas.Collation);
 
-                if(result.IsBoolean && result.AsBoolean)
+                if (result.IsBoolean && result.AsBoolean)
                 {
                     yield return doc;
                 }

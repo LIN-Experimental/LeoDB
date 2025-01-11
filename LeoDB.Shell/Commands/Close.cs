@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace LeoDB.Shell.Commands
+﻿namespace LeoDB.Shell.Commands
 {
     [Help(
         Name = "close",

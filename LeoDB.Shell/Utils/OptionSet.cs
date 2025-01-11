@@ -48,7 +48,7 @@ namespace LeoDB.Shell
             for (var i = 0; i < args.Length; i++)
             {
                 var arg = args[i];
-                if (arg == ">" || arg == "|") break;
+                if (arg is ">" or "|") break;
 
                 var match = expr.Match(arg);
 

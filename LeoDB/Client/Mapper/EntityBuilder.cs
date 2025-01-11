@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -56,10 +53,10 @@ namespace LeoDB
             return this.GetMember(member, (p) =>
             {
                 _entity.WaitForInitialization();
-                
+
                 // if contains another _id, remove-it
                 var oldId = _entity.Members.FirstOrDefault(x => x.FieldName == "_id");
-        
+
                 if (oldId != null)
                 {
                     oldId.FieldName = _mapper.ResolveFieldName(oldId.MemberName);
@@ -100,7 +97,7 @@ namespace LeoDB
         {
             if (member == null) throw new ArgumentNullException(nameof(member));
             _entity.WaitForInitialization();
-            
+
             var memb = _entity.GetMember(member);
 
             if (memb == null)

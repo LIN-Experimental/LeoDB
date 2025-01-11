@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -15,15 +9,14 @@ namespace LeoDB
         /// </summary>
         public static BsonValue ABS(BsonValue value)
         {
-            switch (value.Type)
+            return value.Type switch
             {
-                case BsonType.Int32: return Math.Abs(value.AsInt32); 
-                case BsonType.Int64: return Math.Abs(value.AsInt64); 
-                case BsonType.Double: return Math.Abs(value.AsDouble); 
-                case BsonType.Decimal: return Math.Abs(value.AsDecimal); 
-            }
-
-            return BsonValue.Null;
+                BsonType.Int32 => (BsonValue)Math.Abs(value.AsInt32),
+                BsonType.Int64 => (BsonValue)Math.Abs(value.AsInt64),
+                BsonType.Double => (BsonValue)Math.Abs(value.AsDouble),
+                BsonType.Decimal => (BsonValue)Math.Abs(value.AsDecimal),
+                _ => BsonValue.Null,
+            };
         }
 
         /// <summary>

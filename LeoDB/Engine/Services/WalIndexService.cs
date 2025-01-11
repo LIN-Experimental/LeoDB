@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -201,7 +198,7 @@ namespace LeoDB.Engine
             // read all pages to get confirmed transactions (do not read page content, only page header)
             foreach (var buffer in _disk.ReadFull(FileOrigin.Log))
             {
-                if(buffer.IsBlank())
+                if (buffer.IsBlank())
                 {
                     // this should not happen, but if it does, it means there's a zeroed page in the file
                     // just skip it

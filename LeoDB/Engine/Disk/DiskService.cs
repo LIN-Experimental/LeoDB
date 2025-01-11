@@ -170,7 +170,7 @@ namespace LeoDB.Engine
             var stream = _writer.Value;
 
             // do a global write lock - only 1 thread can write on disk at time
-            lock(stream)
+            lock (stream)
             {
                 foreach (var page in pages)
                 {

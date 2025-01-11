@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using LeoDB.Engine;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -32,7 +28,8 @@ namespace LeoDB
 
             query.ExplainPlan = token.Is("EXPLAIN");
 
-            if (query.ExplainPlan) token = _tokenizer.ReadToken();
+            if (query.ExplainPlan)
+                token = _tokenizer.ReadToken();
 
             token.Expect("SELECT");
 
@@ -42,7 +39,7 @@ namespace LeoDB
             // read FROM|INTO
             var from = _tokenizer.ReadToken();
 
-            if (from.Type == TokenType.EOF || from.Type == TokenType.SemiColon)
+            if (from.Type is TokenType.EOF or TokenType.SemiColon)
             {
                 // select with no FROM - just run expression (avoid DUAL table, Mr. Oracle)
                 //TODO: i think will be better add all sql into engine
@@ -75,7 +72,7 @@ namespace LeoDB
                 // read first INCLUDE (before)
                 _tokenizer.ReadToken();
 
-                foreach(var path in this.ParseListOfExpressions())
+                foreach (var path in this.ParseListOfExpressions())
                 {
                     query.Includes.Add(path);
                 }

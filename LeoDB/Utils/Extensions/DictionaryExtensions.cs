@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -35,7 +34,7 @@ namespace LeoDB
         {
             var position = 0;
 
-            while(position < connectionString.Length)
+            while (position < connectionString.Length)
             {
                 EatWhitespace();
                 var key = ReadKey();
@@ -117,9 +116,9 @@ namespace LeoDB
             {
                 while (position < connectionString.Length)
                 {
-                    if(connectionString[position] == ' ' ||
-                        connectionString[position] == '\t' ||
-                        connectionString[position] == '\f')
+                    if (connectionString[position] is ' ' or
+                        '\t' or
+                        '\f')
                     {
                         position++;
                         continue;
@@ -181,16 +180,15 @@ namespace LeoDB
 
             var num = Convert.ToInt64(match.Groups[1].Value);
 
-            switch (match.Groups[2].Value.ToLower())
+            return match.Groups[2].Value.ToLower() switch
             {
-                case "t": return num * 1024L * 1024L * 1024L * 1024L;
-                case "g": return num * 1024L * 1024L * 1024L;
-                case "m": return num * 1024L * 1024L;
-                case "k": return num * 1024L;
-                case "": return num;
-            }
-
-            return 0;
+                "t" => num * 1024L * 1024L * 1024L * 1024L,
+                "g" => num * 1024L * 1024L * 1024L,
+                "m" => num * 1024L * 1024L,
+                "k" => num * 1024L,
+                "" => num,
+                _ => 0,
+            };
         }
     }
 }

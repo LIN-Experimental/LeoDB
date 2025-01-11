@@ -6,7 +6,7 @@ namespace LeoDB.Engine
     /// <summary>
     /// Interface to read current or old datafile structure - Used to shirnk/upgrade datafile from old LeoDB versions
     /// </summary>
-    interface IFileReader : IDisposable
+    internal interface IFileReader : IDisposable
     {
         /// <summary>
         /// Open and initialize file reader (run before any other command)

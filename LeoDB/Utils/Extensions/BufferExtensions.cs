@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -60,7 +58,7 @@ namespace LeoDB
         /// </summary>
         public static byte[] Fill(this byte[] array, byte value, int offset, int count)
         {
-            for(var i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 array[i + offset] = value;
             }

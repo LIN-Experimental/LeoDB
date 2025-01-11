@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -19,11 +15,11 @@ namespace LeoDB
         public static string GetSuffixFile(string filename, string suffix = "-temp", bool checkIfExists = true)
         {
             var count = 0;
-            var temp = Path.Combine(Path.GetDirectoryName(filename), 
-                Path.GetFileNameWithoutExtension(filename) + suffix + 
+            var temp = Path.Combine(Path.GetDirectoryName(filename),
+                Path.GetFileNameWithoutExtension(filename) + suffix +
                 Path.GetExtension(filename));
 
-            while(checkIfExists && File.Exists(temp))
+            while (checkIfExists && File.Exists(temp))
             {
                 temp = Path.Combine(Path.GetDirectoryName(filename),
                     Path.GetFileNameWithoutExtension(filename) + suffix +
@@ -130,16 +126,15 @@ namespace LeoDB
 
             var num = Convert.ToInt64(match.Groups[1].Value);
 
-            switch (match.Groups[2].Value.ToLower())
+            return match.Groups[2].Value.ToLower() switch
             {
-                case "t": return num * 1024L * 1024L * 1024L * 1024L;
-                case "g": return num * 1024L * 1024L * 1024L;
-                case "m": return num * 1024L * 1024L;
-                case "k": return num * 1024L;
-                case "": return num;
-            }
-
-            return 0;
+                "t" => num * 1024L * 1024L * 1024L * 1024L,
+                "g" => num * 1024L * 1024L * 1024L,
+                "m" => num * 1024L * 1024L,
+                "k" => num * 1024L,
+                "" => num,
+                _ => 0,
+            };
         }
 
         /// <summary>

@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Buffers;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -62,7 +55,7 @@ namespace LeoDB.Engine
 
             var offset = 0;
 
-            foreach(var item in query)
+            foreach (var item in query)
             {
                 buffer.WriteIndexKey(item.Key, offset);
 

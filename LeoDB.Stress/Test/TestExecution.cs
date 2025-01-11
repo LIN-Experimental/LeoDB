@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Xml;
 
 namespace LeoDB.Stress
 {
@@ -38,7 +36,7 @@ namespace LeoDB.Stress
             _db = new LeoDatabase(_file.Filename);
             _db.Pragma("TIMEOUT", (int)_file.Timeout.TotalSeconds);
 
-            foreach(var setup in _file.Setup)
+            foreach (var setup in _file.Setup)
             {
                 _db.Execute(setup);
             }
@@ -120,7 +118,7 @@ namespace LeoDB.Stress
 
             var output = new StringBuilder();
 
-            while(this.Timer.Elapsed < this.Duration && _running)
+            while (this.Timer.Elapsed < this.Duration && _running)
             {
                 Thread.Sleep(Math.Min(1000, (int)this.Duration.Subtract(this.Timer.Elapsed).TotalMilliseconds));
 
@@ -188,7 +186,7 @@ namespace LeoDB.Stress
             output.AppendLine("Summary Report");
             output.AppendLine();
 
-            foreach(var task in _file.Tasks)
+            foreach (var task in _file.Tasks)
             {
                 var name = task.Name.PadRight(15, ' ');
                 var count = _threads.Values.Where(x => x.Task == task).Sum(x => (long)x.Counter).ToString().PadLeft(5, ' ');

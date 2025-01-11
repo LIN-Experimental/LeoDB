@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -34,7 +33,7 @@ namespace LeoDB.Engine
         {
             var rawId = 0u;
 
-            foreach(var doc in _source)
+            foreach (var doc in _source)
             {
                 rawId++;
 

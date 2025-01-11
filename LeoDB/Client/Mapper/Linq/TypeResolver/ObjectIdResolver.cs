@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using static LeoDB.Constants;
+﻿using System.Reflection;
 
 namespace LeoDB
 {
@@ -25,16 +18,14 @@ namespace LeoDB
 
         public string ResolveMember(MemberInfo member)
         {
-            switch (member.Name)
+            return member.Name switch
             {
                 // static properties
-                case "Empty": return "OBJECTID('000000000000000000000000')";
-
+                "Empty" => "OBJECTID('000000000000000000000000')",
                 // instance properties
-                case "CreationTime": return "OID_CREATIONTIME(#)";
-            }
-
-            return null;
+                "CreationTime" => "OID_CREATIONTIME(#)",
+                _ => null,
+            };
         }
 
         public string ResolveCtor(ConstructorInfo ctor)

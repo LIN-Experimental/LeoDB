@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -75,7 +72,7 @@ namespace LeoDB.Engine
             for (; index < _cache.Count; index++)
             {
                 var rawId = _cache[index];
-            
+
                 yield return _lookup.Load(rawId);
             }
         }

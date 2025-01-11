@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -11,7 +10,7 @@ namespace LeoDB
     /// </summary>
     public class JsonReader
     {
-        private readonly static IFormatProvider _numberFormat = CultureInfo.InvariantCulture.NumberFormat;
+        private static readonly IFormatProvider _numberFormat = CultureInfo.InvariantCulture.NumberFormat;
 
         private readonly Tokenizer _tokenizer = null;
 
@@ -92,13 +91,13 @@ namespace LeoDB
                         return new BsonValue(Int64.Parse(value, NumberStyles.Any, _numberFormat));
                 case TokenType.Double: return new BsonValue(Convert.ToDouble(value, _numberFormat));
                 case TokenType.Word:
-                    switch (value.ToLower())
+                    return value.ToLower() switch
                     {
-                        case "null": return BsonValue.Null;
-                        case "true": return true;
-                        case "false": return false;
-                        default: throw LeoException.UnexpectedToken(token);
-                    }
+                        "null" => BsonValue.Null,
+                        "true" => (BsonValue)true,
+                        "false" => (BsonValue)false,
+                        _ => throw LeoException.UnexpectedToken(token),
+                    };
             }
 
             throw LeoException.UnexpectedToken(token);

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -339,26 +336,25 @@ namespace LeoDB
         {
             var generic = type.Name.IndexOf("`");
 
-            switch (type.FullName)
+            return type.FullName switch
             {
-                case "System.Object": return "object";
-                case "System.String": return "string";
-                case "System.Boolean": return "bool";
-                case "System.Byte": return "byte";
-                case "System.Char": return "char";
-                case "System.Decimal": return "decimal";
-                case "System.Double": return "double";
-                case "System.Int16": return "short";
-                case "System.Int32": return "int";
-                case "System.Int64": return "long";
-                case "System.SByte": return "sbyte";
-                case "System.Single": return "float";
-                case "System.UInt16": return "ushort";
-                case "System.UInt32": return "uint";
-                case "System.UInt64": return "ulong";
-
-                default: return generic > 0 ? type.Name.Substring(0, generic) : type.Name;
-            }
+                "System.Object" => "object",
+                "System.String" => "string",
+                "System.Boolean" => "bool",
+                "System.Byte" => "byte",
+                "System.Char" => "char",
+                "System.Decimal" => "decimal",
+                "System.Double" => "double",
+                "System.Int16" => "short",
+                "System.Int32" => "int",
+                "System.Int64" => "long",
+                "System.SByte" => "sbyte",
+                "System.Single" => "float",
+                "System.UInt16" => "ushort",
+                "System.UInt32" => "uint",
+                "System.UInt64" => "ulong",
+                _ => generic > 0 ? type.Name.Substring(0, generic) : type.Name,
+            };
         }
 
         #endregion

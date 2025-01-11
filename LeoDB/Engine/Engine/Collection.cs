@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine;
@@ -50,7 +49,7 @@ public partial class LeoEngine
     /// </summary>
     public bool RenameCollection(string collection, string newName)
     {
-        if (collection.IsNullOrWhiteSpace()) 
+        if (collection.IsNullOrWhiteSpace())
             throw new ArgumentNullException(nameof(collection));
 
         if (newName.IsNullOrWhiteSpace())
@@ -60,14 +59,14 @@ public partial class LeoEngine
         if (_locker.IsInTransaction) throw LeoException.AlreadyExistsTransaction();
 
         // check for collection name
-        if (collection.Equals(newName, StringComparison.OrdinalIgnoreCase)) 
+        if (collection.Equals(newName, StringComparison.OrdinalIgnoreCase))
             throw LeoException.InvalidCollectionName(newName, "New name must be different from current name");
 
         // checks if newName are compatible
         CollectionService.CheckName(newName, _header, false);
 
         // rename collection is possible only in exclusive transaction for this
-        if (_locker.IsInTransaction) 
+        if (_locker.IsInTransaction)
             throw LeoException.AlreadyExistsTransaction();
 
         return this.AutoTransaction(transaction =>

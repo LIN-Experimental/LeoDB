@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB.Engine
 {
@@ -75,7 +71,7 @@ namespace LeoDB.Engine
                         ["unique"] = x.Unique,
                         ["head"] = x.Head.ToBsonValue(),
                         ["tail"] = x.Tail.ToBsonValue(),
-                        ["freeIndexPageList"] = (int)x.FreeIndexPageList,                        
+                        ["freeIndexPageList"] = (int)x.FreeIndexPageList,
                     }));
                 }
 

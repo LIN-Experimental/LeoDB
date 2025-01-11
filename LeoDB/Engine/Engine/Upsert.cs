@@ -39,7 +39,7 @@ public partial class LeoEngine
                     count++;
                 }
             }
-            
+
             // returns how many document was inserted
             return count;
         });

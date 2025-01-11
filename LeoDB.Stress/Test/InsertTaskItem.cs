@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace LeoDB.Stress
@@ -45,11 +44,11 @@ namespace LeoDB.Stress
 
             var count = _rnd.Next(this.MinRange, this.MaxRange);
 
-            for(var i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var doc = new BsonDocument();
 
-                foreach(var field in this.Fields)
+                foreach (var field in this.Fields)
                 {
                     doc[field.Name] = field.GetValue();
                 }

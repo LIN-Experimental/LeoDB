@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using LeoDB.Engine;
-using static LeoDB.Constants;
+﻿using LeoDB.Engine;
 
 namespace LeoDB
 {
@@ -20,7 +16,7 @@ namespace LeoDB
             // read <eol> or ;
             var next = _tokenizer.LookAhead();
 
-            if (next.Type == TokenType.EOF || next.Type == TokenType.SemiColon)
+            if (next.Type is TokenType.EOF or TokenType.SemiColon)
             {
                 options = null;
 

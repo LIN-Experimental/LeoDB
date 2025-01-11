@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using static LeoDB.Constants;
+﻿using System.Reflection;
 
 namespace LeoDB
 {
@@ -18,13 +11,12 @@ namespace LeoDB
 
         public string ResolveMember(MemberInfo member)
         {
-            switch (member.Name)
+            return member.Name switch
             {
-                case "HasValue": return "(IS_NULL(#) = false)";
-                case "Value": return "#";
-            }
-
-            return null;
+                "HasValue" => "(IS_NULL(#) = false)",
+                "Value" => "#",
+                _ => null,
+            };
         }
 
         public string ResolveCtor(ConstructorInfo ctor) => null;

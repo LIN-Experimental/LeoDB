@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LeoDB.Engine;
-using static LeoDB.Constants;
+﻿using System.Collections.Generic;
 
 namespace LeoDB
 {
@@ -14,14 +9,14 @@ namespace LeoDB
         /// </summary>
         private IEnumerable<BsonExpression> ParseListOfExpressions()
         {
-            while(true)
+            while (true)
             {
                 var expr = BsonExpression.Create(_tokenizer, BsonExpressionParserMode.Full, _parameters);
 
                 yield return expr;
 
                 var next = _tokenizer.LookAhead();
-                
+
                 if (next.Type == TokenType.Comma)
                 {
                     _tokenizer.ReadToken();

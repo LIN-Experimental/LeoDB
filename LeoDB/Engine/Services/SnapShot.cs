@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -44,14 +41,14 @@ namespace LeoDB.Engine
         public int ReadVersion => _readVersion;
 
         public Snapshot(
-            LockMode mode, 
-            string collectionName, 
-            HeaderPage header, 
-            uint transactionID, 
-            TransactionPages transPages, 
-            LockService locker, 
-            WalIndexService walIndex, 
-            DiskReader reader, 
+            LockMode mode,
+            string collectionName,
+            HeaderPage header,
+            uint transactionID,
+            TransactionPages transPages,
+            LockService locker,
+            WalIndexService walIndex,
+            DiskReader reader,
             DiskService disk,
             bool addIfNotExists,
             ILeoEngine leoEngine)
@@ -99,9 +96,9 @@ namespace LeoDB.Engine
             // if snapshot is read only, just exit
             if (_mode == LockMode.Read) yield break;
 
-            foreach(var page in _localPages.Values.Where(x => x.IsDirty == dirty))
+            foreach (var page in _localPages.Values.Where(x => x.IsDirty == dirty))
             {
-                ENSURE(page.PageType != PageType.Header && page.PageType != PageType.Collection, "local cache cann't contains this page type");
+                ENSURE(page.PageType is not PageType.Header and not PageType.Collection, "local cache cann't contains this page type");
 
                 yield return page;
             }
@@ -153,7 +150,7 @@ namespace LeoDB.Engine
                 _collectionPage.Buffer.Release();
             }
 
-            if(_mode == LockMode.Write)
+            if (_mode == LockMode.Write)
             {
                 _locker.ExitLock(_collectionName);
             }
@@ -510,7 +507,7 @@ namespace LeoDB.Engine
             page.NextPageID = startPageID;
             page.IsDirty = true;
 
-            ENSURE(page.PageType == PageType.Data || page.PageType == PageType.Index, "only data/index pages must be first on free stack");
+            ENSURE(page.PageType is PageType.Data or PageType.Index, "only data/index pages must be first on free stack");
 
             startPageID = page.PageID;
 
@@ -563,7 +560,7 @@ namespace LeoDB.Engine
         {
             ENSURE(page.PrevPageID == uint.MaxValue && page.NextPageID == uint.MaxValue, "before delete a page, no linked list with any another page");
             ENSURE(page.ItemsCount == 0 && page.UsedBytes == 0 && page.HighestIndex == byte.MaxValue && page.FragmentedBytes == 0, "no items on page when delete this page");
-            ENSURE(page.PageType == PageType.Data || page.PageType == PageType.Index, "only data/index page can be deleted");
+            ENSURE(page.PageType is PageType.Data or PageType.Index, "only data/index page can be deleted");
             DEBUG(!_collectionPage.FreeDataPageList.Any(x => x == page.PageID), "this page cann't be deleted because free data list page is linked o this page");
             DEBUG(!_collectionPage.GetCollectionIndexes().Any(x => x.FreeIndexPageList == page.PageID), "this page cann't be deleted because free index list page is linked o this page");
             DEBUG(page.Buffer.Slice(PAGE_HEADER_SIZE, PAGE_SIZE - PAGE_HEADER_SIZE - 1).All(0), "page content shloud be empty");
@@ -619,7 +616,7 @@ namespace LeoDB.Engine
             var indexPages = new HashSet<uint>();
 
             // getting all indexes pages from all indexes
-            foreach(var index in _collectionPage.GetCollectionIndexes())
+            foreach (var index in _collectionPage.GetCollectionIndexes())
             {
                 // add head/tail (same page) to be deleted
                 indexPages.Add(index.Head.PageID);
@@ -653,7 +650,7 @@ namespace LeoDB.Engine
             {
                 var next = startPageID;
 
-                while(next != uint.MaxValue)
+                while (next != uint.MaxValue)
                 {
                     var page = this.GetPage<DataPage>(next);
 

@@ -387,34 +387,27 @@ namespace LeoDB.Engine
         {
             var type = (BsonType)this.ReadByte();
 
-            switch (type)
+            return type switch
             {
-                case BsonType.Null: return BsonValue.Null;
-
-                case BsonType.Int32: return this.ReadInt32();
-                case BsonType.Int64: return this.ReadInt64();
-                case BsonType.Double: return this.ReadDouble();
-                case BsonType.Decimal: return this.ReadDecimal();
-
+                BsonType.Null => BsonValue.Null,
+                BsonType.Int32 => (BsonValue)this.ReadInt32(),
+                BsonType.Int64 => (BsonValue)this.ReadInt64(),
+                BsonType.Double => (BsonValue)this.ReadDouble(),
+                BsonType.Decimal => (BsonValue)this.ReadDecimal(),
                 // Use +1 byte only for length
-                case BsonType.String: return this.ReadString(this.ReadByte());
-
-                case BsonType.Document: return this.ReadDocument(null).GetValue();
-                case BsonType.Array: return this.ReadArray().GetValue();
-
+                BsonType.String => (BsonValue)this.ReadString(this.ReadByte()),
+                BsonType.Document => this.ReadDocument(null).GetValue(),
+                BsonType.Array => this.ReadArray().GetValue(),
                 // Use +1 byte only for length
-                case BsonType.Binary: return this.ReadBytes(this.ReadByte());
-                case BsonType.ObjectId: return this.ReadObjectId();
-                case BsonType.Guid: return this.ReadGuid();
-
-                case BsonType.Boolean: return this.ReadBoolean();
-                case BsonType.DateTime: return this.ReadDateTime();
-
-                case BsonType.MinValue: return BsonValue.MinValue;
-                case BsonType.MaxValue: return BsonValue.MaxValue;
-
-                default: throw new NotImplementedException();
-            }
+                BsonType.Binary => (BsonValue)this.ReadBytes(this.ReadByte()),
+                BsonType.ObjectId => (BsonValue)this.ReadObjectId(),
+                BsonType.Guid => (BsonValue)this.ReadGuid(),
+                BsonType.Boolean => (BsonValue)this.ReadBoolean(),
+                BsonType.DateTime => (BsonValue)this.ReadDateTime(),
+                BsonType.MinValue => BsonValue.MinValue,
+                BsonType.MaxValue => BsonValue.MaxValue,
+                _ => throw new NotImplementedException(),
+            };
         }
 
         #endregion
@@ -499,15 +492,15 @@ namespace LeoDB.Engine
             {
                 // define skip length according type
                 var length =
-                    (type == 0x0A || type == 0xFF || type == 0x7F) ? 0 : // Null, MinValue, MaxValue
+                    (type is 0x0A or 0xFF or 0x7F) ? 0 : // Null, MinValue, MaxValue
                     (type == 0x08) ? 1 : // Boolean
                     (type == 0x10) ? 4 : // Int
-                    (type == 0x01 || type == 0x12 || type == 0x09) ? 8 : // Double, Int64, DateTime
+                    (type is 0x01 or 0x12 or 0x09) ? 8 : // Double, Int64, DateTime
                     (type == 0x07) ? 12 : // ObjectId
                     (type == 0x13) ? 16 : // Decimal
                     (type == 0x02) ? this.ReadInt32() : // String
                     (type == 0x05) ? this.ReadInt32() + 1 : // Binary (+1 for subtype)
-                    (type == 0x03 || type == 0x04) ? this.ReadInt32() - 4 : 0; // Document, Array (-4 to Length + zero)
+                    (type is 0x03 or 0x04) ? this.ReadInt32() - 4 : 0; // Document, Array (-4 to Length + zero)
 
                 if (length > 0)
                 {

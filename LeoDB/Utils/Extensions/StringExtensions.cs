@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
-
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -197,7 +193,7 @@ namespace LeoDB
             {
                 c = str[i];
 
-                if (c == '%' || c == '_')
+                if (c is '%' or '_')
                 {
                     break;
                 }

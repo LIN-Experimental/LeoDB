@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Security;
 using System.Threading;
-using static LeoDB.Constants;
 
 namespace LeoDB;
 
@@ -99,24 +97,24 @@ public class ObjectId : IComparable<ObjectId>, IEquatable<ObjectId>
     {
         if (bytes == null) throw new ArgumentNullException(nameof(bytes));
 
-        this.Timestamp = 
-            (bytes[startIndex + 0] << 24) + 
-            (bytes[startIndex + 1] << 16) + 
-            (bytes[startIndex + 2] << 8) + 
+        this.Timestamp =
+            (bytes[startIndex + 0] << 24) +
+            (bytes[startIndex + 1] << 16) +
+            (bytes[startIndex + 2] << 8) +
             bytes[startIndex + 3];
 
-        this.Machine = 
-            (bytes[startIndex + 4] << 16) + 
-            (bytes[startIndex + 5] << 8) + 
+        this.Machine =
+            (bytes[startIndex + 4] << 16) +
+            (bytes[startIndex + 5] << 8) +
             bytes[startIndex + 6];
 
         this.Pid = (short)
-            ((bytes[startIndex + 7] << 8) + 
+            ((bytes[startIndex + 7] << 8) +
             bytes[startIndex + 8]);
 
-        this.Increment = 
-            (bytes[startIndex + 9] << 16) + 
-            (bytes[startIndex + 10] << 8) + 
+        this.Increment =
+            (bytes[startIndex + 9] << 16) +
+            (bytes[startIndex + 10] << 8) +
             bytes[startIndex + 11];
     }
 
@@ -149,7 +147,7 @@ public class ObjectId : IComparable<ObjectId>, IEquatable<ObjectId>
     /// </summary>
     public bool Equals(ObjectId other)
     {
-        return other != null && 
+        return other != null &&
             this.Timestamp == other.Timestamp &&
             this.Machine == other.Machine &&
             this.Pid == other.Pid &&

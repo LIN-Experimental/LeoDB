@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     /// <summary>
     /// Interface for abstract document lookup that can be direct from datafile or by virtual collections

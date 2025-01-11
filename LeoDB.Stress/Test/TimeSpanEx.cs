@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Xml;
 
 namespace LeoDB.Stress
 {
@@ -20,9 +17,9 @@ namespace LeoDB.Stress
                 var num = double.Parse(match.Groups["num"].Value, CultureInfo.InvariantCulture.NumberFormat);
                 var unit = match.Groups["unit"].Value.ToLower();
 
-                switch(unit)
+                switch (unit)
                 {
-                    case "": 
+                    case "":
                     case "ms": return TimeSpan.FromMilliseconds(num);
                     case "s": return TimeSpan.FromSeconds(num);
                     case "m": return TimeSpan.FromMinutes(num);

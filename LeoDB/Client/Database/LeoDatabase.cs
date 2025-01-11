@@ -70,8 +70,7 @@ public partial class LeoDatabase : ILeoDatabase
         OnEngine();
     }
 
-
-    void OnEngine()
+    private void OnEngine()
     {
         _engine.OpenPersonalizeDatabase(Mapper);
     }

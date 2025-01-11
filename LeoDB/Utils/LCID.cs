@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -460,7 +458,7 @@ namespace LeoDB
 
         public static int GetLCID(string culture)
         {
-            foreach(var item in _mappings)
+            foreach (var item in _mappings)
             {
                 if (item.Value == culture)
                 {

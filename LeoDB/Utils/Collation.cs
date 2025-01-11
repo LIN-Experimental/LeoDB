@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
-using System.IO;
-using System.Threading;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -21,8 +16,8 @@ namespace LeoDB
         {
             var parts = collation.Split('/');
             var culture = parts[0];
-            var sortOptions = parts.Length > 1 ? 
-                (CompareOptions)Enum.Parse(typeof(CompareOptions), parts[1]) : 
+            var sortOptions = parts.Length > 1 ?
+                (CompareOptions)Enum.Parse(typeof(CompareOptions), parts[1]) :
                 CompareOptions.None;
 
             this.LCID = LeoDB.LCID.GetLCID(culture);

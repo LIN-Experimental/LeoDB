@@ -1,16 +1,8 @@
 ﻿using System;
 using System.Buffers;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using static LeoDB.Constants;
 
 namespace LeoDB.Engine
 {
@@ -52,7 +44,7 @@ namespace LeoDB.Engine
 
             _reader = new Lazy<Stream>(() => _disk.GetReader());
 
-            var bytes = new byte [disk.ContainerSize];
+            var bytes = new byte[disk.ContainerSize];
 
             _buffer = new BufferSlice(bytes, 0, _containerSize);
         }
@@ -60,7 +52,7 @@ namespace LeoDB.Engine
         public void Dispose()
         {
             // release all container positions
-            foreach(var container in _containers)
+            foreach (var container in _containers)
             {
                 container.Dispose();
 

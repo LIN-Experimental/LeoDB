@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 
 namespace LeoDB.Stress
@@ -31,7 +30,7 @@ namespace LeoDB.Stress
             this.Setup = new List<string>();
             this.Tasks = new List<ITestItem>();
 
-            foreach(XmlElement el in children)
+            foreach (XmlElement el in children)
             {
                 if (el.Name == "setup")
                 {

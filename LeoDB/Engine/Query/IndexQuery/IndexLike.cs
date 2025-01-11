@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using static LeoDB.Constants;
 
 namespace LeoDB.Engine
 {
@@ -31,8 +30,8 @@ namespace LeoDB.Engine
         {
             // if contains startsWith string, search using index Find
             // otherwise, use index full scan and test results
-            return _startsWith.Length > 0 ? 
-                this.ExecuteStartsWith(indexer, index) : 
+            return _startsWith.Length > 0 ?
+                this.ExecuteStartsWith(indexer, index) :
                 this.ExecuteLike(indexer, index);
         }
 
@@ -51,8 +50,8 @@ namespace LeoDB.Engine
                 // if current node are edges exit while
                 if (node.Key.IsMinValue || node.Key.IsMaxValue) break;
 
-                var valueString = 
-                    node.Key.IsString ? node.Key.AsString : 
+                var valueString =
+                    node.Key.IsString ? node.Key.AsString :
                     node.Key.IsNull ? "" :
                     node.Key.ToString();
 

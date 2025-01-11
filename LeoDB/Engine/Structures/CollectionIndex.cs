@@ -1,9 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
-using static LeoDB.Constants;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     internal class CollectionIndex
     {

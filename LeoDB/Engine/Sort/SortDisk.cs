@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -86,7 +82,7 @@ namespace LeoDB.Engine
             var writer = _pool.Writer.Value;
 
             // there is only a single writer instance, must be lock to ensure only 1 single thread are writing
-            lock(writer)
+            lock (writer)
             {
                 for (var i = 0; i < _containerSize / PAGE_SIZE; ++i)
                 {

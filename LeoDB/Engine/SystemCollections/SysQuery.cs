@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using static LeoDB.Constants;
+﻿using System.Collections.Generic;
 
 namespace LeoDB.Engine
 {
@@ -16,7 +11,7 @@ namespace LeoDB.Engine
 
         public SysQuery(ILeoEngine engine) : base("$query")
         {
-            _engine = engine; 
+            _engine = engine;
         }
 
         public override IEnumerable<BsonDocument> Input(BsonValue options)
@@ -27,7 +22,7 @@ namespace LeoDB.Engine
 
             using (var reader = sql.Execute())
             {
-                while(reader.Read())
+                while (reader.Read())
                 {
                     var value = reader.Current;
 

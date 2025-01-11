@@ -1,10 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
-using System.Text;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Collections;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -12,7 +10,7 @@ namespace LeoDB
     {
         public static bool IsAnonymousType(this Type type)
         {
-            bool isAnonymousType = 
+            bool isAnonymousType =
                 type.FullName.Contains("AnonymousType") &&
                 type.GetTypeInfo().GetCustomAttributes(typeof(CompilerGeneratedAttribute), false).Any();
 
@@ -21,7 +19,7 @@ namespace LeoDB
 
         public static bool IsEnumerable(this Type type)
         {
-            return 
+            return
                 type != typeof(String) &&
                 typeof(IEnumerable).IsAssignableFrom(type);
         }

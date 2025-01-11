@@ -1,6 +1,5 @@
 ﻿using LeoDB.Engine;
 using System;
-using System.Linq;
 using System.Text;
 using static LeoDB.Constants;
 
@@ -270,7 +269,7 @@ namespace LeoDB
                 buffer[offset++] = lengthByte;
                 buffer.Write(str, offset);
             }
-            else if(value.IsBinary)
+            else if (value.IsBinary)
             {
                 var arr = value.AsBinary;
 

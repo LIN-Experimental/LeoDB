@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -45,7 +41,7 @@ namespace LeoDB
         public static GenericSetter CreateGenericSetter(Type type, MemberInfo memberInfo)
         {
             if (memberInfo == null) throw new ArgumentNullException(nameof(memberInfo));
-            
+
             var fieldInfo = memberInfo as FieldInfo;
             var propertyInfo = memberInfo as PropertyInfo;
 
@@ -70,13 +66,13 @@ namespace LeoDB
             var castTarget = Expression.Convert(target, type);
             var castValue = Expression.ConvertChecked(value, dataType);
 
-            var accessor = memberInfo is PropertyInfo ? 
+            var accessor = memberInfo is PropertyInfo ?
                 Expression.Property(castTarget, propertyInfo) :
                 Expression.Field(castTarget, fieldInfo);
 
             var assign = Expression.Assign(accessor, castValue);
             var conv = Expression.Convert(assign, typeof(object));
-            
+
             return Expression.Lambda<GenericSetter>(conv, target, value).Compile();
         }
     }

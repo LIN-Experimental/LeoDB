@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -30,7 +26,7 @@ namespace LeoDB.Engine
         public CollectionPage(PageBuffer buffer, uint pageID)
             : base(buffer, pageID, PageType.Collection)
         {
-            for(var i = 0; i < PAGE_FREE_LIST_SLOTS; i++)
+            for (var i = 0; i < PAGE_FREE_LIST_SLOTS; i++)
             {
                 this.FreeDataPageList[i] = uint.MaxValue;
             }
@@ -49,7 +45,7 @@ namespace LeoDB.Engine
             using (var r = new BufferReader(new[] { area }, false))
             {
                 // read position for FreeDataPage and FreeIndexPage
-                for(var i = 0; i < PAGE_FREE_LIST_SLOTS; i++)
+                for (var i = 0; i < PAGE_FREE_LIST_SLOTS; i++)
                 {
                     this.FreeDataPageList[i] = r.ReadUInt32();
                 }
@@ -59,7 +55,7 @@ namespace LeoDB.Engine
 
                 var count = r.ReadByte(); // 1 byte
 
-                for(var i = 0; i < count; i++)
+                for (var i = 0; i < count; i++)
                 {
                     var index = new CollectionIndex(r);
 
@@ -153,7 +149,7 @@ namespace LeoDB.Engine
             var slot = (byte)(_indexes.Count == 0 ? 0 : (_indexes.Max(x => x.Value.Slot) + 1));
 
             var index = new CollectionIndex(slot, 0, name, expr, unique);
-            
+
             _indexes[name] = index;
 
             this.IsDirty = true;

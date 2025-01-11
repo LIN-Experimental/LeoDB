@@ -280,7 +280,7 @@ namespace LeoDB.Engine
             else
             {
                 // ensure only 1 single thread call extend method
-                lock(_free)
+                lock (_free)
                 {
                     if (_free.Count > 0) return this.GetFreePage();
 

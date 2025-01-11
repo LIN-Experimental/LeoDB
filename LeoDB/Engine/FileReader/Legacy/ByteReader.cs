@@ -1,7 +1,5 @@
-﻿using LeoDB.Engine;
-using System;
+﻿using System;
 using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -100,7 +98,7 @@ namespace LeoDB
             var b = BitConverter.ToInt32(_buffer, _pos - 12);
             var c = BitConverter.ToInt32(_buffer, _pos - 8);
             var d = BitConverter.ToInt32(_buffer, _pos - 4);
-            return new Decimal(new int[] {  a, b, c, d });
+            return new Decimal(new int[] { a, b, c, d });
         }
 
         public byte[] ReadBytes(int count)
@@ -200,32 +198,25 @@ namespace LeoDB
         {
             var type = (BsonType)this.ReadByte();
 
-            switch (type)
+            return type switch
             {
-                case BsonType.Null: return BsonValue.Null;
-
-                case BsonType.Int32: return this.ReadInt32();
-                case BsonType.Int64: return this.ReadInt64();
-                case BsonType.Double: return this.ReadDouble();
-                case BsonType.Decimal: return this.ReadDecimal();
-
-                case BsonType.String: return this.ReadString(length);
-
-                case BsonType.Document: return new BsonReader(false).ReadDocument(this);
-                case BsonType.Array: return new BsonReader(false).ReadArray(this);
-
-                case BsonType.Binary: return this.ReadBytes(length);
-                case BsonType.ObjectId: return this.ReadObjectId();
-                case BsonType.Guid: return this.ReadGuid();
-
-                case BsonType.Boolean: return this.ReadBoolean();
-                case BsonType.DateTime: return this.ReadDateTime();
-
-                case BsonType.MinValue: return BsonValue.MinValue;
-                case BsonType.MaxValue: return BsonValue.MaxValue;
-            }
-
-            throw new NotImplementedException();
+                BsonType.Null => BsonValue.Null,
+                BsonType.Int32 => (BsonValue)this.ReadInt32(),
+                BsonType.Int64 => (BsonValue)this.ReadInt64(),
+                BsonType.Double => (BsonValue)this.ReadDouble(),
+                BsonType.Decimal => (BsonValue)this.ReadDecimal(),
+                BsonType.String => (BsonValue)this.ReadString(length),
+                BsonType.Document => new BsonReader(false).ReadDocument(this),
+                BsonType.Array => new BsonReader(false).ReadArray(this),
+                BsonType.Binary => (BsonValue)this.ReadBytes(length),
+                BsonType.ObjectId => (BsonValue)this.ReadObjectId(),
+                BsonType.Guid => (BsonValue)this.ReadGuid(),
+                BsonType.Boolean => (BsonValue)this.ReadBoolean(),
+                BsonType.DateTime => (BsonValue)this.ReadDateTime(),
+                BsonType.MinValue => BsonValue.MinValue,
+                BsonType.MaxValue => BsonValue.MaxValue,
+                _ => throw new NotImplementedException(),
+            };
         }
 
         #endregion

@@ -1,8 +1,6 @@
 ﻿using LeoDB.Engine;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using static LeoDB.Constants;
 
 namespace LeoDB;
 
@@ -19,7 +17,7 @@ public class BsonSerializer
     {
         if (doc == null) throw new ArgumentNullException(nameof(doc));
 
-        var buffer = new byte[doc.GetBytesCount(true)]; 
+        var buffer = new byte[doc.GetBytesCount(true)];
 
         using (var writer = new BufferWriter(buffer))
         {

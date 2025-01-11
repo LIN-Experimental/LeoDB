@@ -25,7 +25,7 @@ users.Insert(new User() { Name = "Alexander", Age = 25, Alias = string.Empty });
 
 foreach (var user in users.FindAll().ToList())
 {
-    Console.WriteLine(user.Name + " | "+user.Alias);
+    Console.WriteLine(user.Name + " | " + user.Alias);
 }
 
 

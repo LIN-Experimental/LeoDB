@@ -8,9 +8,9 @@ using BenchmarkDotNet.Toolchains.CsProj;
 
 namespace LeoDB.Benchmarks
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             BenchmarkRunner.Run(typeof(Program).Assembly, DefaultConfig.Instance
                 //.With(new BenchmarkDotNet.Filters.AnyCategoriesFilter(new[] { Benchmarks.Constants.Categories.GENERAL }))

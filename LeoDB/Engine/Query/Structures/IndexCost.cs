@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -36,7 +34,7 @@ namespace LeoDB.Engine
             var exprType = expr.Type;
 
             // if the expression constant is in the left, invert expression type to "normalize" it
-            if(expr.Left.IsValue)
+            if (expr.Left.IsValue)
             {
                 switch (expr.Type)
                 {
@@ -80,21 +78,21 @@ namespace LeoDB.Engine
         /// </summary>
         private Index CreateIndex(BsonExpressionType type, string name, BsonValue value)
         {
-            switch(type)
+            return type switch
             {
-                case BsonExpressionType.Equal: return new IndexEquals(name, value);
-                case BsonExpressionType.Between: return new IndexRange(name, value.AsArray[0], value.AsArray[1], true, true, Query.Ascending);
-                case BsonExpressionType.Like: return new IndexLike(name, value.AsString, Query.Ascending);
-                case BsonExpressionType.GreaterThan: return new IndexRange(name, value, BsonValue.MaxValue, false, true, Query.Ascending);
-                case BsonExpressionType.GreaterThanOrEqual: return new IndexRange(name, value, BsonValue.MaxValue, true, true, Query.Ascending);
-                case BsonExpressionType.LessThan: return new IndexRange(name, BsonValue.MinValue, value, true, false, Query.Ascending);
-                case BsonExpressionType.LessThanOrEqual: return new IndexRange(name, BsonValue.MinValue, value, true, true, Query.Ascending);
-                case BsonExpressionType.NotEqual: return new IndexScan(name, x => x.CompareTo(value) != 0, Query.Ascending);
-                case BsonExpressionType.In: return value.IsArray ?
-                        (Index)new IndexIn(name, value.AsArray, Query.Ascending) :
-                        (Index)new IndexEquals(name, value);
-                default: return null;
-            }
+                BsonExpressionType.Equal => new IndexEquals(name, value),
+                BsonExpressionType.Between => new IndexRange(name, value.AsArray[0], value.AsArray[1], true, true, Query.Ascending),
+                BsonExpressionType.Like => new IndexLike(name, value.AsString, Query.Ascending),
+                BsonExpressionType.GreaterThan => new IndexRange(name, value, BsonValue.MaxValue, false, true, Query.Ascending),
+                BsonExpressionType.GreaterThanOrEqual => new IndexRange(name, value, BsonValue.MaxValue, true, true, Query.Ascending),
+                BsonExpressionType.LessThan => new IndexRange(name, BsonValue.MinValue, value, true, false, Query.Ascending),
+                BsonExpressionType.LessThanOrEqual => new IndexRange(name, BsonValue.MinValue, value, true, true, Query.Ascending),
+                BsonExpressionType.NotEqual => new IndexScan(name, x => x.CompareTo(value) != 0, Query.Ascending),
+                BsonExpressionType.In => value.IsArray ?
+                                        (Index)new IndexIn(name, value.AsArray, Query.Ascending) :
+                                        (Index)new IndexEquals(name, value),
+                _ => null,
+            };
         }
     }
 }

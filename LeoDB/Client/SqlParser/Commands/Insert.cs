@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using LeoDB.Engine;
-using static LeoDB.Constants;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     internal partial class SqlParser
     {
@@ -44,14 +38,14 @@ namespace LeoDB
 
                 var type = _tokenizer.ReadToken().Expect(TokenType.Word);
 
-                switch(type.Value.ToUpper())
+                return type.Value.ToUpper() switch
                 {
-                    case "GUID": return BsonAutoId.Guid;
-                    case "INT": return BsonAutoId.Int32;
-                    case "LONG": return BsonAutoId.Int64;
-                    case "OBJECTID": return BsonAutoId.ObjectId;
-                    default: throw LeoException.UnexpectedToken(type, "DATE, GUID, INT, LONG, OBJECTID");
-                }
+                    "GUID" => BsonAutoId.Guid,
+                    "INT" => BsonAutoId.Int32,
+                    "LONG" => BsonAutoId.Int64,
+                    "OBJECTID" => BsonAutoId.ObjectId,
+                    _ => throw LeoException.UnexpectedToken(type, "DATE, GUID, INT, LONG, OBJECTID"),
+                };
             }
 
             return BsonAutoId.ObjectId;

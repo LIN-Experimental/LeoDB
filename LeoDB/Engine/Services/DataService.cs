@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -88,7 +87,7 @@ namespace LeoDB.Engine
             DataBlock lastBlock = null;
             var updateAddress = blockAddress;
 
-            IEnumerable <BufferSlice> source()
+            IEnumerable<BufferSlice> source()
             {
                 var bytesToCopy = 0;
 
@@ -183,7 +182,7 @@ namespace LeoDB.Engine
         public void Delete(PageAddress blockAddress)
         {
             // delete all document blocks
-            while(blockAddress != PageAddress.Empty)
+            while (blockAddress != PageAddress.Empty)
             {
                 var page = _snapshot.GetPage<DataPage>(blockAddress.PageID);
                 var block = page.GetBlock(blockAddress.Index);

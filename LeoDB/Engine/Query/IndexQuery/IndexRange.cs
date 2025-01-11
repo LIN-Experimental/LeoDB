@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using static LeoDB.Constants;
+﻿using System.Collections.Generic;
 
 namespace LeoDB.Engine
 {
@@ -41,7 +38,7 @@ namespace LeoDB.Engine
             var endEquals = this.Order == Query.Ascending ? _endEquals : _startEquals;
 
             // find first indexNode (or get from head/tail if Min/Max value)
-            var first = 
+            var first =
                 start.Type == BsonType.MinValue ? indexer.GetNode(index.Head) :
                 start.Type == BsonType.MaxValue ? indexer.GetNode(index.Tail) :
                 indexer.Find(index, start, true, this.Order);

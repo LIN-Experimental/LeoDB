@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -13,30 +7,27 @@ namespace LeoDB
     {
         public string ResolveMethod(MethodInfo method)
         {
-            switch (method.Name)
+            return method.Name switch
             {
                 // instance methods
-                case "ToString": return "STRING(#)";
-
+                "ToString" => "STRING(#)",
                 // static methods
-                case "NewGuid": return "GUID()";
-                case "Parse": return "GUID(@0)";
-                case "TryParse": throw new NotSupportedException("There is no TryParse translate. Use Guid.Parse()");
-                case "Equals": return "# = @0";
-            }
-
-            return null;
+                "NewGuid" => "GUID()",
+                "Parse" => "GUID(@0)",
+                "TryParse" => throw new NotSupportedException("There is no TryParse translate. Use Guid.Parse()"),
+                "Equals" => "# = @0",
+                _ => null,
+            };
         }
 
         public string ResolveMember(MemberInfo member)
         {
-            switch (member.Name)
+            return member.Name switch
             {
                 // static properties
-                case "Empty": return "GUID('00000000-0000-0000-0000-000000000000')";
-            }
-
-            return null;
+                "Empty" => "GUID('00000000-0000-0000-0000-000000000000')",
+                _ => null,
+            };
         }
 
         public string ResolveCtor(ConstructorInfo ctor)

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -53,7 +50,7 @@ namespace LeoDB.Engine
         {
             // if current thread are in reserved mode, do not exit transaction (will be exit from ExitExclusive)
             if (_transaction.IsWriteLockHeld) return;
-            
+
             //This can be called when a lock has either been released by the slim or somewhere else therefore there is no lock to release from ExitReadLock()
             if (_transaction.IsReadLockHeld)
             {

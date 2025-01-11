@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -87,7 +85,7 @@ namespace LeoDB
                 }
                 newChunkIndex++;
             }
-            
+
             newChunkIndex--;
             seekStreamPosition -= _chunkLengths[newChunkIndex];
             _positionInChunk = (int)(_streamPosition - seekStreamPosition);

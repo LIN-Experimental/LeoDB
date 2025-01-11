@@ -4,13 +4,12 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB.Engine
 {
     internal class SysFileCsv : SystemCollection
     {
-        private readonly static IFormatProvider _numberFormat = CultureInfo.InvariantCulture.NumberFormat;
+        private static readonly IFormatProvider _numberFormat = CultureInfo.InvariantCulture.NumberFormat;
 
         public SysFileCsv() : base("$file_csv")
         {
@@ -53,7 +52,7 @@ namespace LeoDB.Engine
                     var index = 0;
                     var doc = new BsonDocument();
 
-                    while(true)
+                    while (true)
                     {
                         var value = this.ReadString(reader, delimiter, out var newLine);
 
@@ -123,7 +122,7 @@ namespace LeoDB.Engine
 
                     var idxValue = 0;
 
-                    foreach(var field in headerFields)
+                    foreach (var field in headerFields)
                     {
                         var value = doc[field];
 
@@ -188,7 +187,7 @@ namespace LeoDB.Engine
             var c = reader.Read();
 
             // eat possible new line before read string
-            while(c == '\n' || c == '\r')
+            while (c is '\n' or '\r')
             {
                 c = reader.Read();
             }
@@ -200,11 +199,11 @@ namespace LeoDB.Engine
             }
 
             // read " string
-            if(c == '"')
+            if (c == '"')
             {
                 var last = c;
 
-                while(c != -1)
+                while (c != -1)
                 {
                     c = reader.Read();
 
@@ -230,14 +229,14 @@ namespace LeoDB.Engine
             }
             else
             {
-                while(!(c == '\n' || c == '\r' || c == delimiter || c == -1))
+                while (!(c == '\n' || c == '\r' || c == delimiter || c == -1))
                 {
                     sb.Append((char)c);
                     c = reader.Read();
                 }
             }
 
-            newLine = (c == '\n' || c == '\r');
+            newLine = (c is '\n' or '\r');
 
             return sb.ToString();
         }

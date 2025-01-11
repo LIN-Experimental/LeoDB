@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Runtime.InteropServices;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -16,9 +15,9 @@ namespace LeoDB
         {
             var errorCode = Marshal.GetHRForException(ex) & ((1 << 16) - 1);
 
-            return 
-                errorCode == ERROR_SHARING_VIOLATION ||
-                errorCode == ERROR_LOCK_VIOLATION;
+            return
+                errorCode is ERROR_SHARING_VIOLATION or
+                ERROR_LOCK_VIOLATION;
         }
 
         /// <summary>

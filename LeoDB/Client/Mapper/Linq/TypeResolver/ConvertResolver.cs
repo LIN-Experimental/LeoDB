@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using static LeoDB.Constants;
+﻿using System.Reflection;
 
 namespace LeoDB
 {
@@ -13,20 +6,18 @@ namespace LeoDB
     {
         public string ResolveMethod(MethodInfo method)
         {
-            switch (method.Name)
+            return method.Name switch
             {
-                case "ToInt32": return "INT32(@0)";
-                case "ToInt64": return "INT64(@0)";
-                case "ToDouble": return "DOUBLE(@0)";
-                case "ToDecimal": return "DECIMAL(@0)";
-
-                case "ToDateTime": return "DATE(@0)";
-                case "FromBase64String": return "BINARY(@0)";
-                case "ToBoolean": return "BOOL(@0)";
-                case "ToString": return "STRING(@0)";
-            }
-
-            return null;
+                "ToInt32" => "INT32(@0)",
+                "ToInt64" => "INT64(@0)",
+                "ToDouble" => "DOUBLE(@0)",
+                "ToDecimal" => "DECIMAL(@0)",
+                "ToDateTime" => "DATE(@0)",
+                "FromBase64String" => "BINARY(@0)",
+                "ToBoolean" => "BOOL(@0)",
+                "ToString" => "STRING(@0)",
+                _ => null,
+            };
         }
 
         public string ResolveMember(MemberInfo member) => null;

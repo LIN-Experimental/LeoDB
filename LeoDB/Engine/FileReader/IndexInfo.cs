@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static LeoDB.Constants;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     internal class IndexInfo
     {

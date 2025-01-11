@@ -1,27 +1,18 @@
-﻿using LeoDB;
-using LeoDB.Engine;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System;
 
-namespace LeoDB.Stress
+namespace LeoDB.Stress;
+
+public class Program
 {
-    public class Program
+    private static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            var filename = args.Length >= 1 ? args[0] : "";
-            var duration = TimeSpanEx.Parse(args.Length >= 2 ? args[1] : "60s");
+        var filename = args.Length >= 1 ? args[0] : "";
+        var duration = TimeSpanEx.Parse(args.Length >= 2 ? args[1] : "60s");
 
-            var e = new TestExecution(filename, duration);
+        var e = new TestExecution(filename, duration);
 
-            e.Execute();
+        e.Execute();
 
-            Console.ReadKey();
-        }
+        Console.ReadKey();
     }
 }

@@ -1,10 +1,5 @@
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -203,7 +198,7 @@ namespace LeoDB.Engine
         /// </summary>
         public IEnumerable<KeyValuePair<string, uint>> GetCollections()
         {
-            foreach(var el in _collections.GetElements())
+            foreach (var el in _collections.GetElements())
             {
                 yield return new KeyValuePair<string, uint>(el.Key, (uint)el.Value.AsInt32);
             }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using static LeoDB.Constants;
+﻿using System.Collections.Generic;
 
 namespace LeoDB.Engine
 {
@@ -13,7 +8,7 @@ namespace LeoDB.Engine
         {
             var values = _sequences.ToArray();
 
-            foreach(var value in values)
+            foreach (var value in values)
             {
                 yield return new BsonDocument
                 {

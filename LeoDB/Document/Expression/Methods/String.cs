@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Text.RegularExpressions;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -211,7 +207,7 @@ namespace LeoDB
             }
             else
             {
-                foreach(var str in SPLIT(value, pattern))
+                foreach (var str in SPLIT(value, pattern))
                 {
                     yield return str;
                 }
@@ -225,7 +221,7 @@ namespace LeoDB
         {
             if (format.IsString)
             {
-                return string.Format("{0:" +  format.AsString + "}", value.RawValue);
+                return string.Format("{0:" + format.AsString + "}", value.RawValue);
             }
 
             return BsonValue.Null;

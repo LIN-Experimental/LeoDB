@@ -98,22 +98,22 @@ public partial class LeoEngine
     {
         // normalize id before find
         var id = doc["_id"];
-        
+
         // validate id for null, min/max values
         if (id.IsNull || id.IsMinValue || id.IsMaxValue)
         {
             throw LeoException.InvalidDataType("_id", id);
         }
-        
+
         // find indexNode from pk index
         var pkNode = indexer.Find(col.PK, id, false, LeoDB.Query.Ascending);
-        
+
         // if not found document, no updates
         if (pkNode == null) return false;
-        
+
         // update data storage
         data.Update(col, pkNode.DataBlock, doc);
-        
+
         // get all current non-pk index nodes from this data block (slot, key, nodePosition)
         var oldKeys = indexer.GetNodeList(pkNode.NextNode)
             .Select(x => new Tuple<byte, BsonValue, PageAddress>(x.Slot, x.Key, x.Position))
@@ -152,7 +152,7 @@ public partial class LeoEngine
         var last = indexer.DeleteList(pkNode.Position, toDelete);
 
         // now, insert all new nodes
-        foreach(var elem in toInsert)
+        foreach (var elem in toInsert)
         {
             var index = col.GetCollectionIndex(elem.Item3);
 

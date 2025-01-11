@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LeoDB.Utils
 {
@@ -21,8 +18,8 @@ namespace LeoDB.Utils
             this.Exceptions.Add(initial);
         }
 
-        public bool InvalidDatafileState => this.Exceptions.Any(ex => 
-            ex is LeoException liteEx && 
+        public bool InvalidDatafileState => this.Exceptions.Any(ex =>
+            ex is LeoException liteEx &&
             liteEx.ErrorCode == LeoException.INVALID_DATAFILE_STATE);
 
         [DebuggerHidden]

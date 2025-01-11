@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -163,7 +162,7 @@ namespace LeoDB
 
         public bool Is(string value, bool ignoreCase = true)
         {
-            return 
+            return
                 this.Type == TokenType.Word &&
                 value.Equals(this.Value, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
         }
@@ -172,25 +171,12 @@ namespace LeoDB
         {
             get
             {
-                switch (this.Type)
+                return this.Type switch
                 {
-                    case TokenType.Percent:
-                    case TokenType.Slash:
-                    case TokenType.Asterisk:
-                    case TokenType.Plus:
-                    case TokenType.Minus:
-                    case TokenType.Equals:
-                    case TokenType.Greater:
-                    case TokenType.GreaterOrEquals:
-                    case TokenType.Less:
-                    case TokenType.LessOrEquals:
-                    case TokenType.NotEquals:
-                        return true;
-                    case TokenType.Word:
-                        return _keywords.Contains(Value);
-                    default:
-                        return false;
-                }
+                    TokenType.Percent or TokenType.Slash or TokenType.Asterisk or TokenType.Plus or TokenType.Minus or TokenType.Equals or TokenType.Greater or TokenType.GreaterOrEquals or TokenType.Less or TokenType.LessOrEquals or TokenType.NotEquals => true,
+                    TokenType.Word => _keywords.Contains(Value),
+                    _ => false,
+                };
             }
         }
 
@@ -520,7 +506,7 @@ namespace LeoDB
                 case '\r':
                 case '\t':
                     var sb = new StringBuilder();
-                    while(char.IsWhiteSpace(_char) && !_eof)
+                    while (char.IsWhiteSpace(_char) && !_eof)
                     {
                         sb.Append(_char);
                         this.ReadChar();
@@ -597,14 +583,14 @@ namespace LeoDB
                     dbl = true;
                     canDot = false;
                 }
-                else if (_char == 'e' || _char == 'E')
+                else if (_char is 'e' or 'E')
                 {
                     if (canE == false) break;
                     canE = false;
                     canSign = true;
                     dbl = true;
                 }
-                else if (_char == '-' || _char == '+')
+                else if (_char is '-' or '+')
                 {
                     if (canSign == false) break;
                     canSign = false;
@@ -616,7 +602,7 @@ namespace LeoDB
 
             return sb.ToString();
         }
-        
+
         /// <summary>
         /// Read a string removing open and close " or '
         /// </summary>
@@ -687,11 +673,11 @@ namespace LeoDB
         public static uint ParseSingleChar(char c1, uint multiplier)
         {
             uint p1 = 0;
-            if (c1 >= '0' && c1 <= '9')
+            if (c1 is >= '0' and <= '9')
                 p1 = (uint)(c1 - '0') * multiplier;
-            else if (c1 >= 'A' && c1 <= 'F')
+            else if (c1 is >= 'A' and <= 'F')
                 p1 = (uint)((c1 - 'A') + 10) * multiplier;
-            else if (c1 >= 'a' && c1 <= 'f')
+            else if (c1 is >= 'a' and <= 'f')
                 p1 = (uint)((c1 - 'a') + 10) * multiplier;
             return p1;
         }

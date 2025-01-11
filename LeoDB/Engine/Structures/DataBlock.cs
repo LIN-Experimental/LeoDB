@@ -1,7 +1,4 @@
-﻿using System;
-using static LeoDB.Constants;
-
-namespace LeoDB.Engine
+﻿namespace LeoDB.Engine
 {
     internal class DataBlock
     {

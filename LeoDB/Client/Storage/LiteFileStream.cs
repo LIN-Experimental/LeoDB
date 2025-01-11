@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using static LeoDB.Constants;
 
 namespace LeoDB
@@ -37,7 +36,7 @@ namespace LeoDB
                 // initialize first data block
                 _currentChunkData = this.GetChunkData(_currentChunkIndex);
             }
-            else if(mode == FileAccess.Write)
+            else if (mode == FileAccess.Write)
             {
                 _buffer = new MemoryStream(MAX_CHUNK_SIZE);
 

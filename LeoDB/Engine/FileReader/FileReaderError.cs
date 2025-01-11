@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using static LeoDB.Constants;
 
 namespace LeoDB.Engine
 {
@@ -12,7 +8,7 @@ namespace LeoDB.Engine
     {
         public DateTime Created { get; } = DateTime.Now;
         public FileOrigin Origin { get; set; }
-        public long Position { get; set;  }
+        public long Position { get; set; }
         public uint? PageID { get; set; }
         public PageType PageType { get; set; }
         public string Collection { get; set; }

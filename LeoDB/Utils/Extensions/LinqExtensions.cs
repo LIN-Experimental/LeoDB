@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -56,7 +55,7 @@ namespace LeoDB
         {
             T last = null;
 
-            foreach(var item in source)
+            foreach (var item in source)
             {
                 if (last != default(T))
                 {

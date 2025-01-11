@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using LeoDB.Engine;
-using static LeoDB.Constants;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     internal partial class SqlParser
     {
@@ -21,7 +14,7 @@ namespace LeoDB
 
             var eof = _tokenizer.LookAhead();
 
-            if (eof.Type == TokenType.EOF || eof.Type == TokenType.SemiColon)
+            if (eof.Type is TokenType.EOF or TokenType.SemiColon)
             {
                 _tokenizer.ReadToken();
 

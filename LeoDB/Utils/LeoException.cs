@@ -2,7 +2,6 @@
 using System;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using static LeoDB.Constants;
 
 namespace LeoDB
@@ -60,7 +59,7 @@ namespace LeoDB
         public const int ENTITY_INITIALIZATION_FAILED = 219;
         public const int MAPPER_NOT_FOUND = 220;
         public const int MAPPING_ERROR = 221;
-        
+
 
         public const int INVALID_DATAFILE_STATE = 999;
 
@@ -83,8 +82,8 @@ namespace LeoDB
             this.ErrorCode = code;
         }
 
-        internal LeoException (int code, Exception inner, string message, params object[] args)
-        : base (string.Format (message, args), inner)
+        internal LeoException(int code, Exception inner, string message, params object[] args)
+        : base(string.Format(message, args), inner)
         {
             this.ErrorCode = code;
         }
@@ -332,7 +331,7 @@ namespace LeoDB
         {
             return new LeoException(DATA_TYPE_NOT_ASSIGNABLE, $"Data type {type1} is not assignable from data type {type2}");
         }
-            
+
         internal static LeoException FileNotEncrypted()
         {
             return new LeoException(NOT_ENCRYPTED, "File is not encrypted.");

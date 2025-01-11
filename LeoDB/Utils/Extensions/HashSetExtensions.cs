@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using static LeoDB.Constants;
+﻿using System.Collections.Generic;
 
 namespace LeoDB
 {
@@ -12,7 +8,7 @@ namespace LeoDB
         {
             if (items == null) return hash;
 
-            foreach(var item in items)
+            foreach (var item in items)
             {
                 hash.Add(item);
             }

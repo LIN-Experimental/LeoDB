@@ -191,7 +191,7 @@ namespace LeoDB.Engine
         /// </summary>
         public override void Write(byte[] array, int offset, int count)
         {
-            ENSURE(count == PAGE_SIZE || count == 1, "buffer size must be PAGE_SIZE");
+            ENSURE(count is PAGE_SIZE or 1, "buffer size must be PAGE_SIZE");
             ENSURE(this.Position == HeaderPage.P_INVALID_DATAFILE_STATE || this.Position % PAGE_SIZE == 0, "AesWrite: position must be in PAGE_SIZE module. Position={0}, File={1}", this.Position, _name);
 
             _writer.Write(array, offset, count);

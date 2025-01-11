@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
-using System.Text.RegularExpressions;
-using static LeoDB.Constants;
 
 namespace LeoDB
 {
@@ -158,7 +154,7 @@ namespace LeoDB
                     BsonExpression result;
 
                     // when operation is AND/OR, use AndAlso|OrElse
-                    if (type == BsonExpressionType.And || type == BsonExpressionType.Or)
+                    if (type is BsonExpressionType.And or BsonExpressionType.Or)
                     {
                         result = CreateLogicExpression(type, left, right);
                     }
@@ -817,7 +813,7 @@ namespace LeoDB
 
             var ahead = tokenizer.LookAhead(false);
 
-            if (ahead.Type == TokenType.Word || ahead.Type == TokenType.Int)
+            if (ahead.Type is TokenType.Word or TokenType.Int)
             {
                 var parameterName = tokenizer.ReadToken(false).Value;
                 var name = Expression.Constant(parameterName);
@@ -983,11 +979,11 @@ namespace LeoDB
         private static BsonExpression TryParsePath(Tokenizer tokenizer, ExpressionContext context, BsonDocument parameters, DocumentScope scope)
         {
             // test $ or @ or WORD
-            if (tokenizer.Current.Type != TokenType.At && tokenizer.Current.Type != TokenType.Dollar && tokenizer.Current.Type != TokenType.Word) return null;
+            if (tokenizer.Current.Type is not TokenType.At and not TokenType.Dollar and not TokenType.Word) return null;
 
             var defaultScope = (scope == DocumentScope.Root ? TokenType.Dollar : TokenType.At);
 
-            if (tokenizer.Current.Type == TokenType.At || tokenizer.Current.Type == TokenType.Dollar)
+            if (tokenizer.Current.Type is TokenType.At or TokenType.Dollar)
             {
                 defaultScope = tokenizer.Current.Type;
 
@@ -1172,14 +1168,13 @@ namespace LeoDB
 
             var token = tokenizer.Current.Value.ToUpperInvariant();
 
-            switch (token)
+            return token switch
             {
-                case "MAP": return ParseFunction(token, BsonExpressionType.Map, tokenizer, context, parameters, scope);
-                case "FILTER": return ParseFunction(token, BsonExpressionType.Filter, tokenizer, context, parameters, scope);
-                case "SORT": return ParseFunction(token, BsonExpressionType.Sort, tokenizer, context, parameters, scope);
-            }
-
-            return null;
+                "MAP" => ParseFunction(token, BsonExpressionType.Map, tokenizer, context, parameters, scope),
+                "FILTER" => ParseFunction(token, BsonExpressionType.Filter, tokenizer, context, parameters, scope),
+                "SORT" => ParseFunction(token, BsonExpressionType.Sort, tokenizer, context, parameters, scope),
+                _ => null,
+            };
         }
 
         /// <summary>

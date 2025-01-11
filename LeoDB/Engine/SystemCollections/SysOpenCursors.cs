@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using static LeoDB.Constants;
 
 namespace LeoDB.Engine
 {
@@ -13,7 +9,7 @@ namespace LeoDB.Engine
         {
             foreach (var transaction in _monitor.Transactions)
             {
-                foreach(var cursor in transaction.OpenCursors)
+                foreach (var cursor in transaction.OpenCursors)
                 {
                     yield return new BsonDocument
                     {

@@ -70,7 +70,7 @@ namespace LeoDB.Engine
         /// </summary>
         public IEnumerable<PageAddress> GetBlocks()
         {
-            foreach(var index in base.GetUsedIndexs())
+            foreach (var index in base.GetUsedIndexs())
             {
                 var slotPosition = BasePage.CalcPositionAddr(index);
                 var position = _buffer.ReadUInt16(slotPosition);

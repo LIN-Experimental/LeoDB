@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-using static LeoDB.Constants;
+﻿using System.Reflection;
 
 namespace LeoDB
 {
@@ -14,7 +7,7 @@ namespace LeoDB
         public virtual string ResolveMethod(MethodInfo method)
         {
             // all methods in Enumerable are Extensions (static methods), so first parameter is IEnumerable
-            var name = Reflection.MethodName(method, 1); 
+            var name = Reflection.MethodName(method, 1);
 
             switch (name)
             {
@@ -41,7 +34,7 @@ namespace LeoDB
 
                 // filter
                 case "Where(Func<T,TResult>)": return "FILTER(@0 => @1)";
-                
+
                 // map
                 case "Select(Func<T,TResult>)": return "MAP(@0 => @1)";
 
@@ -60,7 +53,7 @@ namespace LeoDB
                 case "Min(Func<T,TResult>)": return "MIN(MAP(@0 => @1))";
 
                 // convert to array
-                case "ToList()": 
+                case "ToList()":
                 case "ToArray()": return "ARRAY(@0)";
 
                 // any/all special cases
@@ -70,7 +63,7 @@ namespace LeoDB
             }
 
             // special Contains method
-            switch(method.Name)
+            switch (method.Name)
             {
                 case "Contains": return "@0 ANY = @1";
             };
@@ -82,13 +75,12 @@ namespace LeoDB
         {
             // this both members are not from IEnumerable:
             // but any IEnumerable type will run this resolver (IList, ICollection)
-            switch(member.Name)
+            return member.Name switch
             {
-                case "Length": return "LENGTH(#)";
-                case "Count": return "COUNT(#)";
-            }
-
-            return null;
+                "Length" => "LENGTH(#)",
+                "Count" => "COUNT(#)",
+                _ => null,
+            };
         }
 
         public string ResolveCtor(ConstructorInfo ctor) => null;

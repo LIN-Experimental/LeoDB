@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.IO;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -107,7 +100,7 @@ namespace LeoDB.Engine
 
 
             // get difference size
-            return 
+            return
                 new FileInfo(backupFilename).Length -
                 new FileInfo(_settings.Filename).Length;
         }

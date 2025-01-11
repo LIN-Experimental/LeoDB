@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using LeoDB.Engine;
-using static LeoDB.Constants;
-
-namespace LeoDB
+﻿namespace LeoDB
 {
     internal partial class SqlParser
     {
@@ -30,7 +24,7 @@ namespace LeoDB
 
                 return new BsonDataReader(result);
             }
-            else if(token.Is("COLLECTION"))
+            else if (token.Is("COLLECTION"))
             {
                 var collection = _tokenizer.ReadToken().Expect(TokenType.Word).Value;
 

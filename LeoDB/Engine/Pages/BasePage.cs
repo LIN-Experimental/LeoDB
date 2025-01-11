@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -312,7 +309,7 @@ namespace LeoDB.Engine
             ENSURE(this.ItemsCount < byte.MaxValue, "page full");
             ENSURE(this.FreeBytes >= this.FragmentedBytes, "fragmented bytes must be at most free bytes");
 
-            if(!(this.FreeBytes >= bytesLength + (isNewInsert ? SLOT_SIZE : 0)))
+            if (!(this.FreeBytes >= bytesLength + (isNewInsert ? SLOT_SIZE : 0)))
             {
                 throw LeoException.InvalidFreeSpacePage(this.PageID, this.FreeBytes, bytesLength + (isNewInsert ? SLOT_SIZE : 0));
             }
@@ -599,7 +596,7 @@ namespace LeoDB.Engine
             // clear fragment blocks (page are in a continuous segment)
             this.FragmentedBytes = 0;
             this.NextFreePosition = next;
-         }
+        }
 
         /// <summary>
         /// Store start index used in GetFreeIndex to avoid always run full loop over all indexes
