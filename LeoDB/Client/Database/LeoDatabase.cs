@@ -148,12 +148,12 @@ public partial class LeoDatabase : ILeoDatabase
 
     #region FileStorage
 
-    private ILiteStorage<string> _fs = null;
+    private ILeoStorage<string> _fs = null;
 
     /// <summary>
     /// Returns a special collection for storage files/stream inside datafile. Use _files and _chunks collection names. FileId is implemented as string. Use "GetStorage" for custom options
     /// </summary>
-    public ILiteStorage<string> FileStorage
+    public ILeoStorage<string> FileStorage
     {
         get { return _fs ?? (_fs = this.GetStorage<string>()); }
     }
@@ -161,9 +161,9 @@ public partial class LeoDatabase : ILeoDatabase
     /// <summary>
     /// Get new instance of Storage using custom FileId type, custom "_files" collection name and custom "_chunks" collection. LeoDB support multiples file storages (using different files/chunks collection names)
     /// </summary>
-    public ILiteStorage<TFileId> GetStorage<TFileId>(string filesCollection = "_files", string chunksCollection = "_chunks")
+    public ILeoStorage<TFileId> GetStorage<TFileId>(string filesCollection = "_files", string chunksCollection = "_chunks")
     {
-        return new LiteStorage<TFileId>(this, filesCollection, chunksCollection);
+        return new LeoStorage<TFileId>(this, filesCollection, chunksCollection);
     }
 
     #endregion

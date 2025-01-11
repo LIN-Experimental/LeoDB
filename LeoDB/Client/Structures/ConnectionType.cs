@@ -1,11 +1,10 @@
-﻿namespace LeoDB
+﻿namespace LeoDB;
+
+public enum ConnectionType
 {
-    public enum ConnectionType
-    {
-        Direct,
-        Shared
-        // MimePipes
-        // Tcp
-        // Rest
-    }
+    Direct,
+    Shared,
+    Tcp
+    // MimePipes
+    // Rest
 }

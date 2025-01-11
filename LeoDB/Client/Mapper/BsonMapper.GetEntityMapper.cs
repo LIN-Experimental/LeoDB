@@ -65,7 +65,8 @@ public partial class BsonMapper
         foreach (var memberInfo in members)
         {
             // checks [BsonIgnore]
-            if (CustomAttributeExtensions.IsDefined(memberInfo, ignoreAttr, true)) continue;
+            if (CustomAttributeExtensions.IsDefined(memberInfo, ignoreAttr, true)) 
+                continue;
 
             // checks field name conversion
             var name = this.ResolveFieldName(memberInfo.Name);

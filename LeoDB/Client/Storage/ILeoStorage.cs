@@ -2,37 +2,37 @@
 
 namespace LeoDB;
 
-public interface ILiteStorage<TFileId>
+public interface ILeoStorage<TFileId>
 {
     /// <summary>
-    /// Find a file inside datafile and returns LiteFileInfo instance. Returns null if not found
+    /// Find a file inside datafile and returns LeoFileInfo instance. Returns null if not found
     /// </summary>
-    LiteFileInfo<TFileId> FindById(TFileId id);
+    LeoFileInfo<TFileId> FindById(TFileId id);
 
     /// <summary>
     /// Find all files that match with predicate expression.
     /// </summary>
-    IEnumerable<LiteFileInfo<TFileId>> Find(BsonExpression predicate);
+    IEnumerable<LeoFileInfo<TFileId>> Find(BsonExpression predicate);
 
     /// <summary>
     /// Find all files that match with predicate expression.
     /// </summary>
-    IEnumerable<LiteFileInfo<TFileId>> Find(string predicate, BsonDocument parameters);
+    IEnumerable<LeoFileInfo<TFileId>> Find(string predicate, BsonDocument parameters);
 
     /// <summary>
     /// Find all files that match with predicate expression.
     /// </summary>
-    IEnumerable<LiteFileInfo<TFileId>> Find(string predicate, params BsonValue[] args);
+    IEnumerable<LeoFileInfo<TFileId>> Find(string predicate, params BsonValue[] args);
 
     /// <summary>
     /// Find all files that match with predicate expression.
     /// </summary>
-    IEnumerable<LiteFileInfo<TFileId>> Find(Expression<Func<LiteFileInfo<TFileId>, bool>> predicate);
+    IEnumerable<LeoFileInfo<TFileId>> Find(Expression<Func<LeoFileInfo<TFileId>, bool>> predicate);
 
     /// <summary>
     /// Find all files inside file collections
     /// </summary>
-    IEnumerable<LiteFileInfo<TFileId>> FindAll();
+    IEnumerable<LeoFileInfo<TFileId>> FindAll();
 
     /// <summary>
     /// Returns if a file exisits in database
@@ -42,17 +42,17 @@ public interface ILiteStorage<TFileId>
     /// <summary>
     /// Open/Create new file storage and returns linked Stream to write operations.
     /// </summary>
-    LiteFileStream<TFileId> OpenWrite(TFileId id, string filename, BsonDocument metadata = null);
+    LeoFileStream<TFileId> OpenWrite(TFileId id, string filename, BsonDocument metadata = null);
 
     /// <summary>
     /// Upload a file based on stream data
     /// </summary>
-    LiteFileInfo<TFileId> Upload(TFileId id, string filename, Stream stream, BsonDocument metadata = null);
+    LeoFileInfo<TFileId> Upload(TFileId id, string filename, Stream stream, BsonDocument metadata = null);
 
     /// <summary>
     /// Upload a file based on file system data
     /// </summary>
-    LiteFileInfo<TFileId> Upload(TFileId id, string filename);
+    LeoFileInfo<TFileId> Upload(TFileId id, string filename);
 
     /// <summary>
     /// Update metadata on a file. File must exist.
@@ -62,17 +62,17 @@ public interface ILiteStorage<TFileId>
     /// <summary>
     /// Load data inside storage and returns as Stream
     /// </summary>
-    LiteFileStream<TFileId> OpenRead(TFileId id);
+    LeoFileStream<TFileId> OpenRead(TFileId id);
 
     /// <summary>
     /// Copy all file content to a steam
     /// </summary>
-    LiteFileInfo<TFileId> Download(TFileId id, Stream stream);
+    LeoFileInfo<TFileId> Download(TFileId id, Stream stream);
 
     /// <summary>
     /// Copy all file content to a file
     /// </summary>
-    LiteFileInfo<TFileId> Download(TFileId id, string filename, bool overwritten);
+    LeoFileInfo<TFileId> Download(TFileId id, string filename, bool overwritten);
 
     /// <summary>
     /// Delete a file inside datafile and all metadata related
