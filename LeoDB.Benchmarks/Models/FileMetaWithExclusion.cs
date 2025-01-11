@@ -19,7 +19,7 @@ namespace LeoDB.Benchmarks.Models
             ShouldBeShown = fileMetaBase.ShouldBeShown;
         }
 
-        [BsonIgnore]
+        [CollectionFieldIgnore]
         public override bool IsValid => base.IsValid;
     }
 }

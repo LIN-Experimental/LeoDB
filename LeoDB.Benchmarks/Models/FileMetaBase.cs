@@ -4,10 +4,10 @@ namespace LeoDB.Benchmarks.Models
 {
     public class FileMetaBase
     {
-        [BsonIgnore]
+        [CollectionFieldIgnore]
         public const string BsonIdPropertyKey = "_id";
 
-        [BsonId]
+        [CollectionId]
         public virtual string Id => $"{FileId}_{Version}";
 
         public Guid FileId { get; set; }

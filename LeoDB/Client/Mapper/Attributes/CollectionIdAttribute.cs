@@ -5,16 +5,16 @@ namespace LeoDB;
 /// <summary>
 /// Indica que la propiedad se utilizará como BsonDocument Id.
 /// </summary>
-public class BsonIdAttribute : Attribute
+public class CollectionIdAttribute : Attribute
 {
     public bool AutoId { get; private set; }
 
-    public BsonIdAttribute()
+    public CollectionIdAttribute()
     {
         this.AutoId = true;
     }
 
-    public BsonIdAttribute(bool autoId)
+    public CollectionIdAttribute(bool autoId)
     {
         this.AutoId = autoId;
     }

@@ -58,10 +58,10 @@ public partial class BsonMapper
     /// </summary>
     protected void BuildEntityMapper(EntityMapper mapper)
     {
-        var idAttr = typeof(BsonIdAttribute);
-        var ignoreAttr = typeof(BsonIgnoreAttribute);
-        var fieldAttr = typeof(BsonFieldAttribute);
-        var dbrefAttr = typeof(BsonRefAttribute);
+        var idAttr = typeof(CollectionIdAttribute);
+        var ignoreAttr = typeof(CollectionFieldIgnoreAttribute);
+        var fieldAttr = typeof(CollectionFieldAttribute);
+        var dbrefAttr = typeof(CollectionReferenceAttribute);
 
         var members = this.GetTypeMembers(mapper.ForType);
         var id = this.GetIdMember(members);
@@ -75,7 +75,7 @@ public partial class BsonMapper
             var name = this.ResolveFieldName(memberInfo.Name);
 
             // check if property has [BsonField]
-            var field = (BsonFieldAttribute)CustomAttributeExtensions.GetCustomAttributes(memberInfo, fieldAttr, true)
+            var field = (CollectionFieldAttribute)CustomAttributeExtensions.GetCustomAttributes(memberInfo, fieldAttr, true)
                 .FirstOrDefault();
 
             // check if property has [BsonField] with a custom field name
@@ -95,7 +95,7 @@ public partial class BsonMapper
             var setter = Reflection.CreateGenericSetter(mapper.ForType, memberInfo);
 
             // check if property has [BsonId] to get with was setted AutoId = true
-            var autoId = (BsonIdAttribute)CustomAttributeExtensions.GetCustomAttributes(memberInfo, idAttr, true)
+            var autoId = (CollectionIdAttribute)CustomAttributeExtensions.GetCustomAttributes(memberInfo, idAttr, true)
                 .FirstOrDefault();
 
             // get data type
@@ -120,7 +120,7 @@ public partial class BsonMapper
             };
 
             // check if property has [BsonRef]
-            var dbRef = (BsonRefAttribute)CustomAttributeExtensions.GetCustomAttributes(memberInfo, dbrefAttr, false)
+            var dbRef = (CollectionReferenceAttribute)CustomAttributeExtensions.GetCustomAttributes(memberInfo, dbrefAttr, false)
                 .FirstOrDefault();
 
             if (dbRef != null && memberInfo is PropertyInfo)
@@ -149,7 +149,7 @@ public partial class BsonMapper
     protected virtual MemberInfo GetIdMember(IEnumerable<MemberInfo> members)
     {
         return Reflection.SelectMember(members,
-            x => CustomAttributeExtensions.IsDefined(x, typeof(BsonIdAttribute), true),
+            x => CustomAttributeExtensions.IsDefined(x, typeof(CollectionIdAttribute), true),
             x => x.Name.Equals("Id", StringComparison.OrdinalIgnoreCase),
             x => x.Name.Equals(x.DeclaringType.Name + "Id", StringComparison.OrdinalIgnoreCase));
     }
@@ -230,7 +230,7 @@ public partial class BsonMapper
             CreateObject toAdd = (BsonDocument value) =>
                 Activator.CreateInstance(type, paramMap.Select(x =>
                     this.Deserialize(x.Value, value[x.Key])).ToArray());
-            if (ctor.GetCustomAttribute<BsonCtorAttribute>() != null)
+            if (ctor.GetCustomAttribute<CollectionConstructorAttribute>() != null)
             {
                 return toAdd;
             }

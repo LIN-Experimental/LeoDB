@@ -10,22 +10,22 @@ namespace LeoDB
     {
         public TFileId Id { get; internal set; }
 
-        [BsonField("filename")]
+        [CollectionField("filename")]
         public string Filename { get; internal set; }
 
-        [BsonField("mimeType")]
+        [CollectionField("mimeType")]
         public string MimeType { get; internal set; }
 
-        [BsonField("length")]
+        [CollectionField("length")]
         public long Length { get; internal set; } = 0;
 
-        [BsonField("chunks")]
+        [CollectionField("chunks")]
         public int Chunks { get; internal set; } = 0;
 
-        [BsonField("uploadDate")]
+        [CollectionField("uploadDate")]
         public DateTime UploadDate { get; internal set; } = DateTime.Now;
 
-        [BsonField("metadata")]
+        [CollectionField("metadata")]
         public BsonDocument Metadata { get; set; } = new BsonDocument();
 
         // database instances references
