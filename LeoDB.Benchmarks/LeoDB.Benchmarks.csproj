@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFrameworks>net6</TargetFrameworks>
-		<LangVersion>8</LangVersion>
+		<LangVersion>12</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
