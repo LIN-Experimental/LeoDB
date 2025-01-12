@@ -7,6 +7,16 @@ public class EngineSettings
 {
 
     /// <summary>
+    /// Usuario.
+    /// </summary>
+    public string ContextUser { get; set; }
+
+    /// <summary>
+    /// Contraseña.
+    /// </summary>
+    public string UserPassword { get; set; }
+
+    /// <summary>
     /// Base de datos.
     /// </summary>
     public ILeoDatabase Database { get; set; }

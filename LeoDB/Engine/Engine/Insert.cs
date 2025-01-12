@@ -87,6 +87,12 @@ public partial class LeoEngine
             throw LeoException.InvalidDataType("_id", id);
         }
 
+        // Validar permiso.
+        if (!IsAuthorize(PER_INSERT))
+        {
+            throw LeoException.WithoutPermissions(_settings.ContextUser, "INSERT");
+        }
+
         // storage in data pages - returns dataBlock address
         var dataBlock = data.Insert(doc);
 

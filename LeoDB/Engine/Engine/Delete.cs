@@ -14,12 +14,20 @@ public partial class LeoEngine
 
         return this.AutoTransaction(transaction =>
         {
+
+            // Validar permiso.
+            if (!IsAuthorize(PER_DELETE))
+            {
+                throw LeoException.WithoutPermissions(_settings.ContextUser, "DELETE");
+            }
+
             var snapshot = transaction.CreateSnapshot(LockMode.Write, collection, false);
             var collectionPage = snapshot.CollectionPage;
             var data = new DataService(snapshot, _disk.MAX_ITEMS_COUNT);
             var indexer = new IndexService(snapshot, _header.Pragmas.Collation, _disk.MAX_ITEMS_COUNT);
 
-            if (collectionPage == null) return 0;
+            if (collectionPage == null) 
+                return 0;
 
             LOG($"delete `{collection}`", "COMMAND");
 

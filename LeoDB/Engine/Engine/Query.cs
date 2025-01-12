@@ -11,6 +11,12 @@ public partial class LeoEngine
         if (string.IsNullOrWhiteSpace(collection)) throw new ArgumentNullException(nameof(collection));
         if (query == null) throw new ArgumentNullException(nameof(query));
 
+        // Validar permiso.
+        if (!IsAuthorize(PER_READ))
+        {
+            throw LeoException.WithoutPermissions(_settings.ContextUser, "SELECT");
+        }
+
         IEnumerable<BsonDocument> source = null;
 
         // test if is an system collection

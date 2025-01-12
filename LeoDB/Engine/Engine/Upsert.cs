@@ -16,6 +16,19 @@ public partial class LeoEngine
 
         return this.AutoTransaction(transaction =>
         {
+
+            // Validar permiso.
+            if (!IsAuthorize(PER_INSERT))
+            {
+                throw LeoException.WithoutPermissions(_settings.ContextUser, "INSERT");
+            }
+
+            // Validar permiso.
+            if (!IsAuthorize(PER_UPDATE))
+            {
+                throw LeoException.WithoutPermissions(_settings.ContextUser, "UPDATE");
+            }
+
             var snapshot = transaction.CreateSnapshot(LockMode.Write, collection, true);
             var collectionPage = snapshot.CollectionPage;
             var indexer = new IndexService(snapshot, _header.Pragmas.Collation, _disk.MAX_ITEMS_COUNT);

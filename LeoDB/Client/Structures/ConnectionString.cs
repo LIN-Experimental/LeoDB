@@ -1,4 +1,5 @@
 using LeoDB.Engine;
+using System.Runtime.CompilerServices;
 
 namespace LeoDB;
 
@@ -7,6 +8,18 @@ namespace LeoDB;
 /// </summary>
 public class ConnectionString
 {
+
+    /// <summary>
+    /// Usuario.
+    /// </summary>
+    public string ContextUser { get; set; }
+
+    /// <summary>
+    /// Contraseña.
+    /// </summary>
+    public string UserPassword { get; set; }
+
+
     private readonly Dictionary<string, string> _values;
 
     /// <summary>
@@ -78,8 +91,9 @@ public class ConnectionString
         // setting values to properties
         this.Connection = _values.GetValue("connection", this.Connection);
         this.Filename = _values.GetValue("filename", this.Filename).Trim();
-
         this.Password = _values.GetValue("password", this.Password);
+        this.ContextUser = _values.GetValue("user", this.ContextUser);
+        this.UserPassword = _values.GetValue("auth", this.UserPassword);
 
         if (this.Password == string.Empty)
         {
@@ -107,6 +121,8 @@ public class ConnectionString
     {
         var settings = new EngineSettings
         {
+            UserPassword = UserPassword,
+            ContextUser = ContextUser,
             Filename = this.Filename,
             Password = this.Password,
             InitialSize = this.InitialSize,

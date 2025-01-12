@@ -10,7 +10,7 @@ public partial class LeoEngine
     {
 
         // Colecciones del sistema almacenadas.
-        string[] collections = ["$intelligence", "$indexes"];
+        string[] collections = ["$intelligence", "$indexes", "$users", "$permissions", "$permissions_user"];
 
         foreach (var collection in collections)
         {
@@ -21,6 +21,15 @@ public partial class LeoEngine
                     break;
                 case "$indexes":
                     SysIndexes(collection);
+                    break;
+                case "$users":
+                    SysUsers(collection);
+                    break;
+                case "$permissions":
+                    SysPermissions(collection);
+                    break;
+                case "$permissions_user":
+                    SysPermissionsUser(collection);
                     break;
             }
         }

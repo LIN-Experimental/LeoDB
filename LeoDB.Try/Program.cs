@@ -1,6 +1,6 @@
 ﻿using LeoDB;
 
-var database = new LeoDB.LeoDatabase("pruebaz1.db");
+var database = new LeoDB.LeoDatabase("filename=p99792.db; user=alex; auth=123");
 
 var users = database.GetCollection<User2>("users");
 
@@ -18,7 +18,7 @@ foreach (var user in users.FindAll().ToList())
 
 internal class User2
 {
-    [CollectionId()]
+    [CollectionId]
     public int id { get; set; }
     public string Alias { get; set; }
     public int Age { get; set; }

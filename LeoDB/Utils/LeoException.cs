@@ -58,6 +58,8 @@ public class LeoException : Exception
     public const int ENTITY_INITIALIZATION_FAILED = 219;
     public const int MAPPER_NOT_FOUND = 220;
     public const int MAPPING_ERROR = 221;
+    public const int INVALID_USER_PASSWORD = 222;
+    public const int NO_PERMISSIONS = 223;
 
 
     public const int INVALID_DATAFILE_STATE = 999;
@@ -99,6 +101,16 @@ public class LeoException : Exception
     internal static LeoException FileNotFound(object fileId)
     {
         return new LeoException(FILE_NOT_FOUND, "File '{0}' not found.", fileId);
+    }
+
+    internal static LeoException InvalidUserPassword(string user)
+    {
+        return new LeoException(INVALID_USER_PASSWORD, "Incorrect user name or password '{0}'", user);
+    }
+
+    internal static LeoException WithoutPermissions(string user, string action)
+    {
+        return new LeoException(NO_PERMISSIONS, "User {0} does not have permissions to perform the action {1}.", user, action);
     }
 
     internal static LeoException DatabaseShutdown()

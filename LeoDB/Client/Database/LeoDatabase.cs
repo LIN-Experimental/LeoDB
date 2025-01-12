@@ -29,6 +29,7 @@ public partial class LeoDatabase : ILeoDatabase
     {
     }
 
+
     /// <summary>
     /// Starts LeoDB database using a connection string for file system database
     /// </summary>
@@ -60,7 +61,7 @@ public partial class LeoDatabase : ILeoDatabase
 
         settings.Database = this;
         _mapper = mapper ?? BsonMapper.Global;
-        _engine = new LeoEngine(settings, _mapper);
+        _engine = new LeoEngine(settings);
 
         _disposeOnClose = true;
         OnEngine();

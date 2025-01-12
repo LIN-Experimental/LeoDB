@@ -5,8 +5,6 @@ public partial class LeoEngine
     private void SysIntelligence(string name)
     {
         // Colección es unica.
-        _settings.Database.GetCollection<SysIntelligence>(name).EnsureIndex(x => x.collection, true);
-
         foreach (var collection in _header.GetCollections())
         {
             // Validar si existe en la tabla.
@@ -30,6 +28,7 @@ public partial class LeoEngine
 internal class SysIntelligence
 {
     public int Id { get; set; }
+    [CollectionUnique]
     public string collection { get; set; }
     public string message { get; set; }
 }

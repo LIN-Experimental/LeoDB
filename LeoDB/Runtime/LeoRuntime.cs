@@ -11,10 +11,14 @@ internal class LeoRuntime
         {
             return;
         }
+        leoEngine.IsSettings = true;
 
         // Registrar las tablas almacenadas del sistema.
         leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$intelligence"));
         leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$indexes"));
+        leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$users"));
+        leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$permissions"));
+        leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$permissions_user"));
 
         // Manejar las colecciones almacenadas.
         leoEngine.ManageStoreCollection();
@@ -51,11 +55,15 @@ internal class LeoRuntime
                 }
 
                 engine.EnsureIndex(collection, key, key, true, false);
-
             }
-
         }
 
+
+
+        // Validar la autorización.
+        leoEngine.Authorize();
+
+        leoEngine.IsSettings = false;
     }
 
 

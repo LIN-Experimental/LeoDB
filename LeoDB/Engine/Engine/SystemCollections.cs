@@ -60,8 +60,5 @@ public partial class LeoEngine
             throw new ArgumentNullException(nameof(systemSaved.Name));
        
         _systemCollections[systemSaved.Name] = systemSaved;
-
-        // 
-        SysIntelligence();
     }
 }
