@@ -1,6 +1,6 @@
 ﻿using LeoDB;
 
-var database = new LeoDB.LeoDatabase("filename=p99792.db; user=alex; auth=123");
+var database = new LeoDB.LeoDatabase("filename=p99793333333ww333p2.db; user=alex; auth=123; connection=Shared");
 
 var users = database.GetCollection<User2>("users");
 

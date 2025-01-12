@@ -21,7 +21,7 @@ public partial class LeoEngine : ILeoEngine
     private HeaderPage _header;
 
     private TransactionMonitor _monitor;
-
+    
     private SortDisk _sortDisk;
 
     private EngineState _state;

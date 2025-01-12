@@ -5,7 +5,7 @@ public partial class LeoEngine
     private void SysIntelligence(string name)
     {
         // Colección es unica.
-        foreach (var collection in _header.GetCollections())
+        foreach (var collection in _header.GetCollections().ToList())
         {
             // Validar si existe en la tabla.
             var exist = _settings.Database.GetCollection<SysIntelligence>(name)

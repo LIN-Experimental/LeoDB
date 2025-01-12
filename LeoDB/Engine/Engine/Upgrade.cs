@@ -29,7 +29,6 @@ public partial class LeoEngine
             stream.Position = 0;
             stream.Read(buffer, 0, bufferSize);
 
-            if (FileReaderV7.IsVersion(buffer) == false) return;
         }
         _bufferPool.Return(buffer, true);
         // run rebuild process

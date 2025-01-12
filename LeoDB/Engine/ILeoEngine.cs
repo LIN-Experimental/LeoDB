@@ -2,6 +2,7 @@
 
 public interface ILeoEngine : IDisposable
 {
+
     int Checkpoint();
     long Rebuild(RebuildOptions options);
     bool BeginTrans();
@@ -20,4 +21,13 @@ public interface ILeoEngine : IDisposable
     bool DropIndex(string collection, string name);
     BsonValue Pragma(string name);
     bool Pragma(string name, BsonValue value);
+
+    internal void RegisterStoredSystemCollections(SystemStoreCollection systemSaved);
+
+    bool IsSettings { get; set; }
+    void Authorize();
+    bool IsAuthorize(int action);
+    void ManageStoreCollection();
+    IEnumerable<string> GetCollectionNames();
+
 }

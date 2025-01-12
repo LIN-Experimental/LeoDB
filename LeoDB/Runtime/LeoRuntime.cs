@@ -6,31 +6,27 @@ internal class LeoRuntime
 {
     public static void Generate(ILeoDatabase dataBase, ILeoEngine engine, BsonMapper mapper)
     {
-
-        if (engine is not LeoEngine leoEngine)
-        {
-            return;
-        }
-        leoEngine.IsSettings = true;
+        Console.WriteLine("Leo");
+        engine.IsSettings = true;
 
         // Registrar las tablas almacenadas del sistema.
-        leoEngine.RegisterStoredSystemCollections(new SystemStoreCollection("$intelligence"));
-        leoEngine.RegisterStoredSystemCollections(new SystemStoreCollection("$indexes"));
-        leoEngine.RegisterStoredSystemCollections(new SystemStoreCollection("$users"));
-        leoEngine.RegisterStoredSystemCollections(new SystemStoreCollection("$permissions"));
-        leoEngine.RegisterStoredSystemCollections(new SystemStoreCollection("$permissions_user"));
+        engine.RegisterStoredSystemCollections(new SystemStoreCollection("$intelligence"));
+        engine.RegisterStoredSystemCollections(new SystemStoreCollection("$indexes"));
+        engine.RegisterStoredSystemCollections(new SystemStoreCollection("$users"));
+        engine.RegisterStoredSystemCollections(new SystemStoreCollection("$permissions"));
+        engine.RegisterStoredSystemCollections(new SystemStoreCollection("$permissions_user"));
 
         // Manejar las colecciones almacenadas.
-        leoEngine.ManageStoreCollection();
+        engine.ManageStoreCollection();
 
-        foreach (var collection in leoEngine.GetCollectionNames())
+        foreach (var collection in engine.GetCollectionNames())
         {
 
             // Obtener los campos.
             var collectionDb = dataBase.GetCollection(collection);
 
             // Obtener los campos de la colección.
-            var reader = leoEngine.Query(collection, new Query());
+            var reader = engine.Query(collection, new Query());
 
             if (reader.Current is not BsonDocument bsDoc)
                 continue;
@@ -58,12 +54,10 @@ internal class LeoRuntime
             }
         }
 
-
-
         // Validar la autorización.
-        leoEngine.Authorize();
+        engine.Authorize();
 
-        leoEngine.IsSettings = false;
+        engine.IsSettings = false;
     }
 
 

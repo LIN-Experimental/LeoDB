@@ -11,7 +11,8 @@ internal abstract class SystemBaseCollection
 
     public SystemBaseCollection(string name)
     {
-        if (!name.StartsWith("$")) throw new ArgumentException("System collection name must starts with $");
+        if (!name.StartsWith("$")) 
+            throw new ArgumentException("System collection name must starts with $");
 
         _name = name;
     }

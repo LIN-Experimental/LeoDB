@@ -54,11 +54,11 @@ public partial class LeoEngine
     /// Register a new system collection that can be used in query for input data
     /// Collection name must starts with $
     /// </summary>
-    internal void RegisterStoredSystemCollections(SystemStoreCollection systemSaved)
+    void ILeoEngine.RegisterStoredSystemCollections(SystemStoreCollection systemSaved)
     {
-        if (systemSaved.Name.IsNullOrWhiteSpace())
-            throw new ArgumentNullException(nameof(systemSaved.Name));
-       
-        _systemCollections[systemSaved.Name] = systemSaved;
-    }
+            if (systemSaved.Name.IsNullOrWhiteSpace())
+                throw new ArgumentNullException(nameof(systemSaved.Name));
+
+            _systemCollections[systemSaved.Name] = systemSaved;
+        }
 }

@@ -1,10 +1,9 @@
-﻿namespace LeoDB.Engine
+﻿namespace LeoDB.Engine;
+
+internal class IndexInfo
 {
-    internal class IndexInfo
-    {
-        public string Collection { get; set; }
-        public string Name { get; set; }
-        public string Expression { get; set; }
-        public bool Unique { get; set; }
-    }
+    public string Collection { get; set; }
+    public string Name { get; set; }
+    public string Expression { get; set; }
+    public bool Unique { get; set; }
 }

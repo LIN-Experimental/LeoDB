@@ -14,19 +14,11 @@ namespace LeoDB.Engine
         {
             _settings = settings;
 
-            // test for prior version
-            var bufferV7 = this.ReadFirstBytes(false);
-            if (FileReaderV7.IsVersion(bufferV7))
-            {
-                _fileVersion = 7;
-                return;
-            }
-
             // open, read first 16kb, and close data file
             var buffer = this.ReadFirstBytes();
 
             // test for valid reader to use
-            _fileVersion = FileReaderV8.IsVersion(buffer) ? 8 : throw LeoException.InvalidDatabase();
+            _fileVersion = FileReader.IsVersion(buffer) ? 8 : throw LeoException.InvalidDatabase();
         }
 
         public long Rebuild(RebuildOptions options)
@@ -36,9 +28,7 @@ namespace LeoDB.Engine
             var tempFilename = FileHelper.GetSuffixFile(_settings.Filename, "-temp", true);
 
             // open file reader
-            using (var reader = _fileVersion == 7 ?
-                new FileReaderV7(_settings) :
-                (IFileReader)new FileReaderV8(_settings, options.Errors))
+            using (var reader = (IFileReader)new FileReader(_settings, options.Errors))
             {
                 // open file reader and ready to import to new temp engine instance
                 reader.Open();

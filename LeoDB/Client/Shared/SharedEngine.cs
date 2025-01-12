@@ -1,4 +1,5 @@
 ﻿using LeoDB.Engine;
+using LeoDB.Runtime;
 #if NETFRAMEWORK
 using System.Security.AccessControl;
 using System.Security.Principal;
@@ -8,10 +9,13 @@ namespace LeoDB;
 
 public class SharedEngine : ILeoEngine
 {
+
     private readonly EngineSettings _settings;
     private readonly Mutex _mutex;
     private LeoEngine _engine;
     private bool _transactionRunning = false;
+
+    public bool IsSettings { get; set; }
 
     public SharedEngine(EngineSettings settings)
     {
@@ -58,6 +62,9 @@ public class SharedEngine : ILeoEngine
             try
             {
                 _engine = new LeoEngine(_settings);
+
+                LeoRuntime.Generate(_settings.Database, _engine, _settings.Database.Mapper);
+
                 return true;
             }
             catch
@@ -271,5 +278,41 @@ public class SharedEngine : ILeoEngine
                 CloseDatabase();
             }
         }
+    }
+
+    internal void RegisterStoredSystemCollections(SystemStoreCollection systemSaved)
+    {
+        OpenDatabase();
+        ((ILeoEngine)this).RegisterStoredSystemCollections(systemSaved);
+    }
+
+    void ILeoEngine.RegisterStoredSystemCollections(SystemStoreCollection systemSaved)
+    {
+        OpenDatabase();
+        ((ILeoEngine)_engine).RegisterStoredSystemCollections(systemSaved);
+    }
+
+    public void Authorize()
+    {
+        OpenDatabase();
+        ((ILeoEngine)_engine).Authorize();
+    }
+
+    public bool IsAuthorize(int action)
+    {
+        OpenDatabase();
+        return ((ILeoEngine)_engine).IsAuthorize(action);
+    }
+
+    public void ManageStoreCollection()
+    {
+        OpenDatabase();
+        ((ILeoEngine)_engine).ManageStoreCollection();
+    }
+
+    public IEnumerable<string> GetCollectionNames()
+    {
+        OpenDatabase();
+        return ((ILeoEngine)_engine).GetCollectionNames();
     }
 }
