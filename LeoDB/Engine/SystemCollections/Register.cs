@@ -10,7 +10,6 @@ public partial class LeoEngine
         this.RegisterSystemCollection("$database", () => this.SysDatabase());
 
         this.RegisterSystemCollection("$cols", () => this.SysCols());
-        this.RegisterSystemCollection("$indexes", () => this.SysIndexes());
 
         this.RegisterSystemCollection("$sequences", () => this.SysSequences());
 

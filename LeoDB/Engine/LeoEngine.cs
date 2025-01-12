@@ -52,12 +52,6 @@ public partial class LeoEngine : ILeoEngine
 
     #region Open & Close
 
-    public void OpenPersonalizeDatabase(BsonMapper mapper)
-    {
-        // Tabla de IA.
-        SysIntelligence();
-    }
-
     internal bool Open()
     {
         LOG($"start initializing{(_settings.ReadOnly ? " (readonly)" : "")}", "ENGINE");
@@ -130,8 +124,6 @@ public partial class LeoEngine : ILeoEngine
 
             // register system collections
             this.InitializeSystemCollections();
-
-            _systemCollections.Add("$intelligence", new SystemSavedCollection("$intelligence"));
 
             LOG("initialization completed", "ENGINE");
 

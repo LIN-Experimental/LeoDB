@@ -58,30 +58,30 @@ public partial class BsonMapper
         var ignoreAttr = typeof(CollectionFieldIgnoreAttribute);
         var fieldAttr = typeof(CollectionFieldAttribute);
         var dbrefAttr = typeof(CollectionReferenceAttribute);
+        var isUniqueAttr = typeof(CollectionUniqueAttribute);
 
         var members = this.GetTypeMembers(mapper.ForType);
         var id = this.GetIdMember(members);
 
         foreach (var memberInfo in members)
         {
-            // checks [BsonIgnore]
-            if (CustomAttributeExtensions.IsDefined(memberInfo, ignoreAttr, true)) 
+            // Validar si es un miembro ignorado.
+            if (CustomAttributeExtensions.IsDefined(memberInfo, ignoreAttr, true))
                 continue;
 
-            // checks field name conversion
+            // Obtener el nombre del campo.
             var name = this.ResolveFieldName(memberInfo.Name);
 
-            // check if property has [BsonField]
-            var field = (CollectionFieldAttribute)CustomAttributeExtensions.GetCustomAttributes(memberInfo, fieldAttr, true)
-                .FirstOrDefault();
+            // Validar si el campo tiene el atributo Field con un nombre de campo personalizado.
+            var field = (CollectionFieldAttribute)CustomAttributeExtensions.GetCustomAttributes(memberInfo, fieldAttr, true).FirstOrDefault();
 
-            // check if property has [BsonField] with a custom field name
-            if (field != null && field.Name != null)
+            // Obtener el nombre personalizado en caso de que exista.
+            if (field is not null && field.Name is not null)
             {
                 name = field.Name;
             }
 
-            // checks if memberInfo is id field
+            // Si es el campo Id, se establece el nombre.
             if (memberInfo == id)
             {
                 name = "_id";
@@ -92,8 +92,7 @@ public partial class BsonMapper
             var setter = Reflection.CreateGenericSetter(mapper.ForType, memberInfo);
 
             // check if property has [BsonId] to get with was setted AutoId = true
-            var autoId = (CollectionIdAttribute)CustomAttributeExtensions.GetCustomAttributes(memberInfo, idAttr, true)
-                .FirstOrDefault();
+            var autoId = (CollectionIdAttribute)CustomAttributeExtensions.GetCustomAttributes(memberInfo, idAttr, true).FirstOrDefault();
 
             // get data type
             var dataType = memberInfo is PropertyInfo
@@ -102,6 +101,10 @@ public partial class BsonMapper
 
             // check if datatype is list/array
             var isEnumerable = Reflection.IsEnumerable(dataType);
+
+
+            // Validar si el campo tiene el atributo de unico.
+            var fieldUnique = (CollectionUniqueAttribute)CustomAttributeExtensions.GetCustomAttributes(memberInfo, isUniqueAttr, true).FirstOrDefault();
 
             // create a property mapper
             var member = new MemberMapper
@@ -113,7 +116,8 @@ public partial class BsonMapper
                 IsEnumerable = isEnumerable,
                 UnderlyingType = isEnumerable ? Reflection.GetListItemType(dataType) : dataType,
                 Getter = getter,
-                Setter = setter
+                Setter = setter,
+                IsUnique = fieldUnique is not null
             };
 
             // check if property has [BsonRef]
@@ -122,7 +126,7 @@ public partial class BsonMapper
 
             if (dbRef != null && memberInfo is PropertyInfo)
             {
-                BsonMapper.RegisterDbRef(this, member, _typeNameBinder,
+                RegisterDbRef(this, member, _typeNameBinder,
                     dbRef.Collection ?? this.ResolveCollectionName((memberInfo as PropertyInfo).PropertyType));
             }
 

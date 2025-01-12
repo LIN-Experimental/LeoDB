@@ -7,7 +7,7 @@ public partial class LeoEngine
     /// <summary>
     /// Create a new index (or do nothing if already exists) to a collection/field
     /// </summary>
-    public bool EnsureIndex(string collection, string name, BsonExpression expression, bool unique)
+    public bool EnsureIndex(string collection, string name, BsonExpression expression, bool unique, bool save = true)
     {
         if (collection.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(collection));
         if (name.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(name));
@@ -45,6 +45,19 @@ public partial class LeoEngine
             // create index head
             var index = indexer.CreateIndex(name, expression.Source, unique);
             var count = 0u;
+
+            if (save)
+            {
+                // Insertar en la tabla de indices.
+                var indexRow = new SysIndex()
+                {
+                    collection = collection,
+                    field = name
+                };
+
+                Insert("$real_index", [_mapper.ToDocument(indexRow)], BsonAutoId.Guid);
+            }
+
 
             // read all objects (read from PK index)
             foreach (var pkNode in new IndexAll("_id", LeoDB.Query.Ascending).Run(collectionPage, indexer))

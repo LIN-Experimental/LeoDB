@@ -16,9 +16,8 @@ public interface ILeoEngine : IDisposable
     int DeleteMany(string collection, BsonExpression predicate);
     bool DropCollection(string name);
     bool RenameCollection(string name, string newName);
-    bool EnsureIndex(string collection, string name, BsonExpression expression, bool unique);
+    bool EnsureIndex(string collection, string name, BsonExpression expression, bool unique, bool save = true);
     bool DropIndex(string collection, string name);
     BsonValue Pragma(string name);
     bool Pragma(string name, BsonValue value);
-    void OpenPersonalizeDatabase(BsonMapper mapper);
 }

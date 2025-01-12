@@ -2,21 +2,21 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0</TargetFrameworks>
-		<AssemblyVersion>5.0.21</AssemblyVersion>
-		<FileVersion>5.0.21</FileVersion>
-		<VersionPrefix>5.0.21</VersionPrefix>
-		<PackageVersion>5.0.21</PackageVersion>
+		<AssemblyVersion>1.0</AssemblyVersion>
+		<FileVersion>1.0</FileVersion>
+		<VersionPrefix>1.0</VersionPrefix>
+		<PackageVersion>1.0</PackageVersion>
 		<Authors>Alexander Giraldo</Authors>
 		<Product>LeoDB</Product>
-		<Description>LeoDB - A lightweight embedded .NET NoSQL document store in a single datafile</Description>
+		<Description>LeoDB - Una base de datos NoSQL embebida</Description>
 		<Copyright>MIT</Copyright>
-		<NeutralLanguage>en-US</NeutralLanguage>
+		<NeutralLanguage>es-CO</NeutralLanguage>
 		<Title>LeoDB</Title>
 		<PackageId>LeoDB</PackageId>
-		<PackageTags>database nosql embedded</PackageTags>
+		<PackageTags>database nosql free</PackageTags>
 		<PackageIcon>icon_64x64.png</PackageIcon>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://www.LeoDB.org</PackageProjectUrl>
+		<PackageProjectUrl>https://leo.linplatform.com</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/LIN-Experimental/LeoDB</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<RootNamespace>LeoDB</RootNamespace>

@@ -49,4 +49,19 @@ public partial class LeoEngine
 
         _systemCollections[collectionName] = new SystemCollection(collectionName, factory);
     }
+
+    /// <summary>
+    /// Register a new system collection that can be used in query for input data
+    /// Collection name must starts with $
+    /// </summary>
+    internal void RegisterStoredSystemCollections(SystemSavedCollection systemSaved)
+    {
+        if (systemSaved.Name.IsNullOrWhiteSpace())
+            throw new ArgumentNullException(nameof(systemSaved.Name));
+       
+        _systemCollections[systemSaved.Name] = systemSaved;
+
+        // 
+        SysIntelligence();
+    }
 }

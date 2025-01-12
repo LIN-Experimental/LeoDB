@@ -35,6 +35,12 @@ namespace LeoDB
             this.ForType = forType;
         }
 
+        public EntityMapper(CancellationToken initializationToken = default)
+        {
+            _initializationToken = initializationToken;
+            this.ForType = null;
+        }
+
         /// <summary>
         /// Resolve expression to get member mapped
         /// </summary>

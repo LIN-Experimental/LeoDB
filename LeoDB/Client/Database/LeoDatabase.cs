@@ -68,7 +68,8 @@ public partial class LeoDatabase : ILeoDatabase
 
     private void OnEngine()
     {
-        _engine.OpenPersonalizeDatabase(Mapper);
+        // Inicializar las colecciones.
+        Runtime.LeoRuntime.Generate(this,_engine, Mapper);
     }
 
     /// <summary>

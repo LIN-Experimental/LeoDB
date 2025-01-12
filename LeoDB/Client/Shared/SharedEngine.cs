@@ -41,12 +41,6 @@ public class SharedEngine : ILeoEngine
         }
     }
 
-    public void OpenPersonalizeDatabase(BsonMapper mapper)
-    {
-
-    }
-
-
     /// <summary>
     /// Open database in safe mode
     /// </summary>
@@ -234,9 +228,9 @@ public class SharedEngine : ILeoEngine
         return QueryDatabase(() => _engine.DropIndex(collection, name));
     }
 
-    public bool EnsureIndex(string collection, string name, BsonExpression expression, bool unique)
+    public bool EnsureIndex(string collection, string name, BsonExpression expression, bool unique, bool save = true)
     {
-        return QueryDatabase(() => _engine.EnsureIndex(collection, name, expression, unique));
+        return QueryDatabase(() => _engine.EnsureIndex(collection, name, expression, unique, save));
     }
 
     #endregion

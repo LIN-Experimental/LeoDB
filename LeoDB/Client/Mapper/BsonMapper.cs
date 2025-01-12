@@ -25,7 +25,7 @@ namespace LeoDB
         /// <summary>
         /// Map serializer/deserialize for custom types
         /// </summary>
-        private readonly ConcurrentDictionary<Type, Func<object, BsonValue>> _customSerializer = new ConcurrentDictionary<Type, Func<object, BsonValue>>();
+        internal readonly ConcurrentDictionary<Type, Func<object, BsonValue>> _customSerializer = new ConcurrentDictionary<Type, Func<object, BsonValue>>();
 
         private readonly ConcurrentDictionary<Type, Func<BsonValue, object>> _customDeserializer = new ConcurrentDictionary<Type, Func<BsonValue, object>>();
 
@@ -247,13 +247,16 @@ namespace LeoDB
             member.Serialize = (obj, m) =>
             {
                 // supports null values when "SerializeNullValues = true"
-                if (obj == null) return BsonValue.Null;
+                if (obj == null)
+                    return BsonValue.Null;
+
                 entity.WaitForInitialization();
 
                 var idField = entity.Id;
 
                 // #768 if using DbRef with interface with no ID mapped
-                if (idField == null) throw new LeoException(0, "There is no _id field mapped in your type: " + member.DataType.FullName);
+                if (idField == null)
+                    throw new LeoException(0, "There is no _id field mapped in your type: " + member.DataType.FullName);
 
                 var id = idField.Getter(obj);
 
@@ -279,9 +282,11 @@ namespace LeoDB
                 var doc = bson.AsDocument;
                 var idRef = doc["$id"];
                 var missing = doc["$missing"] == true;
-                var included = doc.ContainsKey("$ref") == false;
 
-                if (missing) return null;
+                if (missing)
+                    return null;
+
+                var included = doc.ContainsKey("$ref") == false;
 
                 if (included)
                 {
@@ -292,7 +297,6 @@ namespace LeoDB
                     }
 
                     return m.Deserialize(entity.ForType, doc);
-
                 }
                 else
                 {
@@ -351,14 +355,16 @@ namespace LeoDB
 
                 var array = bson.AsArray;
 
-                if (array.Count == 0) return m.Deserialize(member.DataType, array);
+                if (array.Count == 0)
+                    return m.Deserialize(member.DataType, array);
 
                 // copy array changing $id to _id
                 var result = new BsonArray();
 
                 foreach (var item in array)
                 {
-                    if (item.IsDocument == false) continue;
+                    if (item.IsDocument == false)
+                        continue;
 
                     var doc = item.AsDocument;
                     var idRef = doc["$id"];

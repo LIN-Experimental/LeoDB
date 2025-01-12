@@ -1,8 +1,11 @@
-﻿namespace LeoDB
+﻿using System.Diagnostics;
+
+namespace LeoDB
 {
     /// <summary>
     /// Internal representation for a .NET member mapped to BsonDocument
     /// </summary>
+    [DebuggerDisplay("Field: {FieldName}, Type: {DataType}")]
     public class MemberMapper
     {
         /// <summary>
@@ -64,5 +67,10 @@
         /// Is this property ignore
         /// </summary>
         public bool IsIgnore { get; set; }
+
+        /// <summary>
+        /// El campo es único.
+        /// </summary>
+        public bool IsUnique { get; set; }
     }
 }

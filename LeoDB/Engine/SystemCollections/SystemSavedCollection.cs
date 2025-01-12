@@ -5,7 +5,6 @@
 /// </summary>
 internal class SystemSavedCollection : SystemBaseCollection
 {
-
     public SystemSavedCollection(string name) : base(name)
     {
     }
