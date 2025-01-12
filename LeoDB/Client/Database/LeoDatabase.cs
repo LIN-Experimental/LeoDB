@@ -60,7 +60,7 @@ public partial class LeoDatabase : ILeoDatabase
 
         settings.Database = this;
         _mapper = mapper ?? BsonMapper.Global;
-        _engine = new LeoEngine(settings);
+        _engine = new LeoEngine(settings, _mapper);
 
         _disposeOnClose = true;
         OnEngine();

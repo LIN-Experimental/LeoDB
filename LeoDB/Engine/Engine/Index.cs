@@ -48,14 +48,15 @@ public partial class LeoEngine
 
             if (save)
             {
-                // Insertar en la tabla de indices.
+                // Modelo.
                 var indexRow = new SysIndex()
                 {
                     collection = collection,
                     field = name
                 };
 
-                Insert("$real_index", [_mapper.ToDocument(indexRow)], BsonAutoId.Guid);
+                // Insertar en la tabla de indices.
+                Insert("$indexes", [_settings.Database.Mapper.ToDocument(indexRow)], BsonAutoId.Guid);
             }
 
 

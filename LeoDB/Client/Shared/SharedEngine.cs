@@ -13,8 +13,6 @@ public class SharedEngine : ILeoEngine
     private LeoEngine _engine;
     private bool _transactionRunning = false;
 
-    public ILeoDatabase leoDatabase { get; set; }
-
     public SharedEngine(EngineSettings settings)
     {
         _settings = settings;
