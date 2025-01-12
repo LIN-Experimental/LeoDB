@@ -3,13 +3,13 @@
 /// <summary>
 /// Implement a simple system collection with input data only (to use Output must inherit this class)
 /// </summary>
-internal class SystemSavedCollection : SystemBaseCollection
+internal class SystemStoreCollection : SystemBaseCollection
 {
-    public SystemSavedCollection(string name) : base(name)
+    public SystemStoreCollection(string name) : base(name)
     {
     }
 
-    public SystemSavedCollection(string name, Func<IEnumerable<BsonDocument>> input) : base(name, input)
+    public SystemStoreCollection(string name, Func<IEnumerable<BsonDocument>> input) : base(name, input)
     {
     }
 

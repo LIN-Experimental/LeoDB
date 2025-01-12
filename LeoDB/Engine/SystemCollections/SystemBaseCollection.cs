@@ -5,6 +5,7 @@
 /// </summary>
 internal abstract class SystemBaseCollection
 {
+
     protected readonly string _name;
     protected readonly Func<IEnumerable<BsonDocument>> _input = null;
 

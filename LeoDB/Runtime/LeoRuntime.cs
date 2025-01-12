@@ -14,11 +14,11 @@ internal class LeoRuntime
         leoEngine.IsSettings = true;
 
         // Registrar las tablas almacenadas del sistema.
-        leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$intelligence"));
-        leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$indexes"));
-        leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$users"));
-        leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$permissions"));
-        leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$permissions_user"));
+        leoEngine.RegisterStoredSystemCollections(new SystemStoreCollection("$intelligence"));
+        leoEngine.RegisterStoredSystemCollections(new SystemStoreCollection("$indexes"));
+        leoEngine.RegisterStoredSystemCollections(new SystemStoreCollection("$users"));
+        leoEngine.RegisterStoredSystemCollections(new SystemStoreCollection("$permissions"));
+        leoEngine.RegisterStoredSystemCollections(new SystemStoreCollection("$permissions_user"));
 
         // Manejar las colecciones almacenadas.
         leoEngine.ManageStoreCollection();
