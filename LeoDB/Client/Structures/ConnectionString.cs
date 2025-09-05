@@ -1,4 +1,6 @@
 using LeoDB.Engine;
+using LeoDB.PublicEngine;
+using LeoDB.Runtime.Actions;
 
 namespace LeoDB;
 
@@ -103,7 +105,7 @@ public class ConnectionString
     /// <summary>
     /// Create ILeoEngine instance according string connection parameters. For now, only Local/Shared are supported
     /// </summary>
-    internal ILeoEngine CreateEngine(Action<EngineSettings> engineSettingsAction = null, ILeoDatabase leoDatabase = null)
+    internal ILeoEngine CreateEngine(Action<EngineSettings> engineSettingsAction = null, ILeoDatabase leoDatabase = null, PipelineRuntime? pipelineRuntime = null)
     {
         var settings = new EngineSettings
         {
@@ -114,7 +116,8 @@ public class ConnectionString
             Collation = this.Collation,
             Upgrade = this.Upgrade,
             AutoRebuild = this.AutoRebuild,
-            Database = leoDatabase
+            Database = leoDatabase,
+            PipelineRuntime = pipelineRuntime
         };
 
         engineSettingsAction?.Invoke(settings);
@@ -127,6 +130,13 @@ public class ConnectionString
         else if (this.Connection == ConnectionType.Shared)
         {
             return new SharedEngine(settings);
+        }
+        else if (this.Connection == ConnectionType.Rest)
+        {
+            return new LeoApiEngine(new()
+            {
+                BaseAddress = new Uri("https://localhost:7038/")
+            }, settings);
         }
         else
         {

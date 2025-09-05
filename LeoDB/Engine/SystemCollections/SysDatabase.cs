@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Threading.Tasks;
 using static LeoDB.Constants;
 
 namespace LeoDB.Engine
@@ -49,5 +50,74 @@ namespace LeoDB.Engine
 
             };
         }
+
+        //private async Task<IEnumerable<BsonDocument>> SysDatabaseAPI()
+        //{
+        //    var cliente = new HttpClient() { BaseAddress = new Uri("https://jsonplaceholder.typicode.com/todos") };
+
+        //    var ss = await cliente.GetAsync("");
+
+
+        //    List<BsonDocument> docs = ToBsonDocuments(await ss.Content.ReadAsStringAsync());
+
+        //    return docs;
+        //}
+
+
+
+        //public static List<BsonDocument> ToBsonDocuments(string json)
+        //{
+        //    using var jsonDoc = JsonDocument.Parse(json);
+
+        //    if (jsonDoc.RootElement.ValueKind != JsonValueKind.Array)
+        //        throw new ArgumentException("El JSON debe ser un array en la raíz");
+
+        //    var list = new List<BsonDocument>();
+
+        //    foreach (var element in jsonDoc.RootElement.EnumerateArray())
+        //    {
+        //        list.Add(JsonToBsonDocument(element));
+        //    }
+
+        //    return list;
+        //}
+
+        //private static BsonDocument JsonToBsonDocument(JsonElement obj)
+        //{
+        //    var doc = new BsonDocument();
+
+        //    foreach (var prop in obj.EnumerateObject())
+        //    {
+        //        doc[prop.Name] = ConvertJsonElement(prop.Value);
+        //    }
+
+        //    return doc;
+        //}
+
+        //private static BsonValue ConvertJsonElement(JsonElement element)
+        //{
+        //    return element.ValueKind switch
+        //    {
+        //        JsonValueKind.Object => JsonToBsonDocument(element),
+        //        JsonValueKind.Array => new BsonArray(element.EnumerateArray().Select(ConvertJsonElement)),
+        //        JsonValueKind.String => element.GetString(),
+        //        JsonValueKind.Number => element.TryGetInt64(out var l) ? new BsonValue(l) : new BsonValue(element.GetDouble()),
+        //        JsonValueKind.Null => BsonValue.Null,
+        //        _ => BsonValue.Null
+        //    };
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

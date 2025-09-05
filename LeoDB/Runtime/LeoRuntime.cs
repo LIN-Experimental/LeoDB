@@ -4,13 +4,8 @@ namespace LeoDB.Runtime;
 
 internal class LeoRuntime
 {
-    public static void Generate(ILeoDatabase dataBase, ILeoEngine engine, BsonMapper mapper)
+    public static void Generate(LeoEngine leoEngine)
     {
-
-        if (engine is not LeoEngine leoEngine)
-        {
-            return;
-        }
 
         // Registrar las tablas almacenadas del sistema.
         leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$intelligence"));
@@ -21,10 +16,6 @@ internal class LeoRuntime
 
         foreach (var collection in leoEngine.GetCollectionNames())
         {
-
-            // Obtener los campos.
-            var collectionDb = dataBase.GetCollection(collection);
-
             // Obtener los campos de la colección.
             var reader = leoEngine.Query(collection, new Query());
 
@@ -42,21 +33,23 @@ internal class LeoRuntime
                     MemberName = key
                 });
 
-                // Validar si hay un registro de que es único.
-                var result = dataBase.GetCollection<SysIndex>("$indexes").FindOne(t => t.field == key && t.collection == collection);
+                // armar el predicado
+                var predicate = Query.And(
+                    Query.EQ("field", key),
+                    Query.EQ("collection", collection)
+                );
 
-                if (result is null)
+                // envolver en un Query
+                var query = new Query { Select = predicate };
+
+                // ejecutar con el engine
+                var readeddr = leoEngine.Query("$indexes", query).FirstOrDefault();
+
+                if (readeddr is not null && readeddr["field_collection"].RawValue is  bool bl && bl)
                 {
-                    continue;
+                    leoEngine.EnsureIndex(collection, key, key, true, false);
                 }
-
-                engine.EnsureIndex(collection, key, key, true, false);
-
             }
-
         }
-
     }
-
-
 }

@@ -28,6 +28,9 @@ public partial class LeoEngine
             {
                 _state.Validate();
 
+                // Ejecutar pipeline.
+                _settings.PipelineRuntime?.ExecuteOnUpdate(doc);
+
                 transaction.Safepoint();
 
                 if (this.UpdateDocument(snapshot, collectionPage, doc, indexer, data))

@@ -1,22 +1,24 @@
 ﻿namespace LeoDB.Engine;
 
 /// <summary>
-/// Implement a simple system collection with input data only (to use Output must inherit this class)
+/// Implementa una colección de sistema simple solo con datos de entrada (para usar Output debe heredar esta clase)
 /// </summary>
 internal abstract class SystemBaseCollection
 {
+    // Nombre de la colección del sistema (debe comenzar con $)
     protected readonly string _name;
+
+    // Fábrica de fuente de datos de entrada
     protected readonly Func<IEnumerable<BsonDocument>> _input = null;
 
     public SystemBaseCollection(string name)
     {
-        if (!name.StartsWith("$")) throw new ArgumentException("System collection name must starts with $");
-
+        if (!name.StartsWith("$")) 
+            throw new ArgumentException("System collection name must starts with $");
         _name = name;
     }
 
-    public SystemBaseCollection(string name, Func<IEnumerable<BsonDocument>> input)
-        : this(name)
+    public SystemBaseCollection(string name, Func<IEnumerable<BsonDocument>> input) : this(name)
     {
         _input = input;
     }

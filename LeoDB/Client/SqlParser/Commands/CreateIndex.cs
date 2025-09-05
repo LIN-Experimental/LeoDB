@@ -5,7 +5,7 @@ internal partial class SqlParser
     /// <summary>
     /// CREATE [ UNIQUE ] INDEX {indexName} ON {collection} ({indexExpr})
     /// </summary>
-    private BsonDataReader ParseCreate()
+    private BsonDataReader ParseCreateIndex()
     {
         _tokenizer.ReadToken().Expect("CREATE");
 

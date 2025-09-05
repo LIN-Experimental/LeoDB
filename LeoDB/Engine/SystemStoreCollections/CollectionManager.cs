@@ -8,9 +8,8 @@ public partial class LeoEngine
     /// </summary>
     public void ManageStoreCollection()
     {
-
         // Colecciones del sistema almacenadas.
-        string[] collections = ["$intelligence", "$indexes"];
+        string[] collections = ["$indexes"];
 
         foreach (var collection in collections)
         {

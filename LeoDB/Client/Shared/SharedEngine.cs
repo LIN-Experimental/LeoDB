@@ -58,6 +58,7 @@ public class SharedEngine : ILeoEngine
             try
             {
                 _engine = new LeoEngine(_settings);
+                
                 return true;
             }
             catch
@@ -271,5 +272,10 @@ public class SharedEngine : ILeoEngine
                 CloseDatabase();
             }
         }
+    }
+
+    public void CloseEngine(Exception exception)
+    {
+        _engine.CloseEngine(exception);
     }
 }

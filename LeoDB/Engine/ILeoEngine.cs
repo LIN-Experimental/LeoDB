@@ -20,4 +20,5 @@ public interface ILeoEngine : IDisposable
     bool DropIndex(string collection, string name);
     BsonValue Pragma(string name);
     bool Pragma(string name, BsonValue value);
+    void CloseEngine(Exception exception);
 }

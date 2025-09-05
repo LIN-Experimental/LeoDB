@@ -1,4 +1,6 @@
-﻿namespace LeoDB.Engine;
+﻿using System.Threading.Tasks;
+
+namespace LeoDB.Engine;
 
 public partial class LeoEngine
 {
@@ -62,6 +64,6 @@ public partial class LeoEngine
         _systemCollections[systemSaved.Name] = systemSaved;
 
         // 
-        SysIntelligence();
+        //SysIntelligence();
     }
 }

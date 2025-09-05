@@ -8,7 +8,6 @@ namespace LeoDB;
 /// </summary>
 internal partial class SqlParser
 {
-
     private readonly ILeoEngine _engine;
     private readonly Tokenizer _tokenizer;
     private readonly BsonDocument _parameters;

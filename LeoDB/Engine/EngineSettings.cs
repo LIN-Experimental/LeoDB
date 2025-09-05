@@ -1,3 +1,5 @@
+using LeoDB.Runtime.Actions;
+
 namespace LeoDB.Engine;
 
 /// <summary>
@@ -12,19 +14,24 @@ public class EngineSettings
     public ILeoDatabase Database { get; set; }
 
     /// <summary>
+    /// Configuración del pipeline del engine.
+    /// </summary>
+    public PipelineRuntime PipelineRuntime { get; set; }
+
+    /// <summary>
     /// Get/Set custom stream to be used as datafile (can be MemoryStream or TempStream). Do not use FileStream - to use physical file, use "filename" attribute (and keep DataStream/WalStream null)
     /// </summary>
-    public Stream DataStream { get; set; } = null;
+    public Stream? DataStream { get; set; } = null;
 
     /// <summary>
     /// Get/Set custom stream to be used as log file. If is null, use a new TempStream (for TempStream datafile) or MemoryStream (for MemoryStream datafile)
     /// </summary>
-    public Stream LogStream { get; set; } = null;
+    public Stream? LogStream { get; set; } = null;
 
     /// <summary>
     /// Get/Set custom stream to be used as temp file. If is null, will create new FileStreamFactory with "-tmp" on name
     /// </summary>
-    public Stream TempStream { get; set; } = null;
+    public Stream? TempStream { get; set; } = null;
 
     /// <summary>
     /// Full path or relative path from DLL directory. Can use ':temp:' for temp database or ':memory:' for in-memory database. (default: null)

@@ -1,6 +1,6 @@
 ﻿namespace LeoDB.Utils.ArtificialIntelligence;
 
-public interface IAIProvider
+public interface ArtificialIntelligenceProvider
 {
 
 }

@@ -34,9 +34,18 @@ internal partial class SqlParser
 
             return new BsonDataReader(result);
         }
+        else if (token.Is("USER"))
+        {
+            var username = _tokenizer.ReadToken().Expect(TokenType.Word).Value;
+
+            // eliminar documento del sistema $users
+            var result = _engine.Delete("$users", new[] { new BsonValue(username) });
+
+            return new BsonDataReader(result);
+        }
         else
         {
-            throw LeoException.UnexpectedToken(token, "INDEX|COLLECTION");
+            throw LeoException.UnexpectedToken(token, "INDEX|COLLECTION|USER");
         }
     }
 }

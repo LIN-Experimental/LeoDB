@@ -1,4 +1,5 @@
 ﻿using LeoDB.Engine;
+using LeoDB.Runtime.Actions;
 
 namespace LeoDB;
 
@@ -13,6 +14,8 @@ public partial class LeoDatabase : ILeoDatabase
     private readonly BsonMapper _mapper;
     private readonly bool _disposeOnClose;
 
+    public ILeoEngine Engine => _engine;
+
     /// <summary>
     /// Get current instance of BsonMapper used in this database instance (can be BsonMapper.Global)
     /// </summary>
@@ -25,23 +28,22 @@ public partial class LeoDatabase : ILeoDatabase
     /// <summary>
     /// Starts LeoDB database using a connection string for file system database
     /// </summary>
-    public LeoDatabase(string connectionString, BsonMapper mapper = null) : this(new ConnectionString(connectionString), mapper)
+    public LeoDatabase(string connectionString, BsonMapper? mapper = null, PipelineRuntime? pipelineRuntime = null) : this(new ConnectionString(connectionString), mapper, pipelineRuntime)
     {
+
     }
 
     /// <summary>
     /// Starts LeoDB database using a connection string for file system database
     /// </summary>
-    public LeoDatabase(ConnectionString connectionString, BsonMapper mapper = null)
+    public LeoDatabase(ConnectionString connectionString, BsonMapper? mapper = null, PipelineRuntime? pipelineRuntime = null)
     {
         if (connectionString == null)
             throw new ArgumentNullException(nameof(connectionString));
 
-        _engine = connectionString.CreateEngine(leoDatabase: this);
         _mapper = mapper ?? BsonMapper.Global;
+        _engine = connectionString.CreateEngine(leoDatabase: this, pipelineRuntime: pipelineRuntime);
         _disposeOnClose = true;
-
-        OnEngine();
     }
 
     /// <summary>
@@ -50,7 +52,7 @@ public partial class LeoDatabase : ILeoDatabase
     /// <param name="stream">DataStream reference </param>
     /// <param name="mapper">BsonMapper mapper reference</param>
     /// <param name="logStream">LogStream reference </param>
-    public LeoDatabase(Stream stream, BsonMapper mapper = null, Stream logStream = null)
+    public LeoDatabase(Stream stream, BsonMapper? mapper = null, Stream? logStream = null)
     {
         var settings = new EngineSettings
         {
@@ -60,16 +62,8 @@ public partial class LeoDatabase : ILeoDatabase
 
         settings.Database = this;
         _mapper = mapper ?? BsonMapper.Global;
-        _engine = new LeoEngine(settings, _mapper);
-
+        _engine = new LeoEngine(settings);
         _disposeOnClose = true;
-        OnEngine();
-    }
-
-    private void OnEngine()
-    {
-        // Inicializar las colecciones.
-        Runtime.LeoRuntime.Generate(this,_engine, Mapper);
     }
 
     /// <summary>
@@ -80,7 +74,6 @@ public partial class LeoDatabase : ILeoDatabase
         _engine = engine ?? throw new ArgumentNullException(nameof(engine));
         _mapper = mapper ?? BsonMapper.Global;
         _disposeOnClose = disposeOnClose;
-        OnEngine();
     }
 
     #endregion

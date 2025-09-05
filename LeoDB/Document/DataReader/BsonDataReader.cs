@@ -25,6 +25,19 @@ namespace LeoDB
             _hasValues = false;
         }
 
+        internal BsonDataReader(EngineState state, IEnumerable<BsonDocument> docs, string collection = null)
+        {
+            _collection = collection;
+            _source = docs.Cast<BsonValue>().GetEnumerator();
+            _state = state;
+
+            if (_source.MoveNext())
+            {
+                _hasValues = _isFirst = true;
+                _current = _source.Current;
+            }
+        }
+
         /// <summary>
         /// Initialize with a single value
         /// </summary>
@@ -92,12 +105,12 @@ namespace LeoDB
             {
                 if (_source != null)
                 {
-                    _state.Validate(); // checks if engine still open
+                    _state?.Validate(); // checks if engine still open
 
                     try
                     {
                         var read = _source.MoveNext(); // can throw any error here
-                        _current = _state.ReadTransform(_collection, _source.Current);
+                        _current = _state?.ReadTransform(_collection, _source.Current);
                         return read;
                     }
                     catch (Exception ex)

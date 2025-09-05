@@ -82,7 +82,6 @@ public partial class LeoEngine
         catch (Exception ex)
         {
             this.Close(ex);
-
             throw;
         }
     }

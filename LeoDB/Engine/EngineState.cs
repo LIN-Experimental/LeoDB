@@ -6,7 +6,7 @@ internal class EngineState
 {
     public bool Disposed = false;
     private Exception _exception;
-    private readonly LeoEngine _engine; // can be null for unit tests
+    private readonly ILeoEngine _engine; // can be null for unit tests
     private readonly EngineSettings _settings;
 
 #if DEBUG
@@ -14,7 +14,7 @@ internal class EngineState
     public Action<PageBuffer> SimulateDiskWriteFail = null;
 #endif
 
-    public EngineState(LeoEngine engine, EngineSettings settings)
+    public EngineState(ILeoEngine engine, EngineSettings settings)
     {
         _engine = engine;
         _settings = settings;
@@ -29,13 +29,10 @@ internal class EngineState
     {
         LOG(ex.Message, "ERROR");
 
-        if (ex is IOException ||
-            (ex is LeoException lex && lex.ErrorCode == LeoException.INVALID_DATAFILE_STATE))
+        if (ex is IOException || (ex is LeoException lex && lex.ErrorCode == LeoException.INVALID_DATAFILE_STATE))
         {
             _exception = ex;
-
-            _engine?.Close(ex);
-
+            _engine?.CloseEngine(ex);
             return false;
         }
 

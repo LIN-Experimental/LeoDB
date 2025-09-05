@@ -4,7 +4,7 @@ public enum ConnectionType
 {
     Direct,
     Shared,
-    Tcp
+    Tcp,
     // MimePipes
-    // Rest
+    Rest
 }

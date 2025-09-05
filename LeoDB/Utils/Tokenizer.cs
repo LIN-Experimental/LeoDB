@@ -210,8 +210,7 @@ internal class Tokenizer
         return false;
     }
 
-    public Tokenizer(string source)
-        : this(new StringReader(source))
+    public Tokenizer(string source) : this(new StringReader(source))
     {
     }
 

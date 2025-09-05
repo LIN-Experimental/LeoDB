@@ -1,4 +1,6 @@
-﻿using LeoDB.Utils;
+﻿using LeoDB.Runtime;
+using LeoDB.Runtime.Actions;
+using LeoDB.Utils;
 using System.Collections.Concurrent;
 using static LeoDB.Constants;
 
@@ -126,6 +128,8 @@ public partial class LeoEngine : ILeoEngine
             // register system collections
             this.InitializeSystemCollections();
 
+            LeoRuntime.Generate(this);
+
             LOG("initialization completed", "ENGINE");
 
             return true;
@@ -213,6 +217,14 @@ public partial class LeoEngine : ILeoEngine
 
         return tc.Exceptions;
     }
+
+
+    public void CloseEngine(Exception ex)
+    {
+        Close(ex);
+    }
+
+
 
     #endregion
 
