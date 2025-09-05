@@ -10,6 +10,12 @@ public partial class LeoEngine
     public int Delete(string collection, IEnumerable<BsonValue> ids)
     {
         if (collection.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(collection));
+
+        if (_settings.PolicyHandler?.CanDelete(collection) ?? true)
+        {
+            throw LeoException.PermissionDeny($"No puedes eliminar registros en la colección '{collection}'");
+        }
+
         if (ids == null) throw new ArgumentNullException(nameof(ids));
 
         return this.AutoTransaction(transaction =>

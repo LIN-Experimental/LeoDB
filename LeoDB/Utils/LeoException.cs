@@ -59,6 +59,8 @@ public class LeoException : Exception
     public const int MAPPER_NOT_FOUND = 220;
     public const int MAPPING_ERROR = 221;
 
+    public const int PERMISSION_DENIED = 300;
+
 
     public const int INVALID_DATAFILE_STATE = 999;
 
@@ -349,6 +351,12 @@ public class LeoException : Exception
     internal static LeoException InvalidDatafileState(string message)
     {
         return new LeoException(INVALID_DATAFILE_STATE, message);
+    }
+
+
+    internal static LeoException PermissionDeny(string message)
+    {
+        return new LeoException(PERMISSION_DENIED, message);
     }
 
     #endregion

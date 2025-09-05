@@ -6,7 +6,6 @@ internal class LeoRuntime
 {
     public static void Generate(LeoEngine leoEngine)
     {
-
         // Registrar las tablas almacenadas del sistema.
         leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$intelligence"));
         leoEngine.RegisterStoredSystemCollections(new SystemSavedCollection("$indexes"));

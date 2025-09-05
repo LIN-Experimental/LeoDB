@@ -47,6 +47,12 @@ public partial class LeoEngine
     /// </summary>
     private void InsertDocument(Snapshot snapshot, BsonDocument doc, BsonAutoId autoId, IndexService indexer, DataService data)
     {
+
+        if (_settings.PolicyHandler?.CanInsert(snapshot.CollectionName) ?? true)
+        {
+           throw LeoException.PermissionDeny($"No puedes insertar registros en la colección '{snapshot.CollectionName}'");
+        }
+
         // if no _id, use AutoId
         if (!doc.TryGetValue("_id", out var id))
         {

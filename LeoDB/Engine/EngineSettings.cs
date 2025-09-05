@@ -19,6 +19,11 @@ public class EngineSettings
     public PipelineRuntime PipelineRuntime { get; set; }
 
     /// <summary>
+    /// Politicas de acceso a la base de datos.
+    /// </summary>
+    public PolicyHandler PolicyHandler { get; set; }
+
+    /// <summary>
     /// Get/Set custom stream to be used as datafile (can be MemoryStream or TempStream). Do not use FileStream - to use physical file, use "filename" attribute (and keep DataStream/WalStream null)
     /// </summary>
     public Stream? DataStream { get; set; } = null;

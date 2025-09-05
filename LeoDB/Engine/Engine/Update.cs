@@ -10,6 +10,12 @@ public partial class LeoEngine
     public int Update(string collection, IEnumerable<BsonDocument> docs)
     {
         if (collection.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(collection));
+
+        if (_settings.PolicyHandler?.CanUpdate(collection) ?? true)
+        {
+            throw LeoException.PermissionDeny($"No puedes actualizar registros en la colección '{collection}'");
+        }
+
         if (docs == null) throw new ArgumentNullException(nameof(docs));
 
         return this.AutoTransaction(transaction =>

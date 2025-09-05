@@ -105,7 +105,7 @@ public class ConnectionString
     /// <summary>
     /// Create ILeoEngine instance according string connection parameters. For now, only Local/Shared are supported
     /// </summary>
-    internal ILeoEngine CreateEngine(Action<EngineSettings> engineSettingsAction = null, ILeoDatabase leoDatabase = null, PipelineRuntime? pipelineRuntime = null)
+    internal ILeoEngine CreateEngine(Action<EngineSettings> engineSettingsAction = null, ILeoDatabase leoDatabase = null, PipelineRuntime? pipelineRuntime = null, PolicyHandler policyHandler = null)
     {
         var settings = new EngineSettings
         {
@@ -117,7 +117,8 @@ public class ConnectionString
             Upgrade = this.Upgrade,
             AutoRebuild = this.AutoRebuild,
             Database = leoDatabase,
-            PipelineRuntime = pipelineRuntime
+            PipelineRuntime = pipelineRuntime,
+            PolicyHandler = policyHandler
         };
 
         engineSettingsAction?.Invoke(settings);

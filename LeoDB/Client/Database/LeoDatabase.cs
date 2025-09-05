@@ -28,7 +28,7 @@ public partial class LeoDatabase : ILeoDatabase
     /// <summary>
     /// Starts LeoDB database using a connection string for file system database
     /// </summary>
-    public LeoDatabase(string connectionString, BsonMapper? mapper = null, PipelineRuntime? pipelineRuntime = null) : this(new ConnectionString(connectionString), mapper, pipelineRuntime)
+    public LeoDatabase(string connectionString, BsonMapper? mapper = null, PipelineRuntime? pipelineRuntime = null, PolicyHandler policyHandler = null) : this(new ConnectionString(connectionString), mapper, pipelineRuntime, policyHandler)
     {
 
     }
@@ -36,13 +36,13 @@ public partial class LeoDatabase : ILeoDatabase
     /// <summary>
     /// Starts LeoDB database using a connection string for file system database
     /// </summary>
-    public LeoDatabase(ConnectionString connectionString, BsonMapper? mapper = null, PipelineRuntime? pipelineRuntime = null)
+    public LeoDatabase(ConnectionString connectionString, BsonMapper? mapper = null, PipelineRuntime? pipelineRuntime = null, PolicyHandler policyHandler = null)
     {
         if (connectionString == null)
             throw new ArgumentNullException(nameof(connectionString));
 
         _mapper = mapper ?? BsonMapper.Global;
-        _engine = connectionString.CreateEngine(leoDatabase: this, pipelineRuntime: pipelineRuntime);
+        _engine = connectionString.CreateEngine(leoDatabase: this, pipelineRuntime: pipelineRuntime, policyHandler: policyHandler);
         _disposeOnClose = true;
     }
 

@@ -9,6 +9,12 @@ public partial class LeoEngine
     public IBsonDataReader Query(string collection, Query query)
     {
         if (string.IsNullOrWhiteSpace(collection)) throw new ArgumentNullException(nameof(collection));
+
+        if (_settings.PolicyHandler?.CanRead(collection) ?? true)
+        {
+            throw LeoException.PermissionDeny($"No puedes leer registros en la colección '{collection}'");
+        }
+
         if (query == null) throw new ArgumentNullException(nameof(query));
 
         IEnumerable<BsonDocument> source = null;
