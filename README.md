@@ -1,32 +1,33 @@
-# LeoDB - Base de datos NoSQL embebida.
+# LeoDB - Base de datos NoSQL preparada para todo.
 
-LeoDB es una pequeña, rápida y ligera base de datos .NET NoSQL embebida. 
+LeoDB es una base de datos .NET NoSQL, rÃ¡pida y ligera.
+Funciona tanto embebida en aplicaciones locales como en modo servidor vÃ­a REST, lista para usarse en la nube.
 
-- Almacén de documentos NoSQL sin servidor
+- AlmacÃ©n de documentos NoSQL sin servidor
 - API simple, similar a MongoDB
-- Código 100% C# para .NET Core.
+- CÃ³digo 100% C# para .NET Core.
 - A prueba de hilos
 - ACID con soporte completo de transacciones
-- Recuperación de datos tras un fallo de escritura (archivo de registro WAL)
-- Cifrado de archivos de datos utilizando criptografía DES (AES)
+- RecuperaciÃ³n de datos tras un fallo de escritura (archivo de registro WAL)
+- Cifrado de archivos de datos utilizando criptografÃ­a DES (AES)
 - Mapea tus clases POCO a `BsonDocument` usando atributos o API de mapeo fluido
 - Almacenar archivos y datos de flujo (como GridFS en MongoDB)
 - Almacenamiento de archivos de datos individuales (como SQLite)
-- Indexar campos de documentos para búsquedas rápidas
+- Indexar campos de documentos para bÃºsquedas rÃ¡pidas
 - Soporte LINQ para consultas
 - Comandos similares a SQL para acceder/transformar datos
 
 ## Nueva v1
 
 - Nuevo motor de almacenamiento
-- Sin bloqueos para operaciones de lectura (múltiples lectores)
-- Bloqueos de escritura por colección (múltiples escritores)
+- Sin bloqueos para operaciones de lectura (mÃºltiples lectores)
+- Bloqueos de escritura por colecciÃ³n (mÃºltiples escritores)
 - Colecciones internas/sistema 
 - Nueva sintaxis similar a SQL
-- Nuevo motor de consulta (admite proyección, ordenación, filtrado y consulta)
-- Carga parcial de documentos (nivel raíz)
+- Nuevo motor de consulta (admite proyecciÃ³n, ordenaciÃ³n, filtrado y consulta)
+- Carga parcial de documentos (nivel raÃ­z)
 
-## ¿Como usarlo?
+## Â¿Como usarlo?
 
 A quick example for storing and searching documents:
 
@@ -69,12 +70,12 @@ using(var db = new LeoDatabase(@"Data.db"))
 ```
 
 
-## ¿Dónde utilizarlo?
+## Â¿DÃ³nde utilizarlo?
 
-- Escritorio/pequeñas aplicaciones locales
+- Escritorio/pequeÃ±as aplicaciones locales
 - Formato de archivo de aplicaciones
-- Pequeños sitios web/aplicaciones
-- Una base de datos **por cuenta/usuario** almacén de datos
+- PequeÃ±os sitios web/aplicaciones
+- Una base de datos **por cuenta/usuario** almacÃ©n de datos
 - Puedes usar LeoDB en LIN Cloud (Servicio de LeoDB en la nube) para almacenar datos en la nube.
 
 
