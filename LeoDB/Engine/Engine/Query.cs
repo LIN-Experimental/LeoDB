@@ -10,7 +10,7 @@ public partial class LeoEngine
     {
         if (string.IsNullOrWhiteSpace(collection)) throw new ArgumentNullException(nameof(collection));
 
-        if (_settings.PolicyHandler?.CanRead(collection) ?? true)
+        if (!_settings.PolicyHandler?.CanRead(collection) ?? false)
         {
             throw LeoException.PermissionDeny($"No puedes leer registros en la colección '{collection}'");
         }

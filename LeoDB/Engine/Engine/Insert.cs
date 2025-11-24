@@ -48,7 +48,7 @@ public partial class LeoEngine
     private void InsertDocument(Snapshot snapshot, BsonDocument doc, BsonAutoId autoId, IndexService indexer, DataService data)
     {
 
-        if (_settings.PolicyHandler?.CanInsert(snapshot.CollectionName) ?? true)
+        if (!_settings.PolicyHandler?.CanInsert(snapshot.CollectionName) ?? false)
         {
            throw LeoException.PermissionDeny($"No puedes insertar registros en la colección '{snapshot.CollectionName}'");
         }

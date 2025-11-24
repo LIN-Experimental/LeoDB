@@ -11,7 +11,7 @@ public partial class LeoEngine
     {
         if (collection.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(collection));
 
-        if (_settings.PolicyHandler?.CanDelete(collection) ?? true)
+        if (!_settings.PolicyHandler?.CanDelete(collection) ?? false)
         {
             throw LeoException.PermissionDeny($"No puedes eliminar registros en la colección '{collection}'");
         }

@@ -11,7 +11,7 @@ public partial class LeoEngine
     {
         if (collection.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(collection));
 
-        if (_settings.PolicyHandler?.CanUpdate(collection) ?? true)
+        if (!_settings.PolicyHandler?.CanUpdate(collection) ?? false)
         {
             throw LeoException.PermissionDeny($"No puedes actualizar registros en la colección '{collection}'");
         }
