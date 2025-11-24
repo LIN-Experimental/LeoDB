@@ -12,6 +12,25 @@ public partial class LeoCollection<T>
         return new LeoQueryable<T>(_engine, _mapper, _collection, new Query()).Include(_includes);
     }
 
+    #region Vectores
+
+    /// <summary>
+    /// Buscar de forma vectorial.
+    /// </summary>
+    public IEnumerable<T> FindVectorial(Query query, int skip = 0, int limit = int.MaxValue)
+    {
+        if (query == null) throw new ArgumentNullException(nameof(query));
+
+        if (skip != 0) query.Offset = skip;
+        if (limit != int.MaxValue) query.Limit = limit;
+
+        query.IsVectorial = true;
+
+        return new LeoQueryable<T>(_engine, _mapper, _collection, query).ToEnumerable();
+    }
+
+    #endregion
+
     #region Find
 
     /// <summary>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
 		<AssemblyVersion>1.0</AssemblyVersion>
 		<FileVersion>1.0</FileVersion>
 		<VersionPrefix>1.0</VersionPrefix>
@@ -68,8 +68,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-	  <PackageReference Include="System.Buffers" Version="4.5.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+		<PackageReference Include="System.Buffers" Version="4.6.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+	  <PackageReference Include="Infidex">
+	    <Version>1.0.2</Version>
+	  </PackageReference>
 	</ItemGroup>
 
 	<!-- End References -->

@@ -30,7 +30,7 @@ internal partial class SqlParser
         };
 
         // Usa InsertOrUpdate para evitar duplicados
-        var result = _engine.InsertOrUpdate("$users", new[] { doc }, BsonAutoId.ObjectId);
+        var result = _engine.Insert("$users", new[] { doc }, BsonAutoId.ObjectId);
 
         return new BsonDataReader(result);
     }

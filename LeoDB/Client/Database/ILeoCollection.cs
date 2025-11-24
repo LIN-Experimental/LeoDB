@@ -139,6 +139,11 @@ public interface ILeoCollection<T>
     IEnumerable<T> Find(Query query, int skip = 0, int limit = int.MaxValue);
 
     /// <summary>
+    /// Buscar de forma vectorial.
+    /// </summary>
+    IEnumerable<T> FindVectorial(Query query, int skip = 0, int limit = int.MaxValue);
+
+    /// <summary>
     /// Find documents inside a collection using predicate expression.
     /// </summary>
     IEnumerable<T> Find(Expression<Func<T, bool>> predicate, int skip = 0, int limit = int.MaxValue);
