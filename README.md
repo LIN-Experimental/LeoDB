@@ -3,7 +3,7 @@
 LeoDB es una base de datos .NET NoSQL, rápida y ligera.
 Funciona tanto embebida en aplicaciones locales como en modo servidor vía REST, lista para usarse en la nube.
 
-- Almacén de documentos NoSQL sin servidor
+- Almacén de documentos NoSQL sin servidor (Y con servidor)
 - API simple, similar a MongoDB
 - Código 100% C# para .NET Core.
 - A prueba de hilos
@@ -26,6 +26,7 @@ Funciona tanto embebida en aplicaciones locales como en modo servidor vía REST,
 - Nueva sintaxis similar a SQL
 - Nuevo motor de consulta (admite proyección, ordenación, filtrado y consulta)
 - Carga parcial de documentos (nivel raíz)
+- Busqueda binaria / vectores (Nuevo)
 
 ## ¿Como usarlo?
 
@@ -66,6 +67,50 @@ using(var db = new LeoDatabase(@"Data.db"))
 
     // Use LINQ to query documents (with no index)
     var results = col.Find(x => x.Age > 20);
+}
+```
+
+Busquedas vectoriales:
+
+```C#
+internal class Movie
+{
+    [CollectionId()]
+    public int id { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+}
+
+
+// Open database (or create if doesn't exist)
+using(var db = new LeoDatabase(@"data.db"))
+{
+    // Get customer collection
+    var models = db.GetCollection<Movie>("movies");
+
+    // Create your new user instance
+    models.Insert(
+    new Movie()
+    {
+        Name = "Inception",
+        Description = "Un ladrón especializado en infiltrarse en los sueños debe realizar una última misión: implantar una idea en la mente de un poderoso empresario."
+    });
+
+    models.Insert(
+        new Movie()
+        {
+            Name = "Interstellar",
+            Description = "Un grupo de exploradores viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad."
+        });
+
+    models.Insert(
+        new Movie()
+        {
+            Name = "El Señor de los Anillos: La Comunidad del Anillo",
+            Description = "Un joven hobbit hereda un anillo con un poder oscuro y comienza un viaje épico para destruirlo antes de que caiga en manos del enemigo."
+        });
+
+    var movies = models.FindVectorial(Query.All(), "mano").ToList();
 }
 ```
 

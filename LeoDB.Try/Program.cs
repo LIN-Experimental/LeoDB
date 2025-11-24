@@ -1,7 +1,7 @@
 ﻿using LeoDB;
 
-//var database = new LeoDB.LeoDatabase("filename=ss42.db;connection=DIRECT");
-var database = new LeoDB.LeoDatabase("filename=ss42.db;connection=REST");
+var database = new LeoDB.LeoDatabase("filename=ss42.db;connection=DIRECT");
+//var database = new LeoDB.LeoDatabase("filename=ss42.db;connection=REST");
 
 var models = database.GetCollection<Movie>("movies");
 
@@ -66,27 +66,17 @@ if (models.Count() <= 0)
 
 }
 
+// Buscar mediante SQL.
+var data = database.Execute("SELECT * FROM movies");
 
-var query = Query.All();
+while(data.Read())
+{
+    Console.WriteLine($"{data["id"]} | {data["Name"]} | {data["Description"]}");
+}
 
-query.VectorialValue = "Buscar";
-
-var movies = models.FindVectorial(query);
+var movies = models.FindVectorial(Query.All(), "Buscar");
 
 var lola = movies.ToList();
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

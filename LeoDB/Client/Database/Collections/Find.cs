@@ -17,7 +17,7 @@ public partial class LeoCollection<T>
     /// <summary>
     /// Buscar de forma vectorial.
     /// </summary>
-    public IEnumerable<T> FindVectorial(Query query, int skip = 0, int limit = int.MaxValue)
+    public IEnumerable<T> FindVectorial(Query query, string value, int skip = 0, int limit = int.MaxValue)
     {
         if (query == null) throw new ArgumentNullException(nameof(query));
 
@@ -25,6 +25,7 @@ public partial class LeoCollection<T>
         if (limit != int.MaxValue) query.Limit = limit;
 
         query.IsVectorial = true;
+        query.VectorialValue = value;
 
         return new LeoQueryable<T>(_engine, _mapper, _collection, query).ToEnumerable();
     }

@@ -82,9 +82,29 @@ internal partial class SqlParser
             // read WHERE keyword
             _tokenizer.ReadToken();
 
-            var where = BsonExpression.Create(_tokenizer, BsonExpressionParserMode.Full, _parameters);
+            var next = _tokenizer.LookAhead();
 
-            query.Where.Add(where);
+            // Detectar MATCH(expr)
+            if (next.Is("MATCH"))
+            {
+                _tokenizer.ReadToken(); // consume MATCH
+                _tokenizer.ReadToken().Expect(TokenType.OpenParenthesis);
+
+                // leer contenido hasta el ')'
+                var text = _tokenizer.ReadToken().Expect(TokenType.String).Value;
+
+                _tokenizer.ReadToken().Expect(TokenType.CloseParenthesis);
+
+                query.IsVectorial = true;
+                query.VectorialValue = text;
+            }
+
+            var peek = _tokenizer.LookAhead();
+            if (peek.Is("AND") || peek.Is("OR") || peek.Type == TokenType.Word || peek.Type == TokenType.OpenParenthesis)
+            {
+                var where = BsonExpression.Create(_tokenizer, BsonExpressionParserMode.Full, _parameters);
+                query.Where.Add(where);
+            }
         }
 
         ahead = _tokenizer.LookAhead().Expect(TokenType.Word, TokenType.EOF, TokenType.SemiColon);
