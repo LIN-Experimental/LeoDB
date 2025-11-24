@@ -2,7 +2,6 @@
 
 public partial class LeoEngine
 {
-
     /// <summary>
     /// Manejar y crear las colecciones del sistema almacenadas.
     /// </summary>

@@ -1,5 +1,4 @@
 ﻿using LeoDB.Runtime;
-using LeoDB.Runtime.Actions;
 using LeoDB.Utils;
 using System.Collections.Concurrent;
 using static LeoDB.Constants;
@@ -27,7 +26,6 @@ public partial class LeoEngine : ILeoEngine
     private SortDisk _sortDisk;
 
     private EngineState _state;
-
 
     /// <summary>
     /// immutable settings

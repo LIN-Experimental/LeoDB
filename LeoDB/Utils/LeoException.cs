@@ -353,7 +353,6 @@ public class LeoException : Exception
         return new LeoException(INVALID_DATAFILE_STATE, message);
     }
 
-
     internal static LeoException PermissionDeny(string message)
     {
         return new LeoException(PERMISSION_DENIED, message);

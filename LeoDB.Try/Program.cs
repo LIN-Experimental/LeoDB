@@ -71,6 +71,7 @@ var data = database.Execute("SELECT * FROM movies");
 
 while(data.Read())
 {
+    var current = data.Current.RawValue;
     Console.WriteLine($"{data["id"]} | {data["Name"]} | {data["Description"]}");
 }
 

@@ -19,7 +19,7 @@ public class EngineSettings
     public PipelineRuntime PipelineRuntime { get; set; }
 
     /// <summary>
-    /// Politicas de acceso a la base de datos.
+    /// Políticas de acceso a la base de datos.
     /// </summary>
     public PolicyHandler PolicyHandler { get; set; }
 

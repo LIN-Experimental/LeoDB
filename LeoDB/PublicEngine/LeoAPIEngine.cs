@@ -1,7 +1,5 @@
 ﻿using LeoDB.Engine;
-using LeoDB.Json;                 // <-- tus converters + extensions + settings
-// using System.Text.Json;        // ❌ ya no lo necesitas aquí
-// using System.Net.Http.Json;    // ❌ ya no lo necesitas aquí
+using LeoDB.Json;             
 
 namespace LeoDB.PublicEngine;
 
